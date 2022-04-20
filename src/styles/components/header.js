@@ -1,3 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Container =  styled.header``
+export const Container = styled.header`
+	background-color: rgb(${({theme}) => theme.brigther});
+`;

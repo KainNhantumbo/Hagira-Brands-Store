@@ -1,4 +1,5 @@
 import { Container } from "../styles/components/header";
+import Button from "./Button";
 
 const Header = () => {
 	return (
@@ -14,7 +15,7 @@ const Header = () => {
 				</nav>
 			</div>
 			<div className='actions'>
-				<button>Login</button>
+				<Button text={'Entrar'}/>
 			</div>
 		</Container>
 	);
