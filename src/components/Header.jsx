@@ -1,5 +1,6 @@
-import { Container } from "../styles/components/header";
-import Button from "./Button";
+import { Container } from '../styles/components/header';
+import Button from './Button';
+import { BiLogIn } from 'react-icons/bi';
 
 const Header = () => {
 	return (
@@ -15,7 +16,7 @@ const Header = () => {
 				</nav>
 			</div>
 			<div className='actions'>
-				<Button text={'Entrar'}/>
+				<Button text={'Entrar'} icon={<BiLogIn/>}/>
 			</div>
 		</Container>
 	);

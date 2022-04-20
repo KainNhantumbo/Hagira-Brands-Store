@@ -1,13 +1,31 @@
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
-	padding: 5px 10px;
+	padding: 7px 10px;
 	background: rgb(${({ theme }) => theme.primary});
-  bor
-	svg {
+	border-style: none;
+	border: none;
+	border-radius: 3px;
+	position: relative;
+	margin-left: 3rem;
+
+	:hover {
+		background-color: rgb(${({ theme }) => theme.secondary});
+		transition: all 200ms ease-out;
 	}
-	span {
-		font-weight: 500;
+
+	svg {
+		position: absolute;
+		width: 15px;
+		height: 15px;
+		left: 3px;
+		top: 9px;
 		color: rgb(${({ theme }) => theme.text});
+	}
+
+	span {
+		font-weight: 400;
+		color: rgb(${({ theme }) => theme.text});
+		padding-left: 12px;
 	}
 `;
