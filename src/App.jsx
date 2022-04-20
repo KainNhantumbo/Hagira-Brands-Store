@@ -13,7 +13,7 @@ const App = () => {
 			<GlobalStyles />
 			<Container>
 				<Header />
-				asdasdasd asda sda sdas dsdfsdfs dfsd fsdfsdf sdfsdf
+			
 			</Container>
 			<Routes>
 				<Route path='/' element={<Home />} />
