@@ -1,22 +1,29 @@
 import { Container } from '../styles/components/header';
 import Button from './Button';
-import { BiLogIn } from 'react-icons/bi';
+import { BiLogIn, BiBadge } from 'react-icons/bi';
 
 const Header = () => {
 	return (
 		<Container>
-			<section>Logo</section>
+			<section></section>
 			<div className='navbarContainer'>
 				<nav>
 					<ul>
 						<li>
-							<span>Explorar</span>
+							<a href='/'>
+								<span>Explorar</span>
+							</a>
+						</li>
+						<li>
+							<a href='/sobre'>
+								<span>Sobre</span>
+							</a>
 						</li>
 					</ul>
 				</nav>
 			</div>
 			<div className='actions'>
-				<Button text={'Entrar'} icon={<BiLogIn/>}/>
+				<Button text={'Entrar'} icon={<BiLogIn />} />
 			</div>
 		</Container>
 	);

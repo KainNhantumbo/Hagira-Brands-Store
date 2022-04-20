@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
-	background-color: rgb(${({theme}) => theme.brigther});
+	background-color: rgb(${({theme}) => theme.hover});
 `;
