@@ -103,10 +103,10 @@ export const Container = styled.header`
 					color: rgb(${({ theme }) => theme.primary});
 				}
 
-				/* @media screen and (min-width: 505px) {
+				@media screen and (min-width: 505px) {
 					display: none;
 					color: red;
-				} */
+				}
 			}
 		}
 	}

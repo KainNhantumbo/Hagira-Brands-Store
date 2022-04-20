@@ -1,4 +1,7 @@
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
+import Login from './pages/Login';
+import Home from './pages/Home';
 import { ThemeProvider } from 'styled-components';
 import { primary } from './styles/themes';
 import { Container } from './styles/app';
@@ -10,20 +13,12 @@ const App = () => {
 			<GlobalStyles />
 			<Container>
 				<Header />
-				asdasdasd
-				<a href="sd
-				a
-				sd
-				asd"></a>
-				asda
-				sda
-				sdas
-				dsdfsdfs
-				dfsd
-				fsdfsdf
-				sdfsdf
-				
+				asdasdasd asda sda sdas dsdfsdfs dfsd fsdfsdf sdfsdf
 			</Container>
+			<Routes>
+				<Route path='/' element={<Home />} />
+				<Route path='/login' element={<Login />} />
+			</Routes>
 		</ThemeProvider>
 	);
 };

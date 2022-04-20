@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 import { BiLogIn, BiCartAlt, BiMenu } from 'react-icons/bi';
 
 const Header = () => {
-	const [menu, setMenu] = useState(() => {
-		return { display: 'none' };
-	});
+	const [menu, setMenu] = useState();
 
 	// toggles the menu
 	const menuToggler = () => {
