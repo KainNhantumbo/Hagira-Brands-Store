@@ -51,6 +51,7 @@ export const Container = styled.header`
 				align-items: center;
 				padding-top: 70px;
 				gap: 0;
+				z-index: 190;
 
 				li {
 					width: 100%;

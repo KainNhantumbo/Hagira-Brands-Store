@@ -1,6 +1,6 @@
 import { LoginContainer } from '../styles/login';
 import Button from '../components/Button';
-import { BiLogIn, BiUser } from 'react-icons/bi';
+import { BiLogIn, BiUser, BiEnvelope, BiLockAlt } from 'react-icons/bi';
 import { useState } from 'react';
 
 const Login = () => {
@@ -12,7 +12,10 @@ const Login = () => {
 	return (
 		<LoginContainer>
 			<form>
-				<label htmlFor='email'>E-mail</label>
+				<label htmlFor='email'>
+					<BiEnvelope />
+					<span>E-mail</span>
+				</label>
 				<input
 					type='email'
 					id='email'
@@ -20,8 +23,12 @@ const Login = () => {
 					placeholder='Digite os seu email'
 					onChange={(e) => setEmail(() => e.target.value)}
 				/>
-				<span>{emailError}</span>
-				<label htmlFor='password'>Password</label>
+				<span className='error'>{emailError}</span>
+
+				<label htmlFor='password'>
+					<BiLockAlt />
+					<span>Password</span>
+				</label>
 				<input
 					type='password'
 					id='password'
@@ -29,11 +36,12 @@ const Login = () => {
 					placeholder='Digite a sua senha'
 					onChange={(e) => setPassword(() => e.target.value)}
 				/>
-				<span>{passwordError}</span>
-				<div className='actions'>
+				<span className='error'>{passwordError}</span>
+
+				<section className='buttons'>
 					<Button text={'Entrar'} icon={<BiLogIn />} />
 					<Button text={'Criar nova conta'} icon={<BiUser />} />
-				</div>
+				</section>
 			</form>
 		</LoginContainer>
 	);

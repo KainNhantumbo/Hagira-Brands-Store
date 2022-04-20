@@ -7,8 +7,8 @@ export const ButtonContainer = styled.button`
 	border: none;
 	border-radius: 3px;
 	position: relative;
-	margin-left: 3rem;
-
+	z-index: 0;
+	
 	:hover {
 		background-color: rgb(${({ theme }) => theme.secondary});
 		transition: all 200ms ease-out;

@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: Poppins, 'PT Sans', Montserrat;
+    font-family: 'Open Sans', Montserrat, Poppins, 'PT Sans';
   }
 
   span, label {
@@ -14,9 +14,15 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     color: rgb(${({ theme }) => theme.font});
-    padding-top: 3.8em;
+    padding-top: 2em;
     position: relative;
     background: rgb(${({ theme }) => theme.background});
+  }
+
+  main {
+    width: 100%;
+	  height: 100%;
+    padding: 10px 15px;
   }
 
   ::-webkit-scrollbar {
