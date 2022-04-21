@@ -4,27 +4,6 @@ import { useEffect, useState } from 'react';
 import { BiLogIn, BiCartAlt, BiMenu } from 'react-icons/bi';
 
 const Header = () => {
-	const [menu, setMenu] = useState();
-
-	// toggles the menu
-	const menuToggler = () => {
-		if (menu.display === 'none') return setMenu(() => ({ display: 'flex' }));
-		return setMenu(() => ({ display: 'none' }));
-	};
-
-	useEffect(() => {
-		if (window.innerWidth >= 505) {
-			setMenu(() => ({ display: 'flex' }));
-		} else {
-			setMenu(() => ({ display: 'none' }));
-		}
-		window.addEventListener('resize', () => {
-			if (window.innerWidth >= 505) {
-				setMenu(() => ({ display: 'flex' }));
-			}
-		});
-	}, []);
-
 	return (
 		<Container>
 			<section>
