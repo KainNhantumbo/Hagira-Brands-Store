@@ -37,6 +37,9 @@ const Footer = () => {
 						<a href='/support'>Suporte</a>
 					</li>
 					<li>
+						<a href='/parcerias'>Parcerias</a>
+					</li>
+					<li>
 						<a href='/personal-suggest'>Encomendas personalizadas</a>
 					</li>
 				</ul>
