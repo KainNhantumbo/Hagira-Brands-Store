@@ -1,7 +1,6 @@
 import { Container } from '../styles/components/header';
 import Button from './Button';
-import { useEffect, useState } from 'react';
-import { BiLogIn, BiCartAlt, BiMenu } from 'react-icons/bi';
+import { BiLogIn, BiCartAlt } from 'react-icons/bi';
 
 const Header = () => {
 	return (
