@@ -28,38 +28,18 @@ const Header = () => {
 	return (
 		<Container>
 			<section>
-				<BiCartAlt />
-				<span>Hagira Brands</span>
+				<a href='/'>
+					<BiCartAlt />
+					<span>Hagira Brands</span>
+				</a>
 			</section>
 			<nav className='navbar'>
-				<ul>
-					<div className='common' style={menu}>
-						<li className='list-item'>
-							<a href='/discouver'>
-								<span>Explorar</span>
-							</a>
-						</li>
-						<li className='list-item'>
-							<a href='/about'>
-								<span>Sobre</span>
-							</a>
-						</li>
-						<li className='list-item'>
-							<a href='/contact'>
-								<span>Contacto</span>
-							</a>
-						</li>
-					</div>
-					<li onClick={menuToggler} className='menu-btn'>
-						<BiMenu />
-					</li>
-				</ul>
+				<div className='actions'>
+					<a href='/discouver'>
+						<Button id={'rounded'} text={'Explorar'} icon={<BiLogIn />} />
+					</a>
+				</div>
 			</nav>
-			<div className='actions'>
-				<a href='/login'>
-					<Button text={'Entrar'} icon={<BiLogIn />} />
-				</a>
-			</div>
 		</Container>
 	);
 };

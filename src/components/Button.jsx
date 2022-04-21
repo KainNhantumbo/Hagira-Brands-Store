@@ -1,8 +1,8 @@
 import { ButtonContainer } from '../styles/components/button';
 
-const Button = ({ text, icon }) => {
+const Button = ({ text, icon, id }) => {
 	return (
-		<ButtonContainer>
+		<ButtonContainer id={id}>
 			{icon}
 			<span>{text}</span>
 		</ButtonContainer>

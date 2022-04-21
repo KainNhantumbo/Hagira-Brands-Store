@@ -25,11 +25,15 @@ export const GlobalStyles = createGlobalStyle`
     padding: 10px 15px;
   }
 
+  #rounded {
+		border-radius: 15px;
+    font-weight: 400;
+	}
+
   ::-webkit-scrollbar {
     scroll-behavior: smooth;
     width: 5px;
     background: rgb(${({ theme }) => theme.background});
-
   }
 
   ::-webkit-scrollbar-thumb {

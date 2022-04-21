@@ -37,88 +37,19 @@ export const Container = styled.header`
 
 	.navbar {
 		padding-left: 170px;
-
-		@media screen and (max-width: 505px) {
-			.common {
-				width: 180px;
-				height: 100vh;
-				position: absolute;
-				flex-direction: column;
-				top: 0px;
-				left: 0px;
-				background: rgb(${({ theme }) => theme.background});
-				box-shadow: 0 0 5px 1px rgb(${({ theme }) => theme.shadows});
-				align-items: center;
-				padding-top: 70px;
-				gap: 0;
-				z-index: 190;
-
-				li {
-					width: 100%;
-					padding: 20px 10px;
-					display: flex;
-					justify-content: center;
-
-					:hover {
-						background: rgb(${({ theme }) => theme.hover});
-						transition: all 200ms ease-out;
-					}
-				}
-			}
-		}
+		display: flex;
+		justify-content: flex-end;
 
 		ul {
-			div {
-				display: flex;
-				gap: 30px;
-
-				.list-item {
-					span {
-						color: rgb(${({ theme }) => theme.font});
-					}
-
-					/* @media screen and (max-width: 505px) {
-						display: none;
-					} */
-				}
-			}
-
-			.menu-btn {
-				position: absolute;
-				right: 12px;
-				top: 11px;
-				width: 30px;
-				height: 30px;
-				padding: 15px;
-				border-radius: 50%;
-				display: grid;
-				place-content: center;
-
-				:hover {
-					background: rgb(${({ theme }) => theme.hover});
-				}
-
-				svg {
-					width: 22px;
-					height: 22px;
-					color: rgb(${({ theme }) => theme.primary});
-				}
-
-				@media screen and (min-width: 505px) {
-					display: none;
-					color: red;
-				}
+			span {
+				color: rgb(${({ theme }) => theme.font});
 			}
 		}
-	}
 
-	.actions {
-		position: absolute;
-		right: 10px;
-		top: 10px;
-
-		@media screen and (max-width: 505px) {
-			display: none;
+		.actions {
+			position: absolute;
+			right: 10px;
+			top: 10px;
 		}
 	}
 `;
