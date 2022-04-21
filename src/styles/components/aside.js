@@ -5,7 +5,7 @@ export const AsideContainer = styled.aside`
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
-	gap: 15px;
+	gap: 25px;
 
 	section {
 		ul {
