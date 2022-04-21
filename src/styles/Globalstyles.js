@@ -14,7 +14,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     color: rgb(${({ theme }) => theme.font});
-    padding-top: 2em;
     position: relative;
     background: rgb(${({ theme }) => theme.background});
   }

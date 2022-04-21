@@ -5,6 +5,7 @@ export const LoginContainer = styled.main`
 		display: flex;
 		justify-content: flex-start;
 		flex-direction: column;
+		width: 60%;
 		max-width: 350px;
 		gap: 5px;
 		margin: 0 auto;
