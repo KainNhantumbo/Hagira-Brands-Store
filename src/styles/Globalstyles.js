@@ -18,6 +18,10 @@ export const GlobalStyles = createGlobalStyle`
     
   }
 
+  input {
+    background: rgb(${({ theme }) => theme.inner});
+  }
+
   html {
     overflow-x: hidden;
   }

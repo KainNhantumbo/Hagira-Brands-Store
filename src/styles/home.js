@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HomeContainer = styled.main`
 	width: 100vw;
 	margin-top: 80px;
-	margin-bottom: 300px;
+	margin-bottom: 50px;
 	display: flex;
 	flex-flow: column nowrap;
 	gap: 30px;

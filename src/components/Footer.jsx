@@ -6,10 +6,10 @@ const Footer = () => {
 	return (
 		<FooterContainer>
 			<section>
-				<div>Loja</div>
+				<h2>Loja</h2>
 				<ul>
 					<li>
-						<a href='/home'>Início</a>
+						<a href='/'>Início</a>
 					</li>
 					<li>
 						<a href='/discouver'>Explorar</a>
@@ -20,15 +20,13 @@ const Footer = () => {
 					<li>
 						<a href='/contact'>Contacto</a>
 					</li>
-          <li>
-            <a href="/terms-and-conditions">
-              Termos e condições
-            </a>
-          </li>
+					<li>
+						<a href='/terms-and-conditions'>Termos e condições</a>
+					</li>
 				</ul>
 			</section>
 			<section>
-				<div>Administração</div>
+				<h2>Administração</h2>
 				<ul>
 					<li>
 						<a href='/login'>Entrar</a>
@@ -45,7 +43,7 @@ const Footer = () => {
 				</ul>
 			</section>
 			<section>
-				<div>Desenvolvedor</div>
+				<h2>Desenvolvedor</h2>
 				<ul>
 					<li>
 						<a href='/report'>Reportar Bug/falha</a>
@@ -55,21 +53,25 @@ const Footer = () => {
 					</li>
 				</ul>
 			</section>
-			<section>
-				<div>Newsletter</div>
+			<section className='newsletter'>
+				<h2>Newsletter</h2>
 				<p>
-					Subscreva a nossa newsletter enviando o seu e-mail, para saber quando
-					um novo produto tiver sido lançado em seu e-mail.
+					Subscreva a nossa newsletter <br></br>
+					enviando o seu e-mail, para <br></br>
+					saber quando um novo produto <br></br>
+					tiver sido lançado em seu e-mail.
 				</p>
-				<label htmlFor='email'>Email</label>
-				<input type='email' name='email' placeholder='email' />
-        <Button text={'Send'} icon={<BiSend/>} />
+				<section>
+					<label htmlFor='email'>Email</label>
+					<div>
+						<input type='email' name='email' placeholder='Digite o e-mail aqui...' />
+						<Button text={'Send'} icon={<BiSend />} />
+					</div>
+				</section>
 			</section>
-      <div className='copyright'>
-        <span>
-          &copy; Copyright 2022 Hagira Brands, Moçambique.
-        </span>
-      </div>
+			<div className='copyright'>
+				<span>&copy; Copyright 2022 Hagira Brands, Moçambique.</span>
+			</div>
 		</FooterContainer>
 	);
 };
