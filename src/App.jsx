@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Footer from './components/Footer';
+import ErrorPage from './pages/ErrorPage';
 import { ThemeProvider } from 'styled-components';
 import { primary } from './styles/themes';
 import { GlobalStyles } from './styles/Globalstyles';
@@ -15,8 +16,9 @@ const App = () => {
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/login' element={<Login />} />
+				<Route path='*' element={<ErrorPage />} />
 			</Routes>
-			<Footer/>
+			<Footer />
 		</ThemeProvider>
 	);
 };
