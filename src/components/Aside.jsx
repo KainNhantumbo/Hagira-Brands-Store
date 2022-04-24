@@ -1,4 +1,4 @@
-import { AsideContainer } from '../styles/components/aside';
+import { ToolboxContainer } from '../styles/components/toolbox';
 import Button from './Button';
 import { BiSearch } from 'react-icons/bi';
 const Aside = () => {
@@ -8,7 +8,7 @@ const Aside = () => {
 	};
 
 	return (
-		<AsideContainer>
+		<ToolboxContainer>
 			<section>
 				<div className='title'>Pesquisa</div>
 				<div className='search'>
@@ -40,7 +40,7 @@ const Aside = () => {
 					})}
 				</ul>
 			</section>
-		</AsideContainer>
+		</ToolboxContainer>
 	);
 };
 

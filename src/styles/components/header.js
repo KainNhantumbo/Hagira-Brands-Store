@@ -14,6 +14,7 @@ export const Container = styled.header`
 	justify-content: flex-start;
 	gap: 20px;
 	font-weight: 600;
+	z-index: 4000;
 
 	section {
 		position: absolute;

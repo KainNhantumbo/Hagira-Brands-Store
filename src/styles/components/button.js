@@ -7,7 +7,6 @@ export const ButtonContainer = styled.button`
 	border: none;
 	border-radius: 3px;
 	position: relative;
-	z-index: 0;
 	
 	:hover {
 		background-color: rgb(${({ theme }) => theme.secondary});

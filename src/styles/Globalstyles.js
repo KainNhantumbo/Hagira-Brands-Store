@@ -14,8 +14,12 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     color: rgb(${({ theme }) => theme.font});
-    position: relative;
     background: rgb(${({ theme }) => theme.background});
+    
+  }
+
+  html {
+    overflow-x: hidden;
   }
 
   #rounded {
@@ -31,6 +35,6 @@ export const GlobalStyles = createGlobalStyle`
 
   ::-webkit-scrollbar-thumb {
     border-radius: 15px;
-    background: rgba(${({ theme }) => theme.text}, .5);
+    background: rgba(${({ theme }) => theme.primary}, .5);
   }
 `;

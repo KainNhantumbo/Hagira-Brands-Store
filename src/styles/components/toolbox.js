@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
-export const AsideContainer = styled.aside`
-	width: 25vw;
+export const ToolboxContainer = styled.aside`
 	display: flex;
-	justify-content: flex-start;
-	flex-direction: column;
-	gap: 25px;
+	justify-content: center;
+	flex-direction: row;
+	gap: 20px;
+	padding: 0 10px;
+
+	@media screen and (max-width: 710px) {
+		flex-direction: column;
+	}
 
 	section {
 		ul {
@@ -15,15 +19,16 @@ export const AsideContainer = styled.aside`
 			gap: 15px;
 
 			.tags {
+				padding: 7px 0;
 				span {
-					padding: 2px 8px;
-					border-radius: 12px;
+					padding: 5px 8px;
+					border-radius: 3px;
 					font-size: 0.9rem;
 					color: rgb(${({ theme }) => theme.text});
-					background: rgb(${({ theme }) => theme.secondary});
+					background: rgb(${({ theme }) => theme.primary});
 
 					:hover {
-						background: rgb(${({ theme }) => theme.primary});
+						background: rgb(${({ theme }) => theme.secondary});
 					}
 				}
 			}
@@ -43,6 +48,10 @@ export const AsideContainer = styled.aside`
 				border: 2px solid rgb(${({ theme }) => theme.primary});
 				border-radius: 3px;
 				padding: 5px;
+
+				@media screen and (max-width: 305px) {
+					width: 175px;
+				}
 
 				:focus {
 					box-shadow: 0 0 10px rgb(${({ theme }) => theme.primary});

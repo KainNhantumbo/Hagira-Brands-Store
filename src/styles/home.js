@@ -2,16 +2,14 @@ import styled from 'styled-components';
 
 export const HomeContainer = styled.main`
 	width: 100vw;
-	margin: 20px 10px;
 	margin-top: 80px;
+	margin-bottom: 300px;
 	display: flex;
-	justify-content: flex-start;
-	flex-direction: row;
-	gap: 10px;
+	flex-flow: column nowrap;
+	gap: 30px;
 
 	article {
-		width: 70vw;
-
+		margin: 0 10px;
 		h2 {
 			font-weight: 500;
 			margin-bottom: 12px;
@@ -19,9 +17,22 @@ export const HomeContainer = styled.main`
 
 		.products {
 			display: grid;
-			grid-template-columns: 1fr 1fr 1fr 1fr;
-			grid-template-rows: auto;
-			gap: 20px;
+			grid-template-columns: repeat(5, 1fr);
+			justify-items: center;
+			gap: 20px 12px;
+
+			@media screen and (max-width: 1180px) {
+				grid-template-columns: repeat(4, 1fr);
+			}
+			@media screen and (max-width: 930px) {
+				grid-template-columns: repeat(3, 1fr);
+			}
+			@media screen and (max-width: 695px) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			@media screen and (max-width: 480px) {
+				grid-template-columns: 1fr;
+			}
 		}
 
 		.product {
@@ -35,7 +46,7 @@ export const HomeContainer = styled.main`
 			padding-bottom: 10px;
 
 			:hover {
-				box-shadow: 0 0 10px 1px rgb(${({ theme }) => theme.shadows});
+				box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 				transition: 200ms ease-out;
 			}
 
@@ -53,7 +64,7 @@ export const HomeContainer = styled.main`
 				font-weight: 400;
 				font-size: 0.9rem;
 				padding: 3px 8px;
-				gap: 10px;
+				gap: 12px;
 
 				h3 {
 					font-weight: 500;
@@ -64,13 +75,27 @@ export const HomeContainer = styled.main`
 					display: flex;
 					justify-content: space-between;
 					flex-direction: column;
-					gap: 5px;
+					gap: 8px;
+
+					span {
+						padding-left: 20px;
+						position: relative;
+
+						svg {
+							position: absolute;
+							left: 0;
+							top: -2px;
+							width: 18px;
+							height: 18px;
+							color: rgb(${({ theme }) => theme.primary});
+						}
+					}
 
 					.price {
 						font-weight: 500;
-					}
-
-					.type {
+						svg {
+							color: rgb(${({ theme }) => theme.secondary});
+						}
 					}
 				}
 			}

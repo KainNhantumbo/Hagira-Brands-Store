@@ -22,7 +22,7 @@ const Home = () => {
 			type: 'Por encomenda',
 			price: 923.9,
 			short_description: 'Pano de mesa',
-			date: '12-23-12',
+			date: '12-08-2022',
 		},
 
 		{
@@ -30,21 +30,56 @@ const Home = () => {
 			type: 'Em estoque',
 			price: 453.9,
 			short_description: 'Pano de mesa',
-			date: '12-23-12',
+			date: '12-08-2022',
+		},
+		{
+			images: [img8, img1],
+			type: 'Em estoque',
+			price: 453.9,
+			short_description: 'Pano de mesa',
+			date: '12-08-2022',
+		},
+		{
+			images: [img10, img1],
+			type: 'Em estoque',
+			price: 453.9,
+			short_description: 'Pano de mesa',
+			date: '12-08-2022',
+		},
+		{
+			images: [img6, img1],
+			type: 'Em estoque',
+			price: 453.9,
+			short_description: 'Pano de mesa',
+			date: '12-08-2022',
+		},
+		{
+			images: [img11, img1],
+			type: 'Em estoque',
+			price: 453.9,
+			short_description: 'Pano de mesa',
+			date: '12-08-2022',
+		},
+		{
+			images: [img3, img1],
+			type: 'Em estoque',
+			price: 453.9,
+			short_description: 'Pano de mesa',
+			date: '12-08-2022',
 		},
 		{
 			images: [img5, img1],
 			type: 'Por encomenda',
 			price: 977.9,
 			short_description: 'Pano de mesa com bordado ',
-			date: '12-23-12',
+			date: '12-08-2022',
 		},
 		{
 			images: [img7, img1],
 			type: 'Por encomenda',
 			price: 1905,
 			short_description: 'Pano de mesa',
-			date: '12-23-12',
+			date: '12-08-2022',
 		},
 	];
 
@@ -64,15 +99,14 @@ const Home = () => {
 									<div className='details-product'>
 										<h3>{items.short_description}</h3>
 										<div>
-											<span className='type'>
+											<span>
 												<BiBulb /> {items.type}
 											</span>
 											<span className='price'>
 												<BiPurchaseTag /> MZN {items.price},00
 											</span>
 											<span>
-												<BiBookmarks />
-												{' '}Publicado em: {items.date}
+												<BiBookmarks /> Listado em: {items.date}
 											</span>
 										</div>
 									</div>
