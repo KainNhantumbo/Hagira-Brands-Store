@@ -57,6 +57,7 @@ export const HomeContainer = styled.main`
 
 				h3 {
 					font-weight: 500;
+					user-select: none;
 				}
 
 				div {

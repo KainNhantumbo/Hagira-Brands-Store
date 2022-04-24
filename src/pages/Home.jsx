@@ -1,5 +1,6 @@
 import Aside from '../components/Aside';
 import { HomeContainer } from '../styles/home';
+import { BiBookmarks, BiBulb, BiPurchaseTag } from 'react-icons/bi';
 import img0 from '../images/img0.jpg';
 import img1 from '../images/img1.jpg';
 import img2 from '../images/img2.jpg';
@@ -63,9 +64,16 @@ const Home = () => {
 									<div className='details-product'>
 										<h3>{items.short_description}</h3>
 										<div>
-											<span className='type'>{items.type}</span>
-											<span className='price'>MZN {items.price},00</span>
-											<span>Publicado em: {items.date}</span>
+											<span className='type'>
+												<BiBulb /> {items.type}
+											</span>
+											<span className='price'>
+												<BiPurchaseTag /> MZN {items.price},00
+											</span>
+											<span>
+												<BiBookmarks />
+												{' '}Publicado em: {items.date}
+											</span>
 										</div>
 									</div>
 								</div>
