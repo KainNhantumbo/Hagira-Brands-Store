@@ -21,24 +21,29 @@ const Home = () => {
 			type: 'Por encomenda',
 			price: 923.9,
 			short_description: 'Pano de mesa',
+			date: '12-23-12',
 		},
+
 		{
 			images: [img3, img1],
 			type: 'Em estoque',
 			price: 453.9,
 			short_description: 'Pano de mesa',
+			date: '12-23-12',
 		},
 		{
 			images: [img5, img1],
 			type: 'Por encomenda',
 			price: 977.9,
-			short_description: 'Pano de mesa',
+			short_description: 'Pano de mesa com bordado ',
+			date: '12-23-12',
 		},
 		{
 			images: [img7, img1],
 			type: 'Por encomenda',
-			price: 12905.09,
+			price: 1905,
 			short_description: 'Pano de mesa',
+			date: '12-23-12',
 		},
 	];
 
@@ -58,8 +63,9 @@ const Home = () => {
 									<div className='details-product'>
 										<h3>{items.short_description}</h3>
 										<div>
-											<span>{items.type}</span>
-											<span>{items.price}</span>
+											<span className='type'>{items.type}</span>
+											<span className='price'>MZN {items.price},00</span>
+											<span>Publicado em: {items.date}</span>
 										</div>
 									</div>
 								</div>

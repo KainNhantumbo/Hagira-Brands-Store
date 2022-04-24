@@ -18,10 +18,6 @@ export const GlobalStyles = createGlobalStyle`
     background: rgb(${({ theme }) => theme.background});
   }
 
-  main {
-    padding: 10px 15px;
-  }
-
   #rounded {
 		border-radius: 15px;
     font-weight: 400;
