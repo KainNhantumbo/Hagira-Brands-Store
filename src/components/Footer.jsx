@@ -35,7 +35,7 @@ const Footer = () => {
 						<a href='/support'>Suporte</a>
 					</li>
 					<li>
-						<a href='/parcerias'>Parcerias</a>
+						<a href='/be-a-partner'>Parcerias</a>
 					</li>
 					<li>
 						<a href='/personal-suggest'>Encomendas personalizadas</a>
@@ -46,17 +46,17 @@ const Footer = () => {
 				<h2>Desenvolvedor</h2>
 				<ul>
 					<li>
-						<a href='/report'>Reportar Bug/falha</a>
+						<a href='/report-bug'>Reportar Bug/falha</a>
 					</li>
 					<li>
-						<a href='/'>Contratar serviços</a>
+						<a href='/request-service'>Contratar serviços</a>
 					</li>
 				</ul>
 			</section>
 			<section className='newsletter'>
 				<h2>Newsletter</h2>
 				<p>
-					Subscreva a nossa newsletter <br></br>
+					Subscreva-se à nossa newsletter <br></br>
 					enviando o seu e-mail, para <br></br>
 					saber quando um novo produto <br></br>
 					tiver sido lançado em seu e-mail.
@@ -64,7 +64,11 @@ const Footer = () => {
 				<section>
 					<label htmlFor='email'>Email</label>
 					<div>
-						<input type='email' name='email' placeholder='Digite o e-mail aqui...' />
+						<input
+							type='email'
+							name='email'
+							placeholder='Digite o e-mail aqui...'
+						/>
 						<Button text={'Send'} icon={<BiSend />} />
 					</div>
 				</section>

@@ -12,7 +12,7 @@ export const ErrorPageContainer = styled.main`
   align-items: center;
   gap: 40px;
   
-  svg {
+  #bugSVG {
     width: 50px;
     height: 50px;
   }
