@@ -5,6 +5,7 @@ export const FooterContainer = styled.footer`
 	height: min-content;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr) 1.5fr;
+	position: relative;
 
 	gap: 30px 20px;
 	padding: 20px;
@@ -16,6 +17,18 @@ export const FooterContainer = styled.footer`
 	}
 	@media screen and (max-width: 485px) {
 		grid-template-columns: 1fr;
+	}
+
+	::before {
+		content: '';
+		position: absolute;
+		top: -10px;
+		left: 0;
+		width: 100vw;
+		height: 10px;
+		border-radius: 15px 15px 0 0;
+		background: rgba(${({ theme }) => theme.primary}, .8);
+		z-index: 14000;
 	}
 
 	section {
@@ -95,7 +108,7 @@ export const FooterContainer = styled.footer`
 		font-size: 0.8rem;
 		letter-spacing: 1px;
 		grid-column: 1/3;
-		
+
 		@media screen and (max-width: 485px) {
 			grid-column: 1/1;
 		}

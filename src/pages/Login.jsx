@@ -11,6 +11,12 @@ const Login = () => {
 
 	return (
 		<LoginContainer>
+			<section className='welcome-msg'>
+				<h1>Bem-vindo(a) de volta!</h1>
+				<p>
+					Inicie sessão para começar.
+				</p>
+			</section>
 			<form>
 				<label htmlFor='email'>
 					<BiEnvelope />

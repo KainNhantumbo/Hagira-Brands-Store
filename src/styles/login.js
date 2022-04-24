@@ -1,15 +1,32 @@
 import styled from 'styled-components';
 
 export const LoginContainer = styled.main`
+	width: 100%;
+	height: 60vh;
+	margin: 0 auto;
+	margin-top: 90px;
+	padding: 0 10px;
+	max-width: 350px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	.welcome-msg {
+		h1 {
+			font-weight: 500;
+			font-size: 1.8rem;
+		}
+
+		p {
+			font-style: italic;
+		}
+	}
+
 	form {
 		display: flex;
 		justify-content: flex-start;
 		flex-direction: column;
-		width: 60%;
-		max-width: 350px;
 		gap: 5px;
-		margin: 0 auto;
-		margin-top: 50px;
 
 		label {
 			font-size: 1.1rem;

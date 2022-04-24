@@ -49,7 +49,7 @@ const Footer = () => {
 						<a href='/report'>Reportar Bug/falha</a>
 					</li>
 					<li>
-						<a href='/'>Pedir serviços</a>
+						<a href='/'>Contratar serviços</a>
 					</li>
 				</ul>
 			</section>
