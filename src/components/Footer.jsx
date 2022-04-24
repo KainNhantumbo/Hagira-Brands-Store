@@ -69,8 +69,10 @@ const Footer = () => {
 							name='email'
 							placeholder='Digite o e-mail aqui...'
 						/>
-						<Button text={'Send'} icon={<BiSend />} />
 					</div>
+					<a href='/subscribed-sucessfully'>
+						<Button text={'Send'} icon={<BiSend />} />
+					</a>
 				</section>
 			</section>
 			<div className='copyright'>
