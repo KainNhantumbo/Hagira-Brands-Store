@@ -8,6 +8,7 @@ import Subscribe from './pages/Subscribe';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
 import Contact from './pages/Contact';
+import DataSentSucess from './pages/DataSentSucess';
 import { ThemeProvider } from 'styled-components';
 import { primary } from './styles/themes';
 import { GlobalStyles } from './styles/Globalstyles';
@@ -24,6 +25,7 @@ const App = () => {
 				<Route path='/privacy-policy' element={<PrivacyPolicy />} />
 				<Route path='/terms-and-conditions' element={<TermsAndConditions />} />
 				<Route path='/contact' element={<Contact />} />
+				<Route path='/data-sent' element={<DataSentSucess />} />
 				<Route path='*' element={<ErrorPage />} />
 			</Routes>
 			<Footer />

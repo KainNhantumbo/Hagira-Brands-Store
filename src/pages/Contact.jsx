@@ -5,7 +5,7 @@ import {
 	BiHelpCircle,
 	BiAlarm,
 	BiEnvelope,
-	BiDirections,
+	BiMap,
 } from 'react-icons/bi';
 import { MdMessage } from 'react-icons/md';
 import Button from '../components/Button';
@@ -74,6 +74,8 @@ const Contact = () => {
 			);
 			setErrorStyles(() => ({}));
 		}
+
+		window.location.assign('/data-sent')
 	};
 
 	return (
@@ -100,7 +102,7 @@ const Contact = () => {
 					</a>
 				</span>
 				<h3>
-					<BiDirections />
+					<BiMap />
 					<span>Endereço</span>
 				</h3>
 				<address>Matola, São Damaso - Maputo, Moçambique.</address>
