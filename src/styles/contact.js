@@ -88,6 +88,10 @@ export const ContactContainer = styled.main`
         font-weight: 500;
       }
 
+      button {
+        width: fit-content;
+      }
+
 			input,
 			textarea {
 				border: 2px solid rgb(${({ theme }) => theme.primary});

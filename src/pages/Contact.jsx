@@ -15,8 +15,66 @@ const Contact = () => {
 	const [messageStatus, setMessageStatus] = useState(
 		'Receberá a sua resposta em seu email assim que possível.'
 	);
+	const [errorStyles, setErrorStyles] = useState({});
+	const [messageContent, setMessageContent] = useState('');
+	const [messageEmail, setMessageEmail] = useState('');
+	const [messageSubject, setMessageSubject] = useState('');
 
-  const [errorStyles, setErrorStyles] = useState({});
+	const formDataHandler = (e) => {
+		e.preventDefault();
+		const formData = {};
+
+		// checks the message subject, if not present, advices the user about it
+		if (!messageSubject) {
+			setMessageStatus(() => 'Por favor, descreva o assunto da sua mensagem.');
+			setErrorStyles(() => ({ color: 'red' }));
+			return;
+		} else {
+			formData.subject = messageSubject;
+			setMessageStatus(
+				() => 'Receberá a sua resposta em seu email assim que possível.'
+			);
+			setErrorStyles(() => ({}));
+			console.log(formData.subject);
+		}
+
+		// checks the message user email, if not present, advices the user about it
+		if (!messageContent) {
+			setMessageStatus(
+				() => 'Por favor, escreva uma mensagem antes de enviar o formulário.'
+			);
+			setErrorStyles(() => ({ color: 'red' }));
+			return;
+		} else {
+			formData.message = messageContent;
+			setMessageStatus(
+				() => 'Receberá a sua resposta em seu email assim que possível.'
+			);
+			setErrorStyles(() => ({}));
+		}
+
+		// checks the message subject, if not preset, advices the user about it
+		if (!messageEmail) {
+			setMessageStatus(
+				() => 'Por favor, digite o seu e-mail antes de enviar o formulário.'
+			);
+			setErrorStyles(() => ({ color: 'red' }));
+			return;
+		} else if (
+			messageEmail.includes('@') === false ||
+			messageEmail.includes('.com') === false
+		) {
+			setMessageStatus(() => 'Por favor, digite o seu e-mail correctamente.');
+			setErrorStyles(() => ({ color: 'red' }));
+			return;
+		} else {
+			formData.senderEmail = messageEmail;
+      setMessageStatus(
+				() => 'Receberá a sua resposta em seu email assim que possível.'
+			);
+			setErrorStyles(() => ({}));
+		}
+	};
 
 	return (
 		<ContactContainer>
@@ -51,28 +109,33 @@ const Contact = () => {
 				<h1>
 					Formulário <MdMessage />{' '}
 				</h1>
-				<form>
+				<form onSubmit={formDataHandler}>
 					<label htmlFor='assunto'>Assunto</label>
 					<input
 						type='text'
-						name='assunto'
+						id='assunto'
 						placeholder='Digite o assunto aqui...'
+						onChange={(e) => setMessageSubject(e.target.value)}
 					/>
 					<label htmlFor='message'>Mensagem</label>
 					<textarea
-						name='message'
 						id='message'
 						cols='30'
 						rows='10'
 						placeholder='Escreva a sua mensagem aqui...'
+						onChange={(e) => setMessageContent(e.target.value)}
 					></textarea>
 					<label htmlFor='email'>O seu email</label>
-					<input type='text' name='email' placeholder='E-mail' />
-					<span style={errorStyles} >{messageStatus}</span>
+					<input
+						type='text'
+						id='email'
+						placeholder='E-mail'
+						onChange={(e) => setMessageEmail(e.target.value)}
+					/>
+					<span style={errorStyles}>{messageStatus}</span>
+					<Button type={'submit'} text={'Enviar'} icon={<BiSend />} />
 				</form>
-				<div>
-					<Button text={'Enviar'} icon={<BiSend />} />
-				</div>
+				<div></div>
 			</article>
 			<section className='infograph'>
 				<div>
