@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const TermsAndConditionsContainer = styled.main`
+export const LegalContainer = styled.main`
 	margin: 50px 0;
-  padding: 30px;
+	padding: 30px;
 
 	section {
 		h1 {
@@ -14,26 +14,27 @@ export const TermsAndConditionsContainer = styled.main`
 	article {
 		line-height: 1.6rem;
 
-    h2 {
+		h2 {
 			color: rgb(${({ theme }) => theme.secondary});
-      font-weight: 500;
-      font-size: 1.2rem;
-    }
+			font-weight: 500;
+			font-size: 1.2rem;
+		}
 
-    h3 {
-      font-weight: 500;
+		h3 {
+			font-weight: 500;
 			color: rgb(${({ theme }) => theme.secondary});
-    }
+			padding-top: 10px;
+		}
 
 		p {
 			font-size: 1rem;
-      padding: 10px 0;
+			padding: 10px 0;
 		}
 
-    li {
-      list-style: circle;
-      list-style-position: inside;
-    }
+		li {
+			list-style: circle;
+			list-style-position: inside;
+		}
 
 		a {
 			color: rgb(${({ theme }) => theme.primary});

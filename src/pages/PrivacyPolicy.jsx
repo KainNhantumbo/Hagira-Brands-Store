@@ -1,8 +1,8 @@
-import { PrivacyPolicyContainer } from '../styles/privacyPolicy';
+import { LegalContainer } from '../styles/legal';
 
 const PrivacyPolicy = () => {
 	return (
-		<PrivacyPolicyContainer>
+		<LegalContainer>
 			<section>
 				<h1>Política de Privacidade</h1>
 			</section>
@@ -82,66 +82,70 @@ const PrivacyPolicy = () => {
 					determinadas funcionalidades e recursos deste site. Portanto, é
 					recomendável que você não desative os cookies.
 				</p>
-				<h3>Cookies que definimos</h3>
+				<h3>Cookies que definimos:</h3>
 				<ul>
 					<li>
 						{' '}
-						Cookies relacionados à conta<br></br> Se você criar uma conta
-						connosco, usaremos cookies para o gerenciamento do processo de
-						inscrição e administração geral. Esses cookies geralmente serão
-						excluídos quando você sair do sistema, porém, em alguns casos, eles
-						poderão permanecer posteriormente para lembrar as preferências do
-						seu site ao sair.<br></br>{' '}
+						<strong>Cookies relacionados à conta</strong>
+						<br></br> Se você criar uma conta connosco, usaremos cookies para o
+						gerenciamento do processo de inscrição e administração geral. Esses
+						cookies geralmente serão excluídos quando você sair do sistema,
+						porém, em alguns casos, eles poderão permanecer posteriormente para
+						lembrar as preferências do seu site ao sair.<br></br>{' '}
 					</li>
 					<li>
 						{' '}
-						Cookies relacionados ao login<br></br> Utilizamos cookies quando
-						você está logado, para que possamos lembrar dessa ação. Isso evita
-						que você precise fazer login sempre que visitar uma nova página.
-						Esses cookies são normalmente removidos ou limpos quando você efetua
-						logout para garantir que você possa acessar apenas a recursos e
-						áreas restritas ao efetuar login.<br></br>{' '}
+						<strong>Cookies relacionados ao login</strong>
+						<br></br> Utilizamos cookies quando você está logado, para que
+						possamos lembrar dessa ação. Isso evita que você precise fazer login
+						sempre que visitar uma nova página. Esses cookies são normalmente
+						removidos ou limpos quando você efetua logout para garantir que você
+						possa acessar apenas a recursos e áreas restritas ao efetuar login.
+						<br></br>{' '}
 					</li>
 					<li>
 						{' '}
-						Cookies relacionados a boletins por e-mail<br></br> Este site
-						oferece serviços de assinatura de boletim informativo ou e-mail e os
-						cookies podem ser usado para lembrar se você já está registrado e se
-						deve mostrar determinadas notificações válidas apenas para usuários
-						inscritos / não inscritos.<br></br>{' '}
+						<strong>Cookies relacionados a boletins por e-mail</strong>
+						<br></br> Este site oferece serviços de assinatura de boletim
+						informativo ou e-mail e os cookies podem ser usado para lembrar se
+						você já está registrado e se deve mostrar determinadas notificações
+						válidas apenas para usuários inscritos / não inscritos.<br></br>{' '}
 					</li>
 					<li>
 						{' '}
-						Pedidos processando cookies relacionados<br></br> Este site oferece
-						facilidades de comércio eletrônico ou pagamento e alguns cookies são
-						essenciais para garantir que seu pedido seja lembrado entre as
-						páginas, para que possamos processá-lo adequadamente.<br></br>{' '}
+						<strong>Pedidos processando cookies relacionados</strong>
+						<br></br> Este site oferece facilidades de comércio eletrônico ou
+						pagamento e alguns cookies são essenciais para garantir que seu
+						pedido seja lembrado entre as páginas, para que possamos processá-lo
+						adequadamente.<br></br>{' '}
 					</li>
 					<li>
 						{' '}
-						Cookies relacionados a pesquisas<br></br> Periodicamente, oferecemos
-						pesquisas e questionários para fornecer informações interessantes,
-						ferramentas úteis ou para entender nossa base de usuários com mais
-						precisão. Essas pesquisas podem usar cookies para lembrar quem já
-						participou numa pesquisa ou para fornecer resultados precisos após a
-						alteração das páginas.<br></br>{' '}
+						<strong>Cookies relacionados a pesquisas</strong>
+						<br></br> Periodicamente, oferecemos pesquisas e questionários para
+						fornecer informações interessantes, ferramentas úteis ou para
+						entender nossa base de usuários com mais precisão. Essas pesquisas
+						podem usar cookies para lembrar quem já participou numa pesquisa ou
+						para fornecer resultados precisos após a alteração das páginas.
+						<br></br>{' '}
 					</li>
 					<li>
 						{' '}
-						Cookies relacionados a formulários<br></br> Quando você envia dados
-						por meio de um formulário como os encontrados nas páginas de
-						contacto ou nos formulários de comentários, os cookies podem ser
-						configurados para lembrar os detalhes do usuário para
-						correspondência futura.<br></br>{' '}
+						<strong>Cookies relacionados a formulários</strong>
+						<br></br> Quando você envia dados por meio de um formulário como os
+						encontrados nas páginas de contacto ou nos formulários de
+						comentários, os cookies podem ser configurados para lembrar os
+						detalhes do usuário para correspondência futura.<br></br>{' '}
 					</li>
 					<li>
 						{' '}
-						Cookies de preferências do site<br></br> Para proporcionar uma ótima
-						experiência neste site, fornecemos a funcionalidade para definir
-						suas preferências de como esse site é executado quando você o usa.
-						Para lembrar suas preferências, precisamos definir cookies para que
-						essas informações possam ser chamadas sempre que você interagir com
-						uma página for afetada por suas preferências.<br></br>{' '}
+						<strong>Cookies de preferências do site</strong>
+						<br></br> Para proporcionar uma ótima experiência neste site,
+						fornecemos a funcionalidade para definir suas preferências de como
+						esse site é executado quando você o usa. Para lembrar suas
+						preferências, precisamos definir cookies para que essas informações
+						possam ser chamadas sempre que você interagir com uma página for
+						afetada por suas preferências.<br></br>{' '}
 					</li>
 				</ul>
 				<h3>Cookies de Terceiros</h3>
@@ -197,8 +201,8 @@ const PrivacyPolicy = () => {
 				<h3>Compromisso do Usuário</h3>
 				<p>
 					O usuário se compromete a fazer uso adequado dos conteúdos e da
-					informação que o Hagira Brands oferece no site e com caráter
-					enunciativo, mas não limitativo:
+					informação que o <strong>Hagira Brands</strong> oferece no site e com
+					caráter enunciativo, mas não limitativo:
 				</p>
 				<ul>
 					<li>
@@ -214,7 +218,7 @@ const PrivacyPolicy = () => {
 					</li>
 					<li>
 						C) Não causar danos aos sistemas físicos (hardwares) e lógicos
-						(softwares) do Hagira Brands, de seus fornecedores ou terceiros,
+						(softwares) da <strong>Hagira Brands</strong>, de seus fornecedores ou terceiros,
 						para introduzir ou disseminar vírus informáticos ou quaisquer outros
 						sistemas de hardware ou software que sejam capazes de causar danos
 						anteriormente mencionados.
@@ -228,11 +232,10 @@ const PrivacyPolicy = () => {
 					recursos que você usa em nosso site.
 				</p>
 				<p>
-					Esta política é efetiva a partir de <strong>April</strong>/
-					<strong>2022</strong>.
+					Esta política é efetiva a partir de <strong>Abril de 2022</strong>.
 				</p>
 			</article>
-		</PrivacyPolicyContainer>
+		</LegalContainer>
 	);
 };
 

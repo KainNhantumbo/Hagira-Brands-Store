@@ -1,8 +1,8 @@
-import { TermsAndConditionsContainer } from '../styles/termsAndConditions';
+import { LegalContainer } from '../styles/legal';
 
 const TermsAndConditions = () => {
 	return (
-		<TermsAndConditionsContainer>
+		<LegalContainer>
 			<section>
 				<h1>Termos e Condições</h1>
 			</section>
@@ -126,7 +126,7 @@ const TermsAndConditions = () => {
 					tribunais nosso estado e localidade.
 				</p>
 			</article>
-		</TermsAndConditionsContainer>
+		</LegalContainer>
 	);
 };
 
