@@ -83,6 +83,11 @@ export const ContactContainer = styled.main`
 			gap: 10px;
 			max-width: 350px;
 
+      span {
+        font-size: .9rem;
+        font-weight: 500;
+      }
+
 			input,
 			textarea {
 				border: 2px solid rgb(${({ theme }) => theme.primary});
@@ -97,6 +102,7 @@ export const ContactContainer = styled.main`
 
 				::placeholder {
 					font-size: 1rem;
+          font-style: italic;
 				}
 
 				:focus {

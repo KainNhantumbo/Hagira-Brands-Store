@@ -9,8 +9,15 @@ import {
 } from 'react-icons/bi';
 import { MdMessage } from 'react-icons/md';
 import Button from '../components/Button';
+import React, { useState } from 'react';
 
 const Contact = () => {
+	const [messageStatus, setMessageStatus] = useState(
+		'Receberá a sua resposta em seu email assim que possível.'
+	);
+
+  const [errorStyles, setErrorStyles] = useState({});
+
 	return (
 		<ContactContainer>
 			<section className='intro'>
@@ -59,6 +66,9 @@ const Contact = () => {
 						rows='10'
 						placeholder='Escreva a sua mensagem aqui...'
 					></textarea>
+					<label htmlFor='email'>O seu email</label>
+					<input type='text' name='email' placeholder='E-mail' />
+					<span style={errorStyles} >{messageStatus}</span>
 				</form>
 				<div>
 					<Button text={'Enviar'} icon={<BiSend />} />
