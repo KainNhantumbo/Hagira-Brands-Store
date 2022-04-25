@@ -22,11 +22,10 @@ export const FooterContainer = styled.footer`
 	::before {
 		content: '';
 		position: absolute;
-		top: -10px;
+		top: -5px;
 		left: 0;
 		width: 100vw;
-		height: 10px;
-		border-radius: 15px 15px 0 0;
+		height: 5px;
 		background: rgba(${({ theme }) => theme.primary}, .8);
 		z-index: 14000;
 	}
@@ -74,6 +73,7 @@ export const FooterContainer = styled.footer`
 
 				button {
 					font-size: 1rem;
+					border-radius: 5px;
 					:hover {
 						background: rgb(${({ theme }) => theme.shadows});
 					}
@@ -81,7 +81,7 @@ export const FooterContainer = styled.footer`
 
 				input {
 					border: 2px solid rgb(${({ theme }) => theme.primary});
-					border-radius: 3px;
+					border-radius: 5px;
 					padding: 5px;
 
 					@media screen and (max-width: 305px) {

@@ -21,7 +21,7 @@ const Footer = () => {
 						<a href='/contact'>Contacto</a>
 					</li>
 					<li>
-						<a href='/terms-and-conditions'>Termos e condições</a>
+						<a href='/privacy-policy'>Política de Privacidade</a>
 					</li>
 				</ul>
 			</section>
@@ -39,6 +39,9 @@ const Footer = () => {
 					</li>
 					<li>
 						<a href='/personal-suggest'>Encomendas personalizadas</a>
+					</li>
+					<li>
+						<a href='/terms-and-conditions'>Termos e Condições</a>
 					</li>
 				</ul>
 			</section>
