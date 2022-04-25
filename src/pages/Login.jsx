@@ -14,7 +14,7 @@ const Login = () => {
 			<section className='welcome-msg'>
 				<h1>Bem-vindo(a) de volta!</h1>
 				<p>
-					Inicie sessão para começar.
+					Inicie sessão para continuar.
 				</p>
 			</section>
 			<form>

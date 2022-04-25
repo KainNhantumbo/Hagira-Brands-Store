@@ -7,6 +7,7 @@ import ErrorPage from './pages/ErrorPage';
 import Subscribe from './pages/Subscribe';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
+import Contact from './pages/Contact';
 import { ThemeProvider } from 'styled-components';
 import { primary } from './styles/themes';
 import { GlobalStyles } from './styles/Globalstyles';
@@ -22,6 +23,7 @@ const App = () => {
 				<Route path='/subscribed-sucessfully' element={<Subscribe />} />
 				<Route path='/privacy-policy' element={<PrivacyPolicy />} />
 				<Route path='/terms-and-conditions' element={<TermsAndConditions />} />
+				<Route path='/contact' element={<Contact />} />
 				<Route path='*' element={<ErrorPage />} />
 			</Routes>
 			<Footer />
