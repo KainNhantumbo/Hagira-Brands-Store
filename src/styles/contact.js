@@ -81,7 +81,6 @@ export const ContactContainer = styled.main`
 			justify-content: flex-start;
 			flex-direction: column;
 			gap: 10px;
-			max-width: 350px;
 
       span {
         font-size: .9rem;
@@ -99,10 +98,6 @@ export const ContactContainer = styled.main`
 				padding: 5px;
 				resize: none;
 				background: rgb(${({ theme }) => theme.inner});
-
-				@media screen and (max-width: 305px) {
-					width: 100%;
-				}
 
 				::placeholder {
 					font-size: 1rem;

@@ -26,7 +26,7 @@ export const FooterContainer = styled.footer`
 		left: 0;
 		width: 100vw;
 		height: 5px;
-		background: rgba(${({ theme }) => theme.primary}, .8);
+		background: rgba(${({ theme }) => theme.primary}, 0.8);
 		z-index: 14000;
 	}
 
@@ -65,19 +65,20 @@ export const FooterContainer = styled.footer`
 			flex-direction: column;
 			gap: 15px;
 
+			button {
+				font-size: 1rem;
+				border-radius: 5px;
+
+				:hover {
+					box-shadow: 0 0 5px 1px rgb(${({ theme }) => theme.shadows});
+				}
+			}
+
 			div {
 				display: flex;
 				gap: 5px;
 				justify-content: flex-start;
 				flex-flow: row nowrap;
-
-				button {
-					font-size: 1rem;
-					border-radius: 5px;
-					:hover {
-						background: rgb(${({ theme }) => theme.shadows});
-					}
-				}
 
 				input {
 					border: 2px solid rgb(${({ theme }) => theme.primary});

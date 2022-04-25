@@ -135,7 +135,7 @@ const Contact = () => {
 						onChange={(e) => setMessageEmail(e.target.value)}
 					/>
 					<span style={errorStyles}>{messageStatus}</span>
-					<Button type={'submit'} text={'Enviar'} icon={<BiSend />} />
+					<Button type={'submit'} text={'Enviar mensagem'} icon={<BiSend />} />
 				</form>
 				<div></div>
 			</article>
