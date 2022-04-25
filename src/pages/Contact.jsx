@@ -1,41 +1,67 @@
 import { ContactContainer } from '../styles/contact';
-import { BiSend, BiMessageCheck, BiHelpCircle, BiAlarm } from 'react-icons/bi';
+import {
+	BiSend,
+	BiMessageCheck,
+	BiHelpCircle,
+	BiAlarm,
+	BiEnvelope,
+	BiDirections,
+} from 'react-icons/bi';
+import { MdMessage } from 'react-icons/md';
 import Button from '../components/Button';
 
 const Contact = () => {
 	return (
 		<ContactContainer>
-			<section>
+			<section className='intro'>
 				<h1>
 					Contacto <BiMessageCheck />{' '}
 				</h1>
 				<h2>Esteja sempre ligado.</h2>
 				<p>
 					Por favor use uma das formas de contacto descritas abaixo ou use o
-					formulário de contacto abaixo se tiver questões de sobre os nossos
-					produtos e serviços.
+					<strong> formulário</strong> de contacto mais abaixo se tiver questões
+					de sobre os nossos produtos e serviços.
 				</p>
 			</section>
 			<div className='contacts'>
-				<h3>E-mail</h3>
+				<h3>
+					<BiEnvelope />
+					<span>E-mail</span>
+				</h3>
 				<span>
 					<a href='http://mail.google.com/hagira-brands@gmail.com'>
 						hagira-brands@gmail.com
 					</a>
 				</span>
-				<h3>Endereço</h3>
+				<h3>
+					<BiDirections />
+					<span>Endereço</span>
+				</h3>
 				<address>Matola, São Damaso - Maputo, Moçambique.</address>
 			</div>
-			<article>
-				<h1>Formulário de Contacto</h1>
+			<article className='messageForm'>
+				<h1>
+					Formulário <MdMessage />{' '}
+				</h1>
 				<form>
 					<label htmlFor='assunto'>Assunto</label>
-					<input type='text' name='assunto' />
+					<input
+						type='text'
+						name='assunto'
+						placeholder='Digite o assunto aqui...'
+					/>
 					<label htmlFor='message'>Mensagem</label>
-					<textarea name='message' id='message' cols='30' rows='10'></textarea>
+					<textarea
+						name='message'
+						id='message'
+						cols='30'
+						rows='10'
+						placeholder='Escreva a sua mensagem aqui...'
+					></textarea>
 				</form>
 				<div>
-					<Button text={'Enviar formulário'} icon={<BiSend />} />
+					<Button text={'Enviar'} icon={<BiSend />} />
 				</div>
 			</article>
 			<section className='infograph'>
