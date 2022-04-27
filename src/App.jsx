@@ -13,10 +13,10 @@ import RestritectedRoute from './components/RestrictedRoute';
 import Admin from './pages/admin/Admin';
 import Button from './components/Button';
 import { ThemeProvider } from 'styled-components';
-import { primary } from './styles/themes';
+import { primary, dark } from './styles/themes';
 import { GlobalStyles } from './styles/Globalstyles';
 import React, { useState, useEffect } from 'react';
-import { BiCheckCircle } from 'react-icons/bi';
+import { BiCheckCircle, BiChevronUpCircle, BiMoon } from 'react-icons/bi';
 import { AppContainer } from './styles/app';
 
 export const Context = React.createContext();
@@ -27,13 +27,12 @@ const App = () => {
 
 	// controls the state of privacy advisor message
 	const advisorController = () => {
-		setprivacyAdvisor(false);
+		setprivacyAdvisor(() => false);
 		localStorage.setItem('advisorState', JSON.stringify('false'));
 	};
-	
 	useEffect(() => {
 		const advisorState = JSON.parse(localStorage.getItem('advisorState'));
-		if (!advisorState) {
+		if (advisorState === null) {
 			localStorage.setItem('advisorState', JSON.stringify('true'));
 			setprivacyAdvisor(() => true);
 		}
@@ -45,6 +44,18 @@ const App = () => {
 		}
 	}, []);
 
+	// slides the page to the top
+	const slidePageUp = () => {
+		window.scrollTo({
+			left: 0,
+			top: 0,
+			behavior: 'smooth',
+		});
+	};
+
+	// swithes between dark and light themes
+	const switchColors = () => {};
+
 	return (
 		<Context.Provider value={setUser}>
 			<ThemeProvider theme={primary}>
@@ -52,7 +63,7 @@ const App = () => {
 				<Header />
 				<AppContainer>
 					{privacyAdvisor ? (
-						<section>
+						<section className='advisor'>
 							<div>
 								<span>
 									Ao usar a <strong>Hagira Brands</strong>, você concorda com os
@@ -70,6 +81,12 @@ const App = () => {
 							</div>
 						</section>
 					) : null}
+					<section className='fluent-buttons'>
+						<div>
+							<Button icon={<BiMoon />} event={switchColors} />
+							<Button icon={<BiChevronUpCircle />} event={slidePageUp} />
+						</div>
+					</section>
 				</AppContainer>
 				<Routes>
 					<Route path='/' element={<Home />} />
