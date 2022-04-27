@@ -3,24 +3,24 @@ import Button from '../components/Button';
 import { BiLogIn, BiUser, BiEnvelope, BiLockAlt } from 'react-icons/bi';
 import { useState, useContext } from 'react';
 import { Context } from '../App';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [emailError, setEmailError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
-	const setUser = useContext(Context)
-	const navigate = useNavigate()
-	// sets the user data form login
-	function log (e) {
-		e.preventDefault()
-		setUser({email, password})
-		console.log({email, password})
-navigate('/admin')
-	}
+	const setUser = useContext(Context);
 
-	
+	const navigate = useNavigate();
+
+	// sets the user data form login
+	const log = (e) => {
+		e.preventDefault();
+		setUser({ email, password });
+		console.log({ email, password });
+		navigate('/admin');
+	};
 
 	return (
 		<LoginContainer>

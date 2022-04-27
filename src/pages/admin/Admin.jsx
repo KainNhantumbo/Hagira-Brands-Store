@@ -1,33 +1,50 @@
-import { AdminContainer } from "../../styles/admin";
+import { AdminContainer } from '../../styles/admin';
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import {
+	BiCog,
+	BiEnvelope,
+	BiGridAlt,
+	BiLayer,
+	BiMessageAltDetail,
+	BiNavigation,
+	BiNote,
+} from 'react-icons/bi';
+import Overview from './Overview';
+import NewProduct from './NewProduct';
+import Button from '../../components/Button';
 
+const Admin = ({ user }) => {
+	const navigate = useNavigate();
+	const [panel, setPanel] = useState(<Overview />);
 
-const Admin = ({user}) => {
-  const navigate = useNavigate();
+	return (
+		<AdminContainer>
+			<aside>
+				<div onClick={() => setPanel(() => <Overview />)}>
+					<BiLayer />
+					<span>Overview</span>
+				</div>
+				<div onClick={() => setPanel(() => <NewProduct />)}>
+					<BiNote />
+					<span>Novo Produto</span>
+				</div>
+				<div>
+					<BiEnvelope />
+					<span>Comunicar</span>
+				</div>
+				<div>
+					<BiMessageAltDetail />
+					<span>Mensagens</span>
+				</div>
+				<div>
+					<BiCog />
+					<span>Gerenciar</span>
+				</div>
+			</aside>
+			<article>{panel}</article>
+		</AdminContainer>
+	);
+};
 
-  return <AdminContainer>
-    <aside>
-      <div>
-        <a href="/admin/overview"><span>Overview</span></a>
-      </div>
-      <div>
-        <a href=""><span>Novo Produto</span></a>
-      </div>
-      <div>
-        <a href=""><span>Comunicar</span></a>
-      </div>
-      <div>
-        <a href=""><span>Mensagens</span></a>
-      </div>
-      <div>
-        <a href=""><span>Gerenciar</span></a>
-      </div>
-    </aside>
-    <article>
-
-    </article>
-  </AdminContainer>;
-}
- 
 export default Admin;
