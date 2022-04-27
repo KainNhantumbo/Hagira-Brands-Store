@@ -23,11 +23,27 @@ export const Context = React.createContext();
 
 const App = () => {
 	const [user, setUser] = useState(null);
-	const [privacyAdvisor, setprivacyAdvisor] = useState(true);
+	const [privacyAdvisor, setprivacyAdvisor] = useState();
 
+	// controls the state of privacy advisor message
 	const advisorController = () => {
-		setprivacyAdvisor(false)
+		setprivacyAdvisor(false);
+		localStorage.setItem('advisorState', JSON.stringify('false'));
 	};
+	
+	useEffect(() => {
+		const advisorState = JSON.parse(localStorage.getItem('advisorState'));
+		if (!advisorState) {
+			localStorage.setItem('advisorState', JSON.stringify('true'));
+			setprivacyAdvisor(() => true);
+		}
+
+		if (advisorState === 'true') {
+			setprivacyAdvisor(() => true);
+		} else {
+			setprivacyAdvisor(() => false);
+		}
+	}, []);
 
 	return (
 		<Context.Provider value={setUser}>
