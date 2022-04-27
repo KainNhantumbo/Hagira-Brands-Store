@@ -15,10 +15,34 @@ const tops = `
 export const AppContainer = styled.section`
 	.fluent-buttons {
 		${() => tops}
-    left: 40px;
-    bottom: 80px;
-    width: 0;
-    height: 0;
+		left: 97vw;
+		bottom: 80px;
+		width: 0;
+		height: 0;
+
+    @media screen and (max-width: 690px) {
+      left: 95vw;
+    }
+    @media screen and (max-width: 480px) {
+      left: 90vw;
+    }
+
+    button {
+      width: 30px;
+      height: 30px;
+      margin-top: 5px;
+      display: grid;
+      place-content: center;
+
+      svg {
+        position: static;
+        width: 22px;
+        height: 22px;
+      }
+    }
+    span {
+      padding: 0;
+    }
 	}
 
 	.advisor {

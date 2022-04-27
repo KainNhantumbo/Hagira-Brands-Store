@@ -24,25 +24,13 @@ export const Context = React.createContext();
 const App = () => {
 	const [user, setUser] = useState(null);
 	const [privacyAdvisor, setprivacyAdvisor] = useState();
+	const [theme, setTheme] = useState(primary);
 
 	// controls the state of privacy advisor message
 	const advisorController = () => {
 		setprivacyAdvisor(() => false);
 		localStorage.setItem('advisorState', JSON.stringify('false'));
 	};
-	useEffect(() => {
-		const advisorState = JSON.parse(localStorage.getItem('advisorState'));
-		if (advisorState === null) {
-			localStorage.setItem('advisorState', JSON.stringify('true'));
-			setprivacyAdvisor(() => true);
-		}
-
-		if (advisorState === 'true') {
-			setprivacyAdvisor(() => true);
-		} else {
-			setprivacyAdvisor(() => false);
-		}
-	}, []);
 
 	// slides the page to the top
 	const slidePageUp = () => {
@@ -54,11 +42,48 @@ const App = () => {
 	};
 
 	// swithes between dark and light themes
-	const switchColors = () => {};
+	const switchColors = () => {
+		if (theme === primary) {
+			setTheme(() => dark);
+			localStorage.setItem('themeState', JSON.stringify('dark'));
+		} else {
+			setTheme(() => primary);
+			localStorage.setItem('themeState', JSON.stringify('primary'));
+		}
+	};
+
+	// loads required states at start
+	useEffect(() => {
+		// advisor management
+		const advisorState = JSON.parse(localStorage.getItem('advisorState'));
+		if (advisorState === null) {
+			localStorage.setItem('advisorState', JSON.stringify('true'));
+			setprivacyAdvisor(() => true);
+		}
+
+		if (advisorState === 'true') {
+			setprivacyAdvisor(() => true);
+		} else {
+			setprivacyAdvisor(() => false);
+		}
+
+		// theme management
+		const themeState = JSON.parse(localStorage.getItem('themeState'));
+		if (themeState === null) {
+			localStorage.setItem('themeState', JSON.stringify('primary'));
+			setTheme(() => primary);
+		}
+
+		if (themeState === 'primary') {
+			setTheme(() => primary);
+		} else {
+			setTheme(() => dark);
+		}
+	}, []);
 
 	return (
 		<Context.Provider value={setUser}>
-			<ThemeProvider theme={primary}>
+			<ThemeProvider theme={theme}>
 				<GlobalStyles />
 				<Header />
 				<AppContainer>
