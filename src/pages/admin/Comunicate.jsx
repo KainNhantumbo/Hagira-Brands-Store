@@ -58,7 +58,6 @@ const Comunicate = () => {
 			setErrorMessage(() => '');
 			setErrorStyles(() => ({}));
 		}
-    
 	};
 
 	return (

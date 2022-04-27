@@ -78,7 +78,7 @@ const Home = () => {
 			images: [img7, img1],
 			type: 'Por encomenda',
 			price: 1905,
-			short_description: 'Pano de mesa',
+			short_description: 'Pano de mesaejcvmmvfdd',
 			date: '12-08-2022',
 		},
 	];

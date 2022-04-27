@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const ComunicateContainer = styled.section`
-  padding-left: 10px;
-	.messageForm {
+export const NewProductContainer = styled.section`
+	padding-left: 10px;
+	section {
 		display: flex;
 		justify-content: flex-start;
 		flex-direction: column;
@@ -13,12 +13,12 @@ export const ComunicateContainer = styled.section`
 			position: relative;
       line-height: 0;
       padding-bottom: 12px;
-
+      
 			svg {
 				position: absolute;
 				width: 30px;
 				height: 30px;
-				left: 260px;
+				left: 220px;
 				top: -15px;
 			}
 		}
