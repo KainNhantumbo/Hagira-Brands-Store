@@ -27,7 +27,7 @@ const Admin = ({ user }) => {
 				</div>
 				<div onClick={() => setPanel(() => <NewProduct />)}>
 					<BiNote />
-					<span>Novo Produto</span>
+					<span>Produtos</span>
 				</div>
 				<div>
 					<BiEnvelope />
