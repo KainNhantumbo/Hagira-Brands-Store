@@ -62,7 +62,7 @@ const Contact = () => {
 			return;
 		} else if (
 			messageEmail.includes('@') === false ||
-			messageEmail.includes('.com') === false
+			messageEmail.includes('.') === false
 		) {
 			setMessageStatus(() => 'Por favor, digite o seu e-mail correctamente.');
 			setErrorStyles(() => ({ color: 'red' }));
@@ -137,7 +137,6 @@ const Contact = () => {
 					<span style={errorStyles}>{messageStatus}</span>
 					<Button type={'submit'} text={'Enviar mensagem'} icon={<BiSend />} />
 				</form>
-				<div></div>
 			</article>
 			<section className='infograph'>
 				<div>
