@@ -11,21 +11,50 @@ import Contact from './pages/Contact';
 import DataSentSucess from './pages/DataSentSucess';
 import RestritectedRoute from './components/RestrictedRoute';
 import Admin from './pages/admin/Admin';
+import Button from './components/Button';
 import { ThemeProvider } from 'styled-components';
 import { primary } from './styles/themes';
 import { GlobalStyles } from './styles/Globalstyles';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BiCheckCircle } from 'react-icons/bi';
+import { AppContainer } from './styles/app';
 
 export const Context = React.createContext();
 
 const App = () => {
 	const [user, setUser] = useState(null);
+	const [privacyAdvisor, setprivacyAdvisor] = useState(true);
+
+	const advisorController = () => {
+		setprivacyAdvisor(false)
+	};
 
 	return (
 		<Context.Provider value={setUser}>
 			<ThemeProvider theme={primary}>
 				<GlobalStyles />
 				<Header />
+				<AppContainer>
+					{privacyAdvisor ? (
+						<section>
+							<div>
+								<span>
+									Ao usar a <strong>Hagira Brands</strong>, você concorda com os
+									a nossa{' '}
+									<a href='/privacy-policy'>
+										<strong>política de privacidade</strong>
+									</a>
+									.
+								</span>
+								<Button
+									text={'Aceitar'}
+									icon={<BiCheckCircle />}
+									event={advisorController}
+								/>
+							</div>
+						</section>
+					) : null}
+				</AppContainer>
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route path='/subscribed-sucessfully' element={<Subscribe />} />
