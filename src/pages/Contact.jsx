@@ -97,7 +97,7 @@ const Contact = () => {
 					<span>E-mail</span>
 				</h3>
 				<span>
-					<a href='http://mail.google.com/hagira-brands@gmail.com'>
+					<a target='_blank' href='mailto:hagira-brands@gmail.com'>
 						hagira-brands@gmail.com
 					</a>
 				</span>
