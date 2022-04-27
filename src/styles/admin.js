@@ -7,7 +7,8 @@ export const AdminContainer = styled.main`
 	position: relative;
 
 	article {
-    margin-left: 15vw;
+    margin-left: 170px;
+    padding: 0 20px;
 	}
 
 	aside {

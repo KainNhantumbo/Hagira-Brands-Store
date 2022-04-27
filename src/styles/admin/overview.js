@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const OverviewContainer = styled.section`
-.infograph {
+  
+	.infograph {
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
 		flex-flow: row wrap;
 		gap: 20px;
 
@@ -16,6 +17,7 @@ export const OverviewContainer = styled.section`
 
 			h3 {
 				padding: 0;
+				padding-right: 20px;
 			}
 
 			svg {
@@ -26,6 +28,11 @@ export const OverviewContainer = styled.section`
 				top: 10px;
 				color: rgb(${({ theme }) => theme.primary});
 			}
+
+      p {
+        font-size: 2.5rem;
+        padding-top: 5px;
+      }
 		}
 	}
 `;
