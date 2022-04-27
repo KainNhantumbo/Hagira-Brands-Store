@@ -11,7 +11,6 @@ import Contact from './pages/Contact';
 import DataSentSucess from './pages/DataSentSucess';
 import RestritectedRoute from './components/RestrictedRoute';
 import Admin from './pages/admin/Admin';
-import Overview from './pages/admin/Overview';
 import { ThemeProvider } from 'styled-components';
 import { primary } from './styles/themes';
 import { GlobalStyles } from './styles/Globalstyles';
@@ -42,11 +41,10 @@ const App = () => {
 						path='/admin'
 						element={
 							<RestritectedRoute user={user}>
-								<Admin user={user} />
+								<Admin />
 							</RestritectedRoute>
 						}
 					></Route>
-					<Route path='/overview' element={<Overview user={user} />} />
 					<Route path='*' element={<ErrorPage />} />
 				</Routes>
 				<Footer />

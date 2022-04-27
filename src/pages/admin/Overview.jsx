@@ -1,110 +1,24 @@
-import { Navigate } from 'react-router-dom';
+import { OverviewContainer } from '../../styles/admin/overview';
+import { BiHelpCircle, BiAlarm} from 'react-icons/bi';
 
-const Overview = ({user}) => {
-  // if (!user?.email || !user?.password) {  
-	// 	return <Navigate to={'/login'} />;
-	// }
-
-	return (
-		<div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-      <div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div><div>
-			ashdkahsdkasd sdasdkasd lore12 Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Consequuntur laudantium architecto minus. Lorem ipsum
-			dolor, sit amet consectetur adipisicing elit. Modi natus aut molestiae sit
-			ex tempora blanditiis, cupiditate dolor eius quo, ut fugit. Iste?lore12
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-			laudantium architecto minus. Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Modi natus aut molestiae sit ex
-		</div>
-		</div>
-	);
+const Overview = () => {
+  
+	return <OverviewContainer>
+    	<section className='infograph'>
+				<div>
+					<BiHelpCircle />
+					<h3>Tem alguma questão?</h3>
+					<p>
+						
+					</p>
+				</div>
+				<div>
+					<BiAlarm />
+					<h3>Horários de serviço</h3>
+					<p></p>
+				</div>
+			</section>
+  </OverviewContainer>;
 };
 
 export default Overview;
