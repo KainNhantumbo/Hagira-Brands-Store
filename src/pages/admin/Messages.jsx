@@ -11,7 +11,26 @@ import React, { useState } from 'react';
 import { incomeMessages } from '../../modules/module-scripts';
 
 const Messages = () => {
-	const [messageModal, setMessageModal] = useState(true);
+	const [messageModal, setMessageModal] = useState(false);
+	const [email, setEmail] = useState('');
+	const [phone, setPhone] = useState('');
+	const [message, setMessage] = useState('');
+	const [subject, setSubject] = useState('');
+	const [id, setId] = useState('');
+
+	// opens the modal and sets message data on it to be viewed
+	const viewMessage = (e) => {
+		const id = e.target.id;
+		const [message] = incomeMessages.filter((element) => {
+			if (element._id === id) return element;
+		});
+		setEmail(() => message.email);
+		setMessage(() => message.message);
+		setPhone(() => message.phone);
+		setSubject(() => message.subject);
+		setId(() => message._id);
+		setMessageModal(() => true);
+	};
 
 	return (
 		<MessagesContainer>
@@ -29,31 +48,22 @@ const Messages = () => {
 							</h2>
 							<span>
 								<strong>E-mail: </strong>
-								mail@mail.com
+								{email}
 							</span>
 							<span>
 								<strong>Telefone: </strong>
-								84 569 4536
+								{phone ? phone : 'Não disponível'}
 							</span>
+							<h2>
+								<strong>Assunto</strong>
+							</h2>
+							<span>{subject}</span>
 						</div>
-
 						<section className='message'>
 							<h2>
 								<strong>Mensagem</strong>
 							</h2>
-							<div>
-								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum
-								voluptatem exercitationem perferendis esse adipisci? Doloribus
-								repellat quas delectus voluptas nisi doloremque eaque,
-								architecto ad fugit beatae tenetur, voluptatum maxime deserunt
-								esse sapiente eius repellendus voluptate amet explicabo non
-								dolorem mollitia? Asperiores tenetur possimus sed ab quis et
-								dolore tempore vitae, dicta amet maiores vel excepturi
-								consequatur perspiciatis iusto blanditiis, eius sunt,
-								accusantium exercitationem sint corrupti? Nemo delectus facere
-								ea reiciendis necessitatibus dolor quis, beatae quas iste
-								asperiores odit. Enim.
-							</div>
+							<div>{message}</div>
 						</section>
 						<section className='actions'>
 							<Button
@@ -61,7 +71,7 @@ const Messages = () => {
 								icon={<BiChevronLeft />}
 								event={(e) => setMessageModal((prevState) => !prevState)}
 							/>
-							<Button text={'Eliminar mensagem'} icon={<BiTrash />} />
+							<Button id={id} text={'Eliminar mensagem'} icon={<BiTrash />} />
 						</section>
 					</div>
 				</section>
@@ -83,7 +93,7 @@ const Messages = () => {
 							<span className='date'>
 								Data: {date.date},{'  '} às {date.time}{' '}
 							</span>
-							<Button text={'Ver mensagem'} />
+							<Button id={_id} text={'Ver mensagem'} event={viewMessage} />
 						</div>
 					);
 				})}

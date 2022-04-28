@@ -9,6 +9,10 @@ const propagateFlex = `
 export const MessagesContainer = styled.section`
 	padding-left: 10px;
 	position: relative;
+	
+	span {
+		pointer-events: none;
+	}
 
 	.modal-container {
 		position: fixed;
@@ -20,7 +24,6 @@ export const MessagesContainer = styled.section`
 		padding: 90px 10px;
 		background: rgba(${({ theme }) => theme.background}, 0.5);
 		backdrop-filter: blur(10px);
-		
 
 		.message-previewer {
 			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
@@ -33,7 +36,6 @@ export const MessagesContainer = styled.section`
 			gap: 15px;
 			max-height: 550px;
 			overflow-y: auto;
-
 
 			h2 {
 				line-height: 1.6rem;
