@@ -8,7 +8,7 @@ export const Container = styled.header`
 	height: 8vh;
 	padding: 5px 10px;
 	box-shadow: 0 0 5px 1px rgb(${({ theme }) => theme.shadows});
-	background-color: rgba(${({ theme }) => theme.background}, .8);
+	background-color: rgba(${({ theme }) => theme.background}, .5);
 	backdrop-filter: blur(10px);
 	display: flex;
 	align-items: center;

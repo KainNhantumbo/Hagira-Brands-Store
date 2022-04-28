@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const NewProductContainer = styled.section`
 	padding-left: 10px;
+
 	section {
 		display: flex;
 		justify-content: flex-start;
@@ -27,7 +28,15 @@ export const NewProductContainer = styled.section`
 			display: flex;
 			justify-content: flex-start;
 			flex-direction: column;
-			gap: 10px;
+			gap: 20px;
+
+			div {
+				display: flex;
+				justify-content: flex-start;
+				flex-flow: row wrap;
+				gap: 25px;
+				align-items: center;
+			}
 
 			span {
 				font-size: 0.9rem;

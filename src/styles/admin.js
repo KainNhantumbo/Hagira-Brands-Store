@@ -7,8 +7,12 @@ export const AdminContainer = styled.main`
 	position: relative;
 
 	article {
-    margin-left: 170px;
-    padding: 0 20px;
+		margin-left: 170px;
+		padding: 0 20px;
+
+		@media screen and (max-width: 920px) {
+			margin-left: 45px;
+		}
 	}
 
 	aside {
@@ -29,6 +33,7 @@ export const AdminContainer = styled.main`
 		div {
 			height: 40px;
 			padding: 10px;
+			background: rgb(${({ theme }) => theme.backgroundAlt});
 			box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
 			margin: 0 10px;
 			border-radius: 5px;

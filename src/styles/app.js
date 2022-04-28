@@ -20,29 +20,30 @@ export const AppContainer = styled.section`
 		width: 0;
 		height: 0;
 
-    @media screen and (max-width: 690px) {
-      left: 95vw;
-    }
-    @media screen and (max-width: 480px) {
-      left: 90vw;
-    }
+		@media screen and (max-width: 690px) {
+			left: 95vw;
+		}
+		@media screen and (max-width: 480px) {
+			left: 90vw;
+		}
 
-    button {
-      width: 30px;
-      height: 30px;
-      margin-top: 5px;
-      display: grid;
-      place-content: center;
+		button {
+			width: 30px;
+			height: 30px;
+			margin-top: 5px;
+			display: grid;
+      backdrop-filter: blur(10px);
+			place-content: center;
 
-      svg {
-        position: static;
-        width: 22px;
-        height: 22px;
-      }
-    }
-    span {
-      padding: 0;
-    }
+			svg {
+				position: static;
+				width: 22px;
+				height: 22px;
+			}
+		}
+		span {
+			padding: 0;
+		}
 	}
 
 	.advisor {

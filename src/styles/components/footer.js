@@ -27,7 +27,6 @@ export const FooterContainer = styled.footer`
 		width: 100vw;
 		height: 5px;
 		background: rgba(${({ theme }) => theme.primary}, 0.8);
-		z-index: 14000;
 	}
 
 	section {

@@ -18,7 +18,7 @@ export const GlobalStyles = createGlobalStyle`
     
   }
 
-  input {
+  input, textarea, select {
     background: rgb(${({ theme }) => theme.inner});
     color: rgb(${({ theme }) => theme.font});
   }

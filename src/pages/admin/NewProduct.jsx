@@ -20,22 +20,26 @@ const NewProduct = () => {
 				</h1>
 				<form onSubmit={formDataHandler}>
 					<div>
-						<label htmlFor='nome'>Nome</label>
-						<input
-							type='text'
-							id='nome'
-							maxLength={'20'}
-							placeholder={'Nome do produto'}
-						/>
-						<label htmlFor='classe'>Classe do Produto</label>
-						<select id='classe'>
-							<option value='Baixa'>Baixa</option>
-							<option value='Média'>Média</option>
-							<option value='Alta'>Alta</option>
-							<option value='Premium'>Premium</option>
-						</select>
+						<section>
+							<label htmlFor='nome'>Nome (obrigatório)</label>
+							<input
+								type='text'
+								id='nome'
+								maxLength={'20'}
+								placeholder={'Nome do produto'}
+							/>
+						</section>
+						<section>
+							<label htmlFor='classe'>Classe do Produto</label>
+							<select id='classe'>
+								<option value='Baixa'>Baixa</option>
+								<option value='Média'>Média</option>
+								<option value='Alta'>Alta</option>
+								<option value='Premium'>Premium</option>
+							</select>
+						</section>
 					</div>
-					<label htmlFor='description'>Descrição</label>
+					<label htmlFor='description'>Descrição (obrigatório)</label>
 					<textarea
 						id='description'
 						placeholder='Escreva uma breve descrição sobre o produto'
@@ -44,44 +48,86 @@ const NewProduct = () => {
 						maxLength={'700'}
 					></textarea>
 					<div>
-						<label htmlFor='color'>Cor</label>
-						<input type='text' placeholder='Cor' maxLength={'20'} />
-						<label htmlFor='size'>Tamanho</label>
-						<input type='text' placeholder='Tamanho' maxLength={'20'} />
+						<section>
+							<label htmlFor='color'>Cor</label>
+							<input type='text' placeholder='Cor' maxLength={'20'} />
+						</section>
+						<section>
+							<label htmlFor='size'>Tamanho</label>
+							<input type='text' placeholder='Tamanho' maxLength={'20'} />
+						</section>
 					</div>
 					<div>
-						<label htmlFor='type'>Tipo de aquisição</label>
-						<select id='type'>
-							<option value='Encomenda'>Encomenda</option>
-							<option value='Estoque'>Estoque</option>
-						</select>
-						<label htmlFor='fabric'>Qualidade de Tecido</label>
-						<select>
-							<option value='Polyester'>Polyester</option>
-							<option value='Trevira'>Trevira</option>
-							<option value='algodão'>Algodão</option>
-							<option value='Linho'>Linho</option>
-							<option value='Sarja'>Sarja</option>
-						</select>
+						<section>
+							<label htmlFor='price'>Preço (obrigatório)</label>
+							<input type='text' id='price' maxLength={'10'} placeholder={'Preço do produto'} />
+						</section>
+						<section>
+							<label htmlFor='category'>Categoria (obrigatório)</label>
+							<select id='category'>
+								<option value='Capulanas'>Capulanas</option>
+								<option value='Batas'>Batas</option>
+								<option value='Uniformes'>Uniformes</option>
+								<option value='Vestuário'>Vestuário</option>
+								<option value='Cortinas'>Cortinas</option>
+								<option value='Tapetes'>Tapetes</option>
+								<option value='Outros'>Outros</option>
+							</select>
+						</section>
 					</div>
-					<label>Variantes de Cor</label>
 					<div>
-						<label htmlFor='colorA'>Cor A</label>
-						<input type='color' id='colorA' />
-						<label htmlFor='colorB'>Cor B</label>
-						<input type='color' id='colorB' />
+						<section>
+							<label htmlFor='type'>Tipo de aquisição</label>
+							<select id='type'>
+								<option value='Encomenda'>Encomenda</option>
+								<option value='Estoque'>Estoque</option>
+							</select>
+						</section>
+						<section>
+							<label htmlFor='fabric'>Qualidade de Tecido</label>
+							<select id='fabric'>
+								<option value='Polyester'>Polyester</option>
+								<option value='Trevira'>Trevira</option>
+								<option value='algodão'>Algodão</option>
+								<option value='Linho'>Linho</option>
+								<option value='Sarja'>Sarja</option>
+								<option value='Outro'>Outro</option>
+							</select>
+						</section>
+					</div>
+					<label>Variantes de Cor do Produto</label>
+					<div>
+						<section>
+							<label htmlFor='colorA'>Cor A</label>
+							<input type='color' id='colorA' />
+						</section>
+						<section>
+							<label htmlFor='colorB'>Cor B</label>
+							<input type='color' id='colorB' />
+						</section>
+						<section>
+							<label htmlFor='colorC'>Cor C</label>
+							<input type='color' id='colorC' />
+						</section>
+						<section>
+							<label htmlFor='colorC'>Cor C</label>
+							<input type='color' id='colorC' />
+						</section>
 					</div>
 					<label>Medidas (em metros)</label>
 					<div>
-						<label htmlFor='weight'>Comprimento</label>
-						<input type='number' id='weight' maxLength='4' />
-						<label htmlFor='height'>Altura</label>
-						<input type='number' id='height' maxLength={'4'} />
+						<section>
+							<label htmlFor='weight'>Comprimento</label>
+							<input type='number' id='weight' maxLength='4' placeholder='Comprimento da peça' />
+						</section>
+						<section>
+							<label htmlFor='height'>Altura</label>
+							<input type='number' id='height' maxLength={'4'} placeholder='Altura da peça'/>
+						</section>
 					</div>
-
 					<label htmlFor='image'>Selecionar imagem</label>
 					<Button
-						text={'Carregar imagem'}
+						text={'Carregar Imagem'}
 						icon={<BiUpload />}
 						event={(e) => {
 							e.preventDefault();

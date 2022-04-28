@@ -9,6 +9,7 @@ export const OverviewContainer = styled.section`
 		gap: 20px;
 
 		div {
+			background: rgb(${({ theme }) => theme.backgroundAlt});
 			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
 			max-width: 300px;
 			padding: 15px 30px 15px 30px;
