@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyle`
 
   input {
     background: rgb(${({ theme }) => theme.inner});
+    color: rgb(${({ theme }) => theme.font});
   }
 
   html {

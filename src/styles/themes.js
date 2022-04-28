@@ -12,10 +12,10 @@ export const primary = {
 
 export const dark = {
 	primary: '108, 161, 246',
-	secondary: '41, 42, 46',
+	secondary: '64, 52, 82',
 	hover: '223, 235, 248',
-	font: '95, 99, 104',
-	inner: '241, 243, 244',
+	font: '178, 177, 185',
+	inner: '55, 55, 55',
 	text: '240, 240,240',
 	shadows: '25, 25, 28',
 	background: '32, 33, 36',

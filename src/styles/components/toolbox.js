@@ -6,6 +6,7 @@ export const ToolboxContainer = styled.aside`
 	flex-direction: row;
 	gap: 20px;
 	padding: 10px;
+	background: rgb(${({ theme }) => theme.backgroundAlt});
 	box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
 
 	@media screen and (max-width: 710px) {

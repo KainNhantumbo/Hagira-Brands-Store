@@ -37,6 +37,7 @@ export const HomeContainer = styled.main`
 
 		.product {
 			box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
+			background: rgb(${({ theme }) => theme.backgroundAlt});
 			border-radius: 10px;
 			display: flex;
 			justify-items: flex-start;

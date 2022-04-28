@@ -15,14 +15,12 @@ export const LegalContainer = styled.main`
 		line-height: 1.6rem;
 
 		h2 {
-			color: rgb(${({ theme }) => theme.secondary});
 			font-weight: 500;
 			font-size: 1.2rem;
 		}
 
 		h3 {
 			font-weight: 500;
-			color: rgb(${({ theme }) => theme.secondary});
 			padding-top: 10px;
 		}
 
