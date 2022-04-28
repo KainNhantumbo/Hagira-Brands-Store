@@ -25,8 +25,32 @@ const NewProduct = () => {
 		e.preventDefault();
 	};
 
+	// picks and reads the selected image
 	const imageHandler = async () => {
-		const [fileHandler] = await window.requestFileSystem();
+		// file options
+		const fileOptions = {
+			multiple: false,
+			types: [
+				{
+					description: 'Images',
+					accept: {
+						'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
+					},
+				},
+			],
+			excludeAcceptAllOption: true,
+		};
+		// new file reader instance
+		const reader = new FileReader();
+		// shows the window to oick the file
+		const [fileHandler] = await window.showOpenFilePicker(fileOptions);
+		const file = await fileHandler.getFile();
+
+		// reads the file and sets it on image state
+		reader.readAsDataURL(file);
+		reader.onloadend = () => {
+			setImage(() => reader.result);
+		};
 	};
 
 	return (
@@ -35,6 +59,7 @@ const NewProduct = () => {
 				<h1>
 					Novo Produto <BiEdit />{' '}
 				</h1>
+				<img src={image} alt='' />
 				<form onSubmit={formDataHandler}>
 					<div>
 						<section>
