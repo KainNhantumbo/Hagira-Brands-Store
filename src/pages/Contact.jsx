@@ -10,6 +10,7 @@ import {
 import { MdMessage } from 'react-icons/md';
 import Button from '../components/Button';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
 	const [messageStatus, setMessageStatus] = useState(
@@ -19,6 +20,8 @@ const Contact = () => {
 	const [messageContent, setMessageContent] = useState('');
 	const [messageEmail, setMessageEmail] = useState('');
 	const [messageSubject, setMessageSubject] = useState('');
+	const [phone, setPhone] = useState('');
+	const navigate = useNavigate();
 
 	const formDataHandler = (e) => {
 		e.preventDefault();
@@ -68,14 +71,19 @@ const Contact = () => {
 			setErrorStyles(() => ({ color: 'red' }));
 			return;
 		} else {
-			formData.senderEmail = messageEmail;
-      setMessageStatus(
+			formData.email = messageEmail;
+			setMessageStatus(
 				() => 'Receberá a sua resposta em seu email assim que possível.'
 			);
 			setErrorStyles(() => ({}));
 		}
 
-		window.location.assign('/data-sent')
+		if (phone.length < 5) {
+			setPhone(() => '');
+		}
+		formData.phone = phone;
+
+		navigate('/data-sent');
 	};
 
 	return (
@@ -86,7 +94,7 @@ const Contact = () => {
 				</h1>
 				<h2>Esteja sempre ligado.</h2>
 				<p>
-					Por favor use uma das formas de contacto descritas abaixo ou use o
+					Por favor use uma das formas de contacto descritas abaixo, clique no <i>link</i> de e-mail ou use o
 					<strong> formulário</strong> de contacto mais abaixo se tiver questões
 					de sobre os nossos produtos e serviços.
 				</p>
@@ -133,6 +141,14 @@ const Contact = () => {
 						id='email'
 						placeholder='E-mail'
 						onChange={(e) => setMessageEmail(e.target.value)}
+					/>
+					<label htmlFor='phone'>Telefone (opcional)</label>
+					<input
+						type='number'
+						id='phone'
+						maxLength='20'
+						onChange={(e) => setPhone(() => e.target.value)}
+						placeholder='Número de telefone'
 					/>
 					<span style={errorStyles}>{messageStatus}</span>
 					<Button type={'submit'} text={'Enviar mensagem'} icon={<BiSend />} />

@@ -11,6 +11,10 @@ export const ContactContainer = styled.main`
 
 	line-height: 1.6rem;
 
+	i {
+		font-style: italic;
+	}
+
 	h1 {
 		font-size: 1.8rem;
 		font-weight: 500;

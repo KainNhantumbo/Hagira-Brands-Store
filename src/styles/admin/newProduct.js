@@ -12,15 +12,21 @@ export const NewProductContainer = styled.section`
 
 		h1 {
 			position: relative;
-      line-height: 0;
-      padding-bottom: 12px;
-      
+			line-height: 0;
+			padding-bottom: 12px;
+			@media screen and (max-width: 340px) {
+				font-size: 1.5rem;
+			}
+
 			svg {
 				position: absolute;
 				width: 30px;
 				height: 30px;
 				left: 220px;
 				top: -15px;
+				@media screen and (max-width: 340px) {
+					left: 160px;
+				}
 			}
 		}
 
@@ -50,6 +56,7 @@ export const NewProductContainer = styled.section`
 			input,
 			select,
 			textarea {
+				width: 100%;
 				border: 2px solid rgb(${({ theme }) => theme.primary});
 				border-radius: 5px;
 				padding: 5px;

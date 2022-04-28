@@ -2,8 +2,11 @@ import { NewProductContainer } from '../../styles/admin/newProduct';
 import Button from '../../components/Button';
 import { BiBookmarkPlus, BiEdit, BiUpload } from 'react-icons/bi';
 import React, { useState } from 'react';
+import { createDate } from '../../modules/module-scripts';
 
 const NewProduct = () => {
+	const [errorMessage, setErrorMessage] = useState('');
+	const [errorStyles, setErrorStyles] = useState({});
 	const [productName, setProductName] = useState('');
 	const [productClass, setProductClass] = useState('Média');
 	const [productDescription, setProductDescription] = useState('');
@@ -19,38 +22,96 @@ const NewProduct = () => {
 	const [fabric, setFabric] = useState('Polyester');
 	const [productHeight, setProductHeight] = useState('');
 	const [productWidth, setProductWidth] = useState('');
-	const [image, setImage] = useState({});
-
-	const formDataHandler = (e) => {
-		e.preventDefault();
-	};
+	const [image, setImage] = useState();
 
 	// picks and reads the selected image
 	const imageHandler = async () => {
-		// file options
-		const fileOptions = {
-			multiple: false,
-			types: [
-				{
-					description: 'Images',
-					accept: {
-						'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
+		try {
+			// file options
+			const fileOptions = {
+				multiple: false,
+				types: [
+					{
+						description: 'Images',
+						accept: {
+							'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
+						},
 					},
-				},
-			],
-			excludeAcceptAllOption: true,
-		};
-		// new file reader instance
-		const reader = new FileReader();
-		// shows the window to oick the file
-		const [fileHandler] = await window.showOpenFilePicker(fileOptions);
-		const file = await fileHandler.getFile();
+				],
+				excludeAcceptAllOption: true,
+			};
+			// new file reader instance
+			const reader = new FileReader();
+			// shows the window to oick the file
+			const [fileHandler] = await window.showOpenFilePicker(fileOptions);
+			const file = await fileHandler.getFile();
 
-		// reads the file and sets it on image state
-		reader.readAsDataURL(file);
-		reader.onloadend = () => {
-			setImage(() => reader.result);
-		};
+			// reads the file and sets it on image state
+			reader.readAsDataURL(file);
+			reader.onloadend = () => {
+				setImage(() => reader.result);
+			};
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	const formDataHandler = (e) => {
+		e.preventDefault();
+		const product = {};
+
+		if (!productName) {
+			setErrorStyles(() => ({ color: 'red' }));
+			setErrorMessage(() => 'Precisa escrever o nome do produto.');
+			return;
+		} else {
+			setErrorMessage(() => '');
+			setErrorStyles(() => ({}));
+			product.name = productName;
+		}
+
+		if (!productDescription) {
+			setErrorStyles(() => ({ color: 'red' }));
+			setErrorMessage(() => 'Precisa escrever a descrição do produto.');
+			return;
+		} else {
+			setErrorMessage(() => '');
+			setErrorStyles(() => ({}));
+			product.description = productDescription;
+		}
+
+		if (!price) {
+			setErrorStyles(() => ({ color: 'red' }));
+			setErrorMessage(() => 'Precisa especificar o preço do produto.');
+			return;
+		} else {
+			setErrorMessage(() => '');
+			setErrorStyles(() => ({}));
+			product.price = price;
+		}
+
+		if (!image) {
+			setErrorStyles(() => ({ color: 'red' }));
+			setErrorMessage(() => 'Selecione uma imagem do produto.');
+			return;
+		} else {
+			setErrorMessage(() => '');
+			setErrorStyles(() => ({}));
+			product.image = image;
+		}
+
+		product.category = productCategory;
+		product.deafaultColor = defaultColor;
+		product.colors = [colorA, colorB, colorC, colorD];
+		product.sellingType = sellingType;
+		product.class = productClass;
+		product.size = size;
+		product.fabric = fabric;
+		product.height = productHeight;
+		product.width = productWidth;
+		product.date = createDate();
+
+		console.log(product);
 	};
 
 	return (
@@ -59,7 +120,6 @@ const NewProduct = () => {
 				<h1>
 					Novo Produto <BiEdit />{' '}
 				</h1>
-				<img src={image} alt='' />
 				<form onSubmit={formDataHandler}>
 					<div>
 						<section>
@@ -126,7 +186,7 @@ const NewProduct = () => {
 							/>
 						</section>
 						<section>
-							<label htmlFor='category'>Categoria (obrigatório)</label>
+							<label htmlFor='category'>Categoria</label>
 							<select
 								id='category'
 								onChange={(e) => setproductCategory(() => e.target.value)}
@@ -235,6 +295,7 @@ const NewProduct = () => {
 						}}
 					/>
 					<hr />
+					<span style={errorStyles}>{errorMessage}</span>
 					<Button
 						text={'Publicar Produto'}
 						icon={<BiBookmarkPlus />}

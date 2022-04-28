@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ComunicateContainer = styled.section`
-  padding-left: 10px;
+	padding-left: 10px;
 	.messageForm {
 		display: flex;
 		justify-content: flex-start;
@@ -11,15 +11,22 @@ export const ComunicateContainer = styled.section`
 
 		h1 {
 			position: relative;
-      line-height: 0;
-      padding-bottom: 12px;
+			line-height: 0;
+			padding-bottom: 12px;
+
+			@media screen and (max-width: 370px) {
+				font-size: 1.3rem;
+			}
 
 			svg {
 				position: absolute;
-				width: 30px;
-				height: 30px;
+				width: 25px;
+				height: 25px;
 				left: 260px;
 				top: -15px;
+				@media screen and (max-width: 370px) {
+					left: 165px;
+				}
 			}
 		}
 
