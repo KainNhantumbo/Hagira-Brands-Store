@@ -23,10 +23,11 @@ const NewProduct = () => {
 
 	const formDataHandler = (e) => {
 		e.preventDefault();
-		console.log(productClass)
 	};
 
-	const imageHandler = () => {};
+	const imageHandler = async () => {
+		const [fileHandler] = await window.requestFileSystem();
+	};
 
 	return (
 		<NewProductContainer>
@@ -48,31 +49,14 @@ const NewProduct = () => {
 						</section>
 						<section>
 							<label htmlFor='classe'>Classe do Produto</label>
-							<select id='classe'>
-								<option
-									value='Baixa'
-									onChange={(e) => setProductClass(() => e.target.value)}
-								>
-									Baixa
-								</option>
-								<option
-									value='Média'
-									onChange={(e) => setProductClass(() => e.target.value)}
-								>
-									Média
-								</option>
-								<option
-									value='Alta'
-									onChange={(e) => setProductClass(() => e.target.value)}
-								>
-									Alta
-								</option>
-								<option
-									value='Premium'
-									onChange={(e) => setProductClass(() => e.target.value)}
-								>
-									Premium
-								</option>
+							<select
+								id='classe'
+								onChange={(e) => setProductClass(() => e.target.value)}
+							>
+								<option value='Baixa'>Baixa</option>
+								<option value='Média'>Média</option>
+								<option value='Alta'>Alta</option>
+								<option value='Premium'>Premium</option>
 							</select>
 						</section>
 					</div>
@@ -83,30 +67,45 @@ const NewProduct = () => {
 						cols='20'
 						rows='8'
 						maxLength={'700'}
+						onChange={(e) => setProductDescription(() => e.target.value)}
 					></textarea>
 					<div>
 						<section>
 							<label htmlFor='color'>Cor</label>
-							<input type='text' placeholder='Cor' maxLength={'20'} />
+							<input
+								type='text'
+								placeholder='Cor'
+								maxLength={'20'}
+								onChange={(e) => setDefaultColor(() => e.target.value)}
+							/>
 						</section>
 						<section>
 							<label htmlFor='size'>Tamanho</label>
-							<input type='text' placeholder='Tamanho' maxLength={'20'} />
+							<input
+								type='text'
+								placeholder='Tamanho'
+								maxLength={'20'}
+								onChange={(e) => setSize(() => e.target.value)}
+							/>
 						</section>
 					</div>
 					<div>
 						<section>
 							<label htmlFor='price'>Preço (obrigatório)</label>
 							<input
-								type='text'
+								type='number'
 								id='price'
 								maxLength={'10'}
 								placeholder={'Preço do produto'}
+								onChange={(e) => setPrice(() => e.target.value)}
 							/>
 						</section>
 						<section>
 							<label htmlFor='category'>Categoria (obrigatório)</label>
-							<select id='category'>
+							<select
+								id='category'
+								onChange={(e) => setproductCategory(() => e.target.value)}
+							>
 								<option value='Capulanas'>Capulanas</option>
 								<option value='Batas'>Batas</option>
 								<option value='Uniformes'>Uniformes</option>
@@ -120,14 +119,20 @@ const NewProduct = () => {
 					<div>
 						<section>
 							<label htmlFor='type'>Tipo de aquisição</label>
-							<select id='type'>
+							<select
+								id='type'
+								onChange={(e) => setSellingType(() => e.target.value)}
+							>
 								<option value='Encomenda'>Encomenda</option>
 								<option value='Estoque'>Estoque</option>
 							</select>
 						</section>
 						<section>
 							<label htmlFor='fabric'>Qualidade de Tecido</label>
-							<select id='fabric'>
+							<select
+								id='fabric'
+								onChange={(e) => setFabric(() => e.target.value)}
+							>
 								<option value='Polyester'>Polyester</option>
 								<option value='Trevira'>Trevira</option>
 								<option value='algodão'>Algodão</option>
@@ -141,19 +146,35 @@ const NewProduct = () => {
 					<div>
 						<section>
 							<label htmlFor='colorA'>Cor A</label>
-							<input type='color' id='colorA' />
+							<input
+								type='color'
+								id='colorA'
+								onChange={(e) => setColorA(() => e.target.value)}
+							/>
 						</section>
 						<section>
 							<label htmlFor='colorB'>Cor B</label>
-							<input type='color' id='colorB' />
+							<input
+								type='color'
+								id='colorB'
+								onChange={(e) => setColorB(() => e.target.value)}
+							/>
 						</section>
 						<section>
 							<label htmlFor='colorC'>Cor C</label>
-							<input type='color' id='colorC' />
+							<input
+								type='color'
+								id='color'
+								onChange={(e) => setColorC(() => e.target.value)}
+							/>
 						</section>
 						<section>
-							<label htmlFor='colorC'>Cor C</label>
-							<input type='color' id='colorC' />
+							<label htmlFor='colorD'>Cor D</label>
+							<input
+								type='color'
+								id='colorD'
+								onChange={(e) => setColorD(() => e.target.value)}
+							/>
 						</section>
 					</div>
 					<label>Medidas (em metros)</label>
@@ -165,6 +186,7 @@ const NewProduct = () => {
 								id='width'
 								maxLength='4'
 								placeholder='Comprimento da peça'
+								onChange={(e) => setProductWidth(() => e.target.value)}
 							/>
 						</section>
 						<section>
@@ -174,6 +196,7 @@ const NewProduct = () => {
 								id='height'
 								maxLength={'4'}
 								placeholder='Altura da peça'
+								onChange={(e) => setProductHeight(() => e.target.value)}
 							/>
 						</section>
 					</div>
