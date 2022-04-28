@@ -1,12 +1,64 @@
 import styled from 'styled-components';
 
+const propagateFlex = `
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+`;
+
 export const MessagesContainer = styled.section`
 	padding-left: 10px;
+	position: relative;
+
+	.modal-container {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 3300;
+		padding: 90px 20px;
+		background: rgba(${({ theme }) => theme.background}, 0.5);
+		backdrop-filter: blur(10px);
+
+		.message-previewer {
+			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
+			background: rgb(${({ theme }) => theme.background});
+			padding: 20px 15px;
+			max-width: 550px;
+			border-radius: 12px;
+			margin: 0 auto;
+			${() => propagateFlex}
+			gap: 15px;
+
+			h2 {
+				line-height: 1.8rem;
+			}
+
+			.headers {
+				${() => propagateFlex}
+				gap: 5px;
+			}
+
+			.message {
+				${() => propagateFlex}
+				gap: 5px;
+
+				div {
+					line-height: 1.4rem;
+				}
+			}
+
+			.actions {
+				${() => propagateFlex}
+				gap: 5px;
+				flex-flow: row wrap;
+			}
+		}
+	}
 
 	.upper {
-		display: flex;
-		justify-content: flex-start;
-		flex-direction: column;
+		${() => propagateFlex}
 		gap: 10px;
 		max-width: 670px;
 
@@ -43,39 +95,38 @@ export const MessagesContainer = styled.section`
 		}
 	}
 
-  .messages-container {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-start;
-    flex-flow: row wrap;
+	.messages-container {
+		display: flex;
+		gap: 20px;
+		justify-content: flex-start;
+		flex-flow: row wrap;
 
-    .message {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 12px;
-      background: rgb(${({ theme }) => theme.backgroundAlt});
-      box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
-      padding: 10px;
-      border-radius: 5px;
+		.message {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			gap: 12px;
+			background: rgb(${({ theme }) => theme.backgroundAlt});
+			box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
+			padding: 10px;
+			border-radius: 5px;
 
 			:hover {
 				box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 				transition: 200ms ease-out;
 			}
 
-      section {
+			section {
 				display: flex;
 				gap: 10px;
 				flex-direction: column;
-        div {
-
-          h3 {
-            font-weight: 500;
+				div {
+					h3 {
+						font-weight: 500;
 						display: inline;
-          }
-        }
-      }
+					}
+				}
+			}
 
 			.date {
 				margin: 0 auto;
@@ -83,16 +134,14 @@ export const MessagesContainer = styled.section`
 				background: rgb(${({ theme }) => theme.inner});
 				font-weight: 500;
 				border-radius: 12px;
-				font-size: .9rem;
+				font-size: 0.9rem;
 			}
-      
-      button {
-        span {
-          padding: 0;
-        }
-      }
-  
-      
-    }
-  }
+
+			button {
+				span {
+					padding: 0;
+				}
+			}
+		}
+	}
 `;
