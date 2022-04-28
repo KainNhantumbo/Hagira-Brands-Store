@@ -17,22 +17,26 @@ export const MessagesContainer = styled.section`
 		width: 100vw;
 		height: 100vh;
 		z-index: 3300;
-		padding: 90px 20px;
+		padding: 90px 10px;
 		background: rgba(${({ theme }) => theme.background}, 0.5);
 		backdrop-filter: blur(10px);
+		
 
 		.message-previewer {
 			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
 			background: rgb(${({ theme }) => theme.background});
-			padding: 20px 15px;
+			padding: 10px 15px;
 			max-width: 550px;
-			border-radius: 12px;
+			border-radius: 5px;
 			margin: 0 auto;
 			${() => propagateFlex}
 			gap: 15px;
+			max-height: 550px;
+			overflow-y: auto;
+
 
 			h2 {
-				line-height: 1.8rem;
+				line-height: 1.6rem;
 			}
 
 			.headers {
@@ -43,7 +47,6 @@ export const MessagesContainer = styled.section`
 			.message {
 				${() => propagateFlex}
 				gap: 5px;
-
 				div {
 					line-height: 1.4rem;
 				}

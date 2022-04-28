@@ -1,5 +1,11 @@
 import { MessagesContainer } from '../../styles/admin/messages';
-import { BiX, BiTrash, BiEnvelopeOpen, BiMessageAlt, BiChevronLeft } from 'react-icons/bi';
+import {
+	BiX,
+	BiTrash,
+	BiEnvelopeOpen,
+	BiMessageAlt,
+	BiChevronLeft,
+} from 'react-icons/bi';
 import Button from '../../components/Button';
 import React, { useState } from 'react';
 import { incomeMessages } from '../../modules/module-scripts';
@@ -14,11 +20,13 @@ const Messages = () => {
 					Mensagens Recebidas <BiEnvelopeOpen />{' '}
 				</h1>
 			</section>
-			<section className='modal-container'>
-				{messageModal ? (
+			{messageModal ? (
+				<section className='modal-container'>
 					<div className='message-previewer'>
 						<div className='headers'>
-							<h2><strong>Remetente</strong></h2>
+							<h2>
+								<strong>Remetente</strong>
+							</h2>
 							<span>
 								<strong>E-mail: </strong>
 								mail@mail.com
@@ -48,13 +56,17 @@ const Messages = () => {
 							</div>
 						</section>
 						<section className='actions'>
-						<Button text={'Voltar'} icon={<BiChevronLeft/>} />
-						<Button text={'Eliminar mensagem'} icon={<BiTrash/>} />
+							<Button
+								text={'Voltar'}
+								icon={<BiChevronLeft />}
+								event={(e) => setMessageModal((prevState) => !prevState)}
+							/>
+							<Button text={'Eliminar mensagem'} icon={<BiTrash />} />
 						</section>
-
 					</div>
-				) : null}
-			</section>
+				</section>
+			) : null}
+
 			<section className='messages-container'>
 				{incomeMessages.map(({ _id, subject, email, phone, date }) => {
 					return (
@@ -68,7 +80,6 @@ const Messages = () => {
 									{subject.slice(0, 20)}...
 								</div>
 							</section>
-
 							<span className='date'>
 								Data: {date.date},{'  '} às {date.time}{' '}
 							</span>
