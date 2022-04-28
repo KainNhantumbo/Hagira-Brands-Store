@@ -3,6 +3,14 @@ import Button from './Button';
 import { BiLogIn, BiCartAlt } from 'react-icons/bi';
 
 const Header = () => {
+	const explore = () => {
+		window.scrollTo({
+			left: 0,
+			top: 1000000,
+			behavior: 'smooth',
+		});
+	};
+
 	return (
 		<Container>
 			<section>
@@ -13,9 +21,12 @@ const Header = () => {
 			</section>
 			<nav className='navbar'>
 				<div className='actions'>
-					<a href='/discouver'>
-						<Button id={'rounded'} text={'Explorar'} icon={<BiLogIn />} />
-					</a>
+					<Button
+						event={explore}
+						id={'rounded'}
+						text={'Explorar'}
+						icon={<BiLogIn />}
+					/>
 				</div>
 			</nav>
 		</Container>

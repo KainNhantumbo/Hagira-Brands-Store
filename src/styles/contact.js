@@ -121,6 +121,7 @@ export const ContactContainer = styled.main`
 
 		div {
 			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
+			background: rgb(${({ theme }) => theme.backgroundAlt});
 			max-width: 300px;
 			padding: 15px 30px 15px 30px;
 			border-radius: 5px;

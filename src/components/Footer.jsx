@@ -12,9 +12,6 @@ const Footer = () => {
 						<a href='/'>Início</a>
 					</li>
 					<li>
-						<a href='/discouver'>Explorar</a>
-					</li>
-					<li>
 						<a href='/about'>Sobre nós</a>
 					</li>
 					<li>

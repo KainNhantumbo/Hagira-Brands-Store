@@ -4,10 +4,26 @@ import { BiBookmarkPlus, BiEdit, BiUpload } from 'react-icons/bi';
 import React, { useState } from 'react';
 
 const NewProduct = () => {
+	const [productName, setProductName] = useState('');
+	const [productClass, setProductClass] = useState('Média');
+	const [productDescription, setProductDescription] = useState('');
+	const [colorA, setColorA] = useState('');
+	const [colorB, setColorB] = useState('');
+	const [colorC, setColorC] = useState('');
+	const [colorD, setColorD] = useState('');
+	const [defaultColor, setDefaultColor] = useState('');
+	const [size, setSize] = useState('');
+	const [price, setPrice] = useState('');
+	const [productCategory, setproductCategory] = useState('Outros');
+	const [sellingType, setSellingType] = useState('Encomenda');
+	const [fabric, setFabric] = useState('Polyester');
+	const [productHeight, setProductHeight] = useState('');
+	const [productWidth, setProductWidth] = useState('');
 	const [image, setImage] = useState({});
 
 	const formDataHandler = (e) => {
 		e.preventDefault();
+		console.log(productClass)
 	};
 
 	const imageHandler = () => {};
@@ -27,15 +43,36 @@ const NewProduct = () => {
 								id='nome'
 								maxLength={'20'}
 								placeholder={'Nome do produto'}
+								onChange={(e) => setProductName(() => e.target.value)}
 							/>
 						</section>
 						<section>
 							<label htmlFor='classe'>Classe do Produto</label>
 							<select id='classe'>
-								<option value='Baixa'>Baixa</option>
-								<option value='Média'>Média</option>
-								<option value='Alta'>Alta</option>
-								<option value='Premium'>Premium</option>
+								<option
+									value='Baixa'
+									onChange={(e) => setProductClass(() => e.target.value)}
+								>
+									Baixa
+								</option>
+								<option
+									value='Média'
+									onChange={(e) => setProductClass(() => e.target.value)}
+								>
+									Média
+								</option>
+								<option
+									value='Alta'
+									onChange={(e) => setProductClass(() => e.target.value)}
+								>
+									Alta
+								</option>
+								<option
+									value='Premium'
+									onChange={(e) => setProductClass(() => e.target.value)}
+								>
+									Premium
+								</option>
 							</select>
 						</section>
 					</div>
@@ -60,7 +97,12 @@ const NewProduct = () => {
 					<div>
 						<section>
 							<label htmlFor='price'>Preço (obrigatório)</label>
-							<input type='text' id='price' maxLength={'10'} placeholder={'Preço do produto'} />
+							<input
+								type='text'
+								id='price'
+								maxLength={'10'}
+								placeholder={'Preço do produto'}
+							/>
 						</section>
 						<section>
 							<label htmlFor='category'>Categoria (obrigatório)</label>
@@ -117,12 +159,22 @@ const NewProduct = () => {
 					<label>Medidas (em metros)</label>
 					<div>
 						<section>
-							<label htmlFor='weight'>Comprimento</label>
-							<input type='number' id='weight' maxLength='4' placeholder='Comprimento da peça' />
+							<label htmlFor='width'>Comprimento</label>
+							<input
+								type='number'
+								id='width'
+								maxLength='4'
+								placeholder='Comprimento da peça'
+							/>
 						</section>
 						<section>
 							<label htmlFor='height'>Altura</label>
-							<input type='number' id='height' maxLength={'4'} placeholder='Altura da peça'/>
+							<input
+								type='number'
+								id='height'
+								maxLength={'4'}
+								placeholder='Altura da peça'
+							/>
 						</section>
 					</div>
 					<label htmlFor='image'>Selecionar imagem</label>
