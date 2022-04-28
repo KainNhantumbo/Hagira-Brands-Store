@@ -3,6 +3,7 @@ import Button from '../../components/Button';
 import { BiBookmarkPlus, BiEdit, BiUpload } from 'react-icons/bi';
 import React, { useState } from 'react';
 import { createDate } from '../../modules/module-scripts';
+import { useNavigate } from 'react-router-dom';
 
 const NewProduct = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -23,6 +24,7 @@ const NewProduct = () => {
 	const [productHeight, setProductHeight] = useState('');
 	const [productWidth, setProductWidth] = useState('');
 	const [image, setImage] = useState();
+	const navigate = useNavigate();
 
 	// picks and reads the selected image
 	const imageHandler = async () => {
@@ -56,6 +58,7 @@ const NewProduct = () => {
 		}
 	};
 
+	// wrappes all data into a object and sends it to the server
 	const formDataHandler = (e) => {
 		e.preventDefault();
 		const product = {};
@@ -111,6 +114,7 @@ const NewProduct = () => {
 		product.width = productWidth;
 		product.date = createDate();
 
+		navigate('/data-sent');
 		console.log(product);
 	};
 

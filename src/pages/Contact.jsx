@@ -11,6 +11,7 @@ import { MdMessage } from 'react-icons/md';
 import Button from '../components/Button';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { createDate } from '../modules/module-scripts';
 
 const Contact = () => {
 	const [messageStatus, setMessageStatus] = useState(
@@ -82,6 +83,7 @@ const Contact = () => {
 			setPhone(() => '');
 		}
 		formData.phone = phone;
+		formData.date = createDate();
 
 		navigate('/data-sent');
 	};
