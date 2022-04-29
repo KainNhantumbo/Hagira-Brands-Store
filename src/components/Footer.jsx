@@ -1,8 +1,32 @@
 import { FooterContainer } from '../styles/components/footer';
 import { BiSend } from 'react-icons/bi';
 import Button from './Button';
+import React, { useState } from 'react';
+import { createDate } from '../modules/module-scripts';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+	const [newsletterSubscriptor, setNewsletterSubscriptor] = useState('');
+	const navigate = useNavigate();
+
+	// makes email validation then sends it to the server
+	const processSubscription = () => {
+		if (!newsletterSubscriptor) return;
+		if (
+			newsletterSubscriptor.includes('@') === false ||
+			newsletterSubscriptor.includes('.') === false
+		)
+			return;
+
+		const newsletter_subscriptor = {
+			date: createDate(),
+			email: newsletterSubscriptor,
+		};
+
+		// navigates to a sucess feedback page
+		navigate('/subscribed-sucessfully');
+	};
+
 	return (
 		<FooterContainer>
 			<section>
@@ -65,10 +89,13 @@ const Footer = () => {
 							type='email'
 							name='email'
 							placeholder='Digite o e-mail aqui...'
+							onChange={(e) => setNewsletterSubscriptor(() => e.target.value)}
 						/>
-						<a href='/subscribed-sucessfully'>
-							<Button text={'Send'} icon={<BiSend />} />
-						</a>
+						<Button
+							event={processSubscription}
+							text={'Send'}
+							icon={<BiSend />}
+						/>
 					</div>
 				</section>
 			</section>
