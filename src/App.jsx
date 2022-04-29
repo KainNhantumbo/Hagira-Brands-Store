@@ -20,7 +20,6 @@ import React, { useState, useEffect } from 'react';
 import {
 	BiArrowToTop,
 	BiCheckCircle,
-	BiChevronUpCircle,
 	BiMoon,
 } from 'react-icons/bi';
 import { AppContainer } from './styles/app';

@@ -4,7 +4,7 @@ export const FooterContainer = styled.footer`
 	width: 100vw;
 	height: min-content;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr) 1.5fr;
+	grid-template-columns: repeat(2, 1fr) 1.5fr;
 	position: relative;
 
 	gap: 30px 20px;

@@ -10,7 +10,7 @@ const Footer = () => {
 	const navigate = useNavigate();
 
 	// makes email validation then sends it to the server
-	const processSubscription = () => {
+	const process_subscription = () => {
 		if (!newsletterSubscriptor) return;
 		if (
 			newsletterSubscriptor.includes('@') === false ||
@@ -44,20 +44,6 @@ const Footer = () => {
 					<li>
 						<a href='/privacy-policy'>Política de Privacidade</a>
 					</li>
-				</ul>
-			</section>
-			<section>
-				<h2>Administração</h2>
-				<ul>
-					<li>
-						<a href='/login'>Entrar</a>
-					</li>
-					<li>
-						<a href='/be-a-partner'>Parcerias</a>
-					</li>
-					<li>
-						<a href='/personal-suggest'>Encomendas personalizadas</a>
-					</li>
 					<li>
 						<a href='/terms-and-conditions'>Termos e Condições</a>
 					</li>
@@ -66,6 +52,9 @@ const Footer = () => {
 			<section>
 				<h2>Desenvolvedor</h2>
 				<ul>
+					<li>
+						<a href='/login'>Entrar</a>
+					</li>
 					<li>
 						<a href='/report-bug'>Reportar Bug/falha</a>
 					</li>
@@ -92,7 +81,7 @@ const Footer = () => {
 							onChange={(e) => setNewsletterSubscriptor(() => e.target.value)}
 						/>
 						<Button
-							event={processSubscription}
+							event={process_subscription}
 							text={'Send'}
 							icon={<BiSend />}
 						/>
