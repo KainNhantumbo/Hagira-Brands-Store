@@ -11,12 +11,18 @@ import Contact from './pages/Contact';
 import DataSentSucess from './pages/DataSentSucess';
 import RestritectedRoute from './components/RestrictedRoute';
 import Admin from './pages/admin/Admin';
+import About from './pages/About';
 import Button from './components/Button';
 import { ThemeProvider } from 'styled-components';
 import { primary, dark } from './styles/themes';
 import { GlobalStyles } from './styles/Globalstyles';
 import React, { useState, useEffect } from 'react';
-import { BiArrowToTop, BiCheckCircle, BiChevronUpCircle, BiMoon } from 'react-icons/bi';
+import {
+	BiArrowToTop,
+	BiCheckCircle,
+	BiChevronUpCircle,
+	BiMoon,
+} from 'react-icons/bi';
 import { AppContainer } from './styles/app';
 
 export const Context = React.createContext();
@@ -109,7 +115,7 @@ const App = () => {
 					<section className='fluent-buttons'>
 						<div>
 							<Button icon={<BiMoon />} event={switchColors} />
-							<Button icon={<BiArrowToTop/>} event={slidePageUp} />
+							<Button icon={<BiArrowToTop />} event={slidePageUp} />
 						</div>
 					</section>
 				</AppContainer>
@@ -124,6 +130,7 @@ const App = () => {
 					<Route path='/contact' element={<Contact />} />
 					<Route path='/data-sent' element={<DataSentSucess />} />
 					<Route path='/login' element={<Login />} />
+					<Route path='/about' element={<About />} />
 					<Route
 						path='/admin'
 						element={
