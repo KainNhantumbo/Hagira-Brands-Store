@@ -29,7 +29,7 @@ const About = () => {
 						acontecer com a graça de Deus.
 					</p>
 
-					<h3>Visão</h3>
+					<h3>Visão e Missão</h3>
 					<p>
 						Pretendo com os meus trabalhos alcançar e satisfazer a demanda do
 						mercado, fazendo produtos de qualidade, com base em matéria-prima

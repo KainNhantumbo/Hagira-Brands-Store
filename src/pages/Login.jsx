@@ -1,6 +1,12 @@
 import { LoginContainer } from '../styles/login';
 import Button from '../components/Button';
-import { BiLogIn, BiUser, BiEnvelope, BiLockAlt } from 'react-icons/bi';
+import {
+	BiLogIn,
+	BiUser,
+	BiEnvelope,
+	BiLockAlt,
+	BiChevronLeft,
+} from 'react-icons/bi';
 import { useState, useContext } from 'react';
 import { Context } from '../App';
 import { useNavigate } from 'react-router-dom';
@@ -57,7 +63,14 @@ const Login = () => {
 
 				<section className='buttons'>
 					<Button text={'Entrar'} icon={<BiLogIn />} type={'submit'} />
-					<Button text={'Criar nova conta'} icon={<BiUser />} />
+					<Button
+						event={(e) => {
+							e.preventDefault();
+							navigate('/');
+						}}
+						text={'Voltar'}
+						icon={<BiChevronLeft />}
+					/>
 				</section>
 			</form>
 		</LoginContainer>
