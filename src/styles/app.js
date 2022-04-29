@@ -16,7 +16,7 @@ export const AppContainer = styled.section`
 	.fluent-buttons {
 		${() => tops}
 		left: 97vw;
-		bottom: 80px;
+		bottom: 135px;
 		width: 0;
 		height: 0;
 
@@ -34,11 +34,15 @@ export const AppContainer = styled.section`
 			display: grid;
       backdrop-filter: blur(10px);
 			place-content: center;
+			position: relative;
 
 			svg {
 				position: static;
-				width: 22px;
-				height: 22px;
+				width: 25px;
+				height: 25px;
+				position: absolute;
+				top: 2.5px;
+				left: 3px;
 			}
 		}
 		span {

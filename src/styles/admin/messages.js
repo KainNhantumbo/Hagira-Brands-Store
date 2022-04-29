@@ -36,6 +36,16 @@ export const MessagesContainer = styled.section`
 			gap: 15px;
 			max-height: 550px;
 			overflow-y: auto;
+			position: relative;
+
+			.svg {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				width: 20px;
+				height: 20px;
+				color: rgb(${({ theme }) => theme.primary});
+			}
 
 			h2 {
 				line-height: 1.6rem;

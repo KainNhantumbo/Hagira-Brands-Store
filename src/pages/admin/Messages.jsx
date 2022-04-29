@@ -1,10 +1,9 @@
 import { MessagesContainer } from '../../styles/admin/messages';
 import {
-	BiX,
 	BiTrash,
 	BiEnvelopeOpen,
-	BiMessageAlt,
 	BiChevronLeft,
+	BiMessageDetail,
 } from 'react-icons/bi';
 import Button from '../../components/Button';
 import React, { useState } from 'react';
@@ -36,12 +35,13 @@ const Messages = () => {
 		<MessagesContainer>
 			<section className='upper'>
 				<h1>
-					Mensagens Recebidas <BiEnvelopeOpen />{' '}
+					Mensagens Recebidas <BiMessageDetail />{' '}
 				</h1>
 			</section>
 			{messageModal ? (
 				<section className='modal-container'>
 					<div className='message-previewer'>
+						<BiEnvelopeOpen className='svg'/>
 						<div className='headers'>
 							<h2>
 								<strong>Remetente</strong>

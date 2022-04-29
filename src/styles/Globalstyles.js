@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-family: 'Open Sans', Montserrat, Poppins, 'PT Sans';
+    max-width: 100%;
   }
 
   span, label {

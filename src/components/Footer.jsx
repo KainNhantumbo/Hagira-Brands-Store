@@ -29,9 +29,6 @@ const Footer = () => {
 						<a href='/login'>Entrar</a>
 					</li>
 					<li>
-						<a href='/support'>Suporte</a>
-					</li>
-					<li>
 						<a href='/be-a-partner'>Parcerias</a>
 					</li>
 					<li>
@@ -69,10 +66,10 @@ const Footer = () => {
 							name='email'
 							placeholder='Digite o e-mail aqui...'
 						/>
+						<a href='/subscribed-sucessfully'>
+							<Button text={'Send'} icon={<BiSend />} />
+						</a>
 					</div>
-					<a href='/subscribed-sucessfully'>
-						<Button text={'Send'} icon={<BiSend />} />
-					</a>
 				</section>
 			</section>
 			<div className='copyright'>

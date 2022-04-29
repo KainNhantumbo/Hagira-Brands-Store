@@ -16,7 +16,7 @@ import { ThemeProvider } from 'styled-components';
 import { primary, dark } from './styles/themes';
 import { GlobalStyles } from './styles/Globalstyles';
 import React, { useState, useEffect } from 'react';
-import { BiCheckCircle, BiChevronUpCircle, BiMoon } from 'react-icons/bi';
+import { BiArrowToTop, BiCheckCircle, BiChevronUpCircle, BiMoon } from 'react-icons/bi';
 import { AppContainer } from './styles/app';
 
 export const Context = React.createContext();
@@ -109,7 +109,7 @@ const App = () => {
 					<section className='fluent-buttons'>
 						<div>
 							<Button icon={<BiMoon />} event={switchColors} />
-							<Button icon={<BiChevronUpCircle />} event={slidePageUp} />
+							<Button icon={<BiArrowToTop/>} event={slidePageUp} />
 						</div>
 					</section>
 				</AppContainer>
