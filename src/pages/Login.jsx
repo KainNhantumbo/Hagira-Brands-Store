@@ -2,7 +2,6 @@ import { LoginContainer } from '../styles/login';
 import Button from '../components/Button';
 import {
 	BiLogIn,
-	BiUser,
 	BiEnvelope,
 	BiLockAlt,
 	BiChevronLeft,

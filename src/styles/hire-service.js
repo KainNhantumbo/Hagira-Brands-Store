@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { infograph } from './contact';
 
-export const SupportContainer = styled.main`
+export const HireContainer = styled.main`
 	width: 100%;
 	max-width: 750px;
 	margin: 0 auto;
@@ -24,6 +23,7 @@ export const SupportContainer = styled.main`
 		font-size: 1.8rem;
 		font-weight: 500;
 		position: relative;
+		line-height: 1.8rem;
 	}
 
 	h2,
@@ -50,25 +50,47 @@ export const SupportContainer = styled.main`
 		}
 	}
 
+	.contacts {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+	}
+
 	.intro {
 		svg {
 			position: absolute;
 			width: 30px;
 			height: 30px;
-			left: 130px;
+			left: 270px;
 			top: 0px;
+			@media screen and (max-width: 320px) {
+				left: 210px;
+			}
+		}
+
+		h1 {
+			@media screen and (max-width: 320px) {
+				font-size: 1.4rem;
+			}
 		}
 	}
 
-	.infograph {
-		${() => infograph}
+	.techs {
+		display: flex;
+		justify-content: space-evenly;
+		flex-flow: row wrap;
+		gap: 20px;
+		font-weight: 500;
 
 		div {
-			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
-			background: rgb(${({ theme }) => theme.backgroundAlt});
+			display: grid;
+			align-items: center;
+			align-content: center;
+			gap: 5px;
 
-			.svg {
-				color: rgb(${({ theme }) => theme.primary});
+			svg {
+				width: 25px;
+				height: 25px;
 			}
 		}
 	}

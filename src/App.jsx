@@ -13,6 +13,7 @@ import RestritectedRoute from './components/RestrictedRoute';
 import Admin from './pages/admin/Admin';
 import About from './pages/About';
 import Support from './pages/Support';
+import HireService from './pages/HireService';
 import Button from './components/Button';
 import { ThemeProvider } from 'styled-components';
 import { primary, dark } from './styles/themes';
@@ -42,7 +43,7 @@ const App = () => {
 			behavior: 'smooth',
 		});
 	};
-
+	
 	// swithes between dark and light themes
 	const switchColors = () => {
 		if (theme === primary) {
@@ -128,6 +129,7 @@ const App = () => {
 					<Route path='/login' element={<Login />} />
 					<Route path='/about' element={<About />} />
 					<Route path='/support' element={<Support />} />
+					<Route path='/request-service' element={<HireService />} />
 					<Route
 						path='/admin'
 						element={

@@ -12,6 +12,7 @@ import Button from '../components/Button';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createDate } from '../modules/module-scripts';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
 	const [messageStatus, setMessageStatus] = useState(
@@ -96,9 +97,9 @@ const Contact = () => {
 				</h1>
 				<h2>Esteja sempre ligado.</h2>
 				<p>
-					Por favor use uma das formas de contacto descritas abaixo, clique no <i>link</i> de e-mail ou use o
-					<strong> formulário</strong> de contacto mais abaixo se tiver questões
-					de sobre os nossos produtos e serviços.
+					Por favor use uma das formas de contacto descritas abaixo, clique no{' '}
+					<i>link</i> de e-mail ou use o<strong> formulário</strong> de contacto
+					mais abaixo se tiver questões de sobre os nossos produtos e serviços.
 				</p>
 			</section>
 			<div className='contacts'>
@@ -107,7 +108,7 @@ const Contact = () => {
 					<span>E-mail</span>
 				</h3>
 				<span>
-					<a target='_blank' href='mailto:hagira-brands@gmail.com'>
+					<a target='_blank' rel='noreferrer' href='mailto:hagira-brands@gmail.com'>
 						hagira-brands@gmail.com
 					</a>
 				</span>
@@ -161,7 +162,7 @@ const Contact = () => {
 					<BiHelpCircle />
 					<h3>Tem alguma questão?</h3>
 					<p>
-						Veja a nossa <a href='/support'>seção de suporte</a>, onde você
+						Veja a nossa <Link to='/support'>seção de suporte</Link>, onde você
 						poderá encontrar respostas de perguntas comuns sobre como usar a
 						nossa plataforma.
 					</p>

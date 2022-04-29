@@ -1,6 +1,6 @@
 import { SupportContainer } from '../styles/support';
-import React, { useState } from 'react';
-import { BiAlarm, BiHelpCircle, BiMessageSquareCheck } from 'react-icons/bi';
+import { BiAlarm, BiBulb, BiMessageSquareCheck } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 const Support = () => {
 	return (
@@ -18,32 +18,54 @@ const Support = () => {
 				<p>
 					Lembre-se que se a resposta para a questão não estiver listada nesta
 					página, você poderá sempre entrar em{' '}
-					<a href='mailto: hagira-brands@gmail.com'>
+					<a rel='noreferrer' href='mailto: hagira-brands@gmail.com' target={'_blank'}>
 						<strong>contacto por e-mail</strong>
 					</a>{' '}
 					connosco através da{' '}
-					<a href='/contact'>
+					<Link to='/contact'>
 						<strong>página de contacto</strong>
-					</a>
+					</Link>
 					.
 				</p>
 			</section>
 			<section className='content'>
 				<h3>Como navegar pela loja?</h3>
-        <p>
-          No cabeçalho da página há um botão escrito <strong>"Explorar"</strong> que rola a página para o rodapé, onde se encontram os <em>links</em> para a navegação na loja. 
-        </p>
-        <p>
-          No lado direito do ecrã, se encontram dois botões azuis, o primeiro (com simbolo de lua), troca tema de cores da loja, de claro para escuro e vice-versa. O outro botão abaixo, rola rapidamente a página para a área do cabeçalho.
-        </p>
+				<p>
+					No cabeçalho da página há um botão escrito <strong>"Explorar"</strong>{' '}
+					que rola a página para o rodapé, onde se encontram os <em>links</em>{' '}
+					para a navegação na loja.
+				</p>
+				<p>
+					No lado direito do ecrã, se encontram dois botões azuis, o primeiro
+					(com simbolo de lua), troca tema de cores da loja, de claro para
+					escuro e vice-versa. O outro botão abaixo, rola rapidamente a página
+					para a área do cabeçalho.
+				</p>
 			</section>
-      <section className='infograph'>
+			<section className='content'>
+				<h3>Parcerias</h3>
+				<p>
+					A <strong>Hagira Brands</strong> está aberta a parcerias de negócios,
+					assim como a exposição de produtos de terceiros nesta loja desde que
+					sejam do mesmo nicho de empreendimento. Para saber mais sobre como
+					adquirir tal licença, entre em{' '}
+					<a rel='noreferrer' href='mailto: hagira-brands@gmail.com' target={'_blank'}>
+						<strong>contacto por e-mail</strong>
+					</a>{' '}
+					ou use o formulário na{' '}
+					<Link to='/contact'>
+						<strong>página de contacto</strong>
+					</Link>
+					.
+				</p>
+			</section>
+			<section className='infograph'>
 				<div>
-					<BiHelpCircle />
+					<BiBulb />
 					<h3>Não achou a solução?</h3>
 					<p>
-						Veja a <a href='/contact'>secção de contacto</a>, onde
-						poderá enviar uma mensagem na nossa plataforma.
+						Veja a <Link to='/contact'>secção de contacto</Link>, onde poderá
+						enviar uma mensagem na nossa plataforma.
 					</p>
 				</div>
 				<div>

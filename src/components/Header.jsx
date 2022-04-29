@@ -1,8 +1,9 @@
 import { Container } from '../styles/components/header';
 import Button from './Button';
-import { BiLogIn, BiCartAlt } from 'react-icons/bi';
+import { BiCartAlt, BiPlanet } from 'react-icons/bi';
 
 const Header = () => {
+	// scrolls the page to the footer
 	const explore = () => {
 		window.scrollTo({
 			left: 0,
@@ -25,7 +26,7 @@ const Header = () => {
 						event={explore}
 						id={'rounded'}
 						text={'Explorar'}
-						icon={<BiLogIn />}
+						icon={<BiPlanet />}
 					/>
 				</div>
 			</nav>

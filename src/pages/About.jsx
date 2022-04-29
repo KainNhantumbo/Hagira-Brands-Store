@@ -1,13 +1,13 @@
 import { AboutContainer } from '../styles/about';
 import aboutImage from '../img/about0.jpg';
-import { BiPlanet } from 'react-icons/bi';
+import { BiHeart } from 'react-icons/bi';
 
 const About = () => {
 	return (
 		<AboutContainer>
 			<h1>
 				Sobre
-				<BiPlanet />
+				<BiHeart />
 			</h1>
 			<div>
 				<section className='image-container'>
