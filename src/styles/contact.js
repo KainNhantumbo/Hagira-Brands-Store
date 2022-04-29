@@ -1,5 +1,31 @@
 import styled from 'styled-components';
 
+export const infograph = `
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
+	gap: 20px;
+
+	div {
+		max-width: 300px;
+		padding: 15px 30px 15px 30px;
+		border-radius: 5px;
+		position: relative;
+
+		h3 {
+			padding: 0;
+		}
+
+		svg {
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			right: 10px;
+			top: 10px;
+		}
+	}
+`;
+
 export const ContactContainer = styled.main`
 	width: 100%;
 	max-width: 750px;
@@ -86,14 +112,14 @@ export const ContactContainer = styled.main`
 			flex-direction: column;
 			gap: 10px;
 
-      span {
-        font-size: .9rem;
-        font-weight: 500;
-      }
+			span {
+				font-size: 0.9rem;
+				font-weight: 500;
+			}
 
-      button {
-        width: fit-content;
-      }
+			button {
+				width: fit-content;
+			}
 
 			input,
 			textarea {
@@ -105,7 +131,7 @@ export const ContactContainer = styled.main`
 
 				::placeholder {
 					font-size: 1rem;
-          font-style: italic;
+					font-style: italic;
 				}
 
 				:focus {
@@ -118,29 +144,13 @@ export const ContactContainer = styled.main`
 	}
 
 	.infograph {
-		display: flex;
-		justify-content: center;
-		flex-flow: row wrap;
-		gap: 20px;
+		${() => infograph}
 
 		div {
 			box-shadow: 0 0 5px rgb(${({ theme }) => theme.shadows});
 			background: rgb(${({ theme }) => theme.backgroundAlt});
-			max-width: 300px;
-			padding: 15px 30px 15px 30px;
-			border-radius: 5px;
-			position: relative;
-
-			h3 {
-				padding: 0;
-			}
 
 			svg {
-				position: absolute;
-				width: 30px;
-				height: 30px;
-				right: 10px;
-				top: 10px;
 				color: rgb(${({ theme }) => theme.primary});
 			}
 		}
