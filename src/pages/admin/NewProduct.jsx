@@ -137,6 +137,18 @@ const NewProduct = () => {
 	const sendData = async (e) => {
 		try {
 			const product = formDataHandler(e);
+			if (!product?.image) {
+				return;
+			} else if (product.image.length > 2000000) {
+				setErrorStyles(() => ({ color: 'red' }));
+				setErrorMessage(() => 'Imagem muito grande');
+				setTimeout(() => {
+					setErrorStyles(() => ({}));
+					setErrorMessage(() => '');
+				}, 3000);
+				return;
+			}
+
 			const response = await axios({
 				method: 'post',
 				url: server_url,
