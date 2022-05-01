@@ -4,6 +4,7 @@ import { BiBookmarkPlus, BiEdit, BiUpload } from 'react-icons/bi';
 import React, { useState } from 'react';
 import { createDate } from '../../modules/module-scripts';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const NewProduct = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -114,8 +115,20 @@ const NewProduct = () => {
 		product.width = productWidth;
 		product.date = createDate();
 
-		navigate('/data-sent');
-		console.log(product);
+		// navigate('/data-sent');
+		return product;
+	};
+
+	// sends a post request to the server
+	const url = 'http://localhost:4630/api/v1/products';
+	const sendData = async (e) => {
+		try {
+			const product = formDataHandler(e);
+			const response = await axios({ method: 'post', url: url, data: product });
+			console.log(response);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (
@@ -124,7 +137,7 @@ const NewProduct = () => {
 				<h1>
 					Novo Produto <BiEdit />{' '}
 				</h1>
-				<form onSubmit={formDataHandler}>
+				<form onSubmit={sendData}>
 					<div>
 						<section>
 							<label htmlFor='nome'>Nome (obrigatório)</label>

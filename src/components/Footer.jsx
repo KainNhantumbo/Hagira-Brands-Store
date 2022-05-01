@@ -4,6 +4,7 @@ import Button from './Button';
 import React, { useState } from 'react';
 import { createDate } from '../modules/module-scripts';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Footer = () => {
 	const [newsletterSubscriptor, setNewsletterSubscriptor] = useState('');
@@ -22,9 +23,26 @@ const Footer = () => {
 			date: createDate(),
 			email: newsletterSubscriptor,
 		};
-
+		return newsletter_subscriptor;
 		// navigates to a sucess feedback page
-		navigate('/subscribed-sucessfully');
+		// navigate('/subscribed-sucessfully');
+	};
+
+	// sends subscription data to server
+	const server_url = 'http://localhost:4630/api/v1/newsletter';
+	const sendData = async () => {
+		try {
+			const subscriptor = process_subscription();
+			if (!subscriptor) return;
+			const response = await axios({
+				method: 'post',
+				data: subscriptor,
+				url: server_url,
+			});
+			console.log(response);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -80,11 +98,7 @@ const Footer = () => {
 							placeholder='Digite o e-mail aqui...'
 							onChange={(e) => setNewsletterSubscriptor(() => e.target.value)}
 						/>
-						<Button
-							event={process_subscription}
-							text={'Send'}
-							icon={<BiSend />}
-						/>
+						<Button event={sendData} text={'Send'} icon={<BiSend />} />
 					</div>
 				</section>
 			</section>
