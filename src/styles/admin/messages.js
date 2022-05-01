@@ -113,18 +113,20 @@ export const MessagesContainer = styled.section`
 	.messages-container {
 		display: flex;
 		gap: 20px;
-		justify-content: flex-start;
+		justify-content: space-evenly;
 		flex-flow: row wrap;
+		padding-top: 15px;
 
 		.message {
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-start;
-			gap: 12px;
+			gap: 15px;
 			background: rgb(${({ theme }) => theme.backgroundAlt});
 			box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
 			padding: 10px;
 			border-radius: 5px;
+			width: 250px;
 
 			:hover {
 				box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});

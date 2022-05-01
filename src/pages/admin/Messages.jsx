@@ -23,7 +23,6 @@ const Messages = () => {
 	const getMessagesRequest = async () => {
 		try {
 			const { data } = await axios({ method: 'get', url: server_get_url });
-			console.log(data.messages);
 			setIncomeMessages(() => data.messages);
 		} catch (err) {
 			console.log(err);
@@ -116,6 +115,14 @@ const Messages = () => {
 
 			<section className='messages-container'>
 				{incomeMessages.map(({ _id, subject, email, phone, date }) => {
+					if (email.length > 15) {
+						email = `${email.slice(0, 15)}...`;
+					}
+
+					if (subject.length > 15) {
+						subject = `${subject.slice(0, 15)}...`;
+					}
+
 					return (
 						<div key={_id} className='message'>
 							<section>
@@ -124,7 +131,7 @@ const Messages = () => {
 								</div>
 								<div>
 									<h3>Assunto: </h3>
-									{subject.slice(0, 20)}...
+									{subject}
 								</div>
 							</section>
 							<span className='date'>

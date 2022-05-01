@@ -23,7 +23,6 @@ const Contact = () => {
 	const [messageSubject, setMessageSubject] = useState('');
 	const [phone, setPhone] = useState('');
 
-
 	const formDataHandler = (e) => {
 		e.preventDefault();
 		const formData = {};
@@ -101,7 +100,9 @@ const Contact = () => {
 				data: message,
 			});
 
-			if (response.status === 201) return window.location.assign('/data-sent');
+			// resets the form and goes to /data-sent page
+			if (response.status === 201) e.target.reset();
+			return window.location.assign('/data-sent');
 		} catch (err) {
 			console.log(err);
 		}
