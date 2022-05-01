@@ -38,7 +38,7 @@ const NewProduct = () => {
 					{
 						description: 'Images',
 						accept: {
-							'image/*': ['.gif', '.jpeg', '.jpg'],
+							'image/jpg': ['.gif', '.jpeg', '.jpg'],
 						},
 					},
 				],
@@ -53,7 +53,7 @@ const NewProduct = () => {
 
 			// compresses the file
 			new Compressor(file, {
-				quality: 0.6,
+				quality: 0.8,
 				success(result) {
 					const form = new FormData();
 					form.append('file', result, result.name);
@@ -139,7 +139,7 @@ const NewProduct = () => {
 			const product = formDataHandler(e);
 			if (!product?.image) {
 				return;
-			} else if (product.image.length > 2000000) {
+			} else if (product.image.length > 800000) {
 				setErrorStyles(() => ({ color: 'red' }));
 				setErrorMessage(() => 'Imagem muito grande');
 				setTimeout(() => {
@@ -157,9 +157,7 @@ const NewProduct = () => {
 
 			// if sucess, navigates to sucessfully subscribed page
 			if (response.status === 201)
-				// return window.location.assign('/subscribed-sucessfully');
-				console.log('sent', response);
-			console.log('sent', product.image.length);
+				return window.location.assign('/data-sent');
 		} catch (err) {
 			console.log(err);
 		}

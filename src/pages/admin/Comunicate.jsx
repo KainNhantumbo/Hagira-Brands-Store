@@ -2,6 +2,7 @@ import { ComunicateContainer } from '../../styles/admin/comunicate';
 import { BiMessage, BiSend } from 'react-icons/bi';
 import React, { useState } from 'react';
 import Button from '../../components/Button';
+import axios from 'axios';
 
 const Comunicate = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -53,10 +54,33 @@ const Comunicate = () => {
 			}
 			return;
 		} else {
-			message.destination = messageDestination;
-			message.method = sendMethod;
+			message.to = messageDestination;
 			setErrorMessage(() => '');
 			setErrorStyles(() => ({}));
+		}
+		return message;
+	};
+
+	// sends a post request to server
+	const server_url = 'http://localhost:4630/api/v1/emails';
+	const sendMessageRequest = async (e) => {
+		try {
+			const message = formDataHandler(e);
+			if (sendMethod === 'email') {
+				const response = await axios({
+					method: 'post',
+					data: message,
+					url: server_url,
+				});
+
+				// if sucess, navigates to sucessfully subscribed page
+				if (response.status === 201)
+					return window.location.assign('/data-sent');
+			} else {
+				return;
+			}
+		} catch (err) {
+			console.log(err);
 		}
 	};
 
@@ -66,7 +90,7 @@ const Comunicate = () => {
 				<h1>
 					Nova mensagem <BiMessage />{' '}
 				</h1>
-				<form onSubmit={formDataHandler}>
+				<form onSubmit={sendMessageRequest}>
 					<label htmlFor='assunto'>Assunto</label>
 					<input
 						type='text'
