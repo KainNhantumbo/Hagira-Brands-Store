@@ -10,9 +10,8 @@ import {
 import { MdMessage } from 'react-icons/md';
 import Button from '../components/Button';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { createDate } from '../modules/module-scripts';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Contact = () => {
 	const [messageStatus, setMessageStatus] = useState(
@@ -23,7 +22,7 @@ const Contact = () => {
 	const [messageEmail, setMessageEmail] = useState('');
 	const [messageSubject, setMessageSubject] = useState('');
 	const [phone, setPhone] = useState('');
-	const navigate = useNavigate();
+
 
 	const formDataHandler = (e) => {
 		e.preventDefault();
@@ -40,7 +39,6 @@ const Contact = () => {
 				() => 'Receberá a sua resposta em seu email assim que possível.'
 			);
 			setErrorStyles(() => ({}));
-			console.log(formData.subject);
 		}
 
 		// checks the message user email, if not present, advices the user about it
@@ -80,13 +78,33 @@ const Contact = () => {
 			setErrorStyles(() => ({}));
 		}
 
-		if (phone.length < 5) {
+		if (phone.length < 9) {
 			setPhone(() => '');
 		}
-		formData.phone = phone;
+		formData.phone = phone.slice(0, 19);
 		formData.date = createDate();
+		return formData;
+	};
 
-		navigate('/data-sent');
+	// makes a post request to the server
+	const server_post_url = `http://localhost:4630/api/v1/messages`;
+	const sendMessageRequest = async (e) => {
+		try {
+			e.preventDefault();
+			const message = formDataHandler(e);
+
+			if (!message) return;
+
+			const response = await axios({
+				method: 'post',
+				url: server_post_url,
+				data: message,
+			});
+
+			if (response.status === 201) return window.location.assign('/data-sent');
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (
@@ -108,7 +126,11 @@ const Contact = () => {
 					<span>E-mail</span>
 				</h3>
 				<span>
-					<a target='_blank' rel='noreferrer' href='mailto:hagira-brands@gmail.com'>
+					<a
+						target='_blank'
+						rel='noreferrer'
+						href='mailto:hagira-brands@gmail.com'
+					>
 						hagira-brands@gmail.com
 					</a>
 				</span>
@@ -122,7 +144,7 @@ const Contact = () => {
 				<h1>
 					Formulário <MdMessage />{' '}
 				</h1>
-				<form onSubmit={formDataHandler}>
+				<form onSubmit={sendMessageRequest}>
 					<label htmlFor='assunto'>Assunto</label>
 					<input
 						type='text'
@@ -165,7 +187,7 @@ const Contact = () => {
 					<BiHelpCircle />
 					<h3>Tem alguma questão?</h3>
 					<p>
-						Veja a nossa <Link to='/support'>seção de suporte</Link>, onde você
+						Veja a nossa <a href='/support'>seção de suporte</a>, onde você
 						poderá encontrar respostas de perguntas comuns sobre como usar a
 						nossa plataforma.
 					</p>
