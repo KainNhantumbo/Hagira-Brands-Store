@@ -6,16 +6,39 @@ import {
 	BiMessageDetail,
 } from 'react-icons/bi';
 import Button from '../../components/Button';
-import React, { useState } from 'react';
-import { incomeMessages } from '../../modules/module-scripts';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Messages = () => {
+	const [incomeMessages, setIncomeMessages] = useState([]);
 	const [messageModal, setMessageModal] = useState(false);
 	const [email, setEmail] = useState('');
 	const [phone, setPhone] = useState('');
 	const [message, setMessage] = useState('');
 	const [subject, setSubject] = useState('');
 	const [id, setId] = useState('');
+
+	// loads the messages from the server
+	const server_get_url = 'http://localhost:4630/api/v1/messages';
+	const getMessagesRequest = async () => {
+		try {
+			const { data } = await axios({ method: 'get', url: server_get_url });
+			console.log(data.messages);
+			setIncomeMessages(() => data.messages)
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	useEffect(() => {
+		getMessagesRequest();
+	}, []);
+
+
+	//  deletes a message by its id
+	const deleteMessageRequest = async (e) => {
+		
+	}
 
 	// opens the modal and sets message data on it to be viewed
 	const viewMessage = (e) => {
