@@ -41,7 +41,6 @@ const Messages = () => {
 			const response = await axios({ method: 'delete', url: server_post_url });
 			setMessageModal((prevState) => !prevState);
 			getMessagesRequest();
-			console.log(response);
 		} catch (err) {
 			console.log(err);
 		}

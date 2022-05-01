@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const OverviewContainer = styled.section`
-  
+  min-height: 100vh;
 	.infograph {
 		display: flex;
 		justify-content: flex-start;

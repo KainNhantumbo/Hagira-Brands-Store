@@ -74,8 +74,10 @@ const Comunicate = () => {
 				});
 
 				// if sucess, navigates to sucessfully subscribed page
-				if (response.status === 201)
+				if (response.status === 201) {
+					e.target.reset();
 					return window.location.assign('/data-sent');
+				}
 			} else {
 				return;
 			}
