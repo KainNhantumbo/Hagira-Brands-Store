@@ -24,7 +24,7 @@ const Messages = () => {
 		try {
 			const { data } = await axios({ method: 'get', url: server_get_url });
 			console.log(data.messages);
-			setIncomeMessages(() => data.messages)
+			setIncomeMessages(() => data.messages);
 		} catch (err) {
 			console.log(err);
 		}
@@ -34,11 +34,19 @@ const Messages = () => {
 		getMessagesRequest();
 	}, []);
 
-
-	//  deletes a message by its id
+	//  deletes a message by its id and updates the panel
 	const deleteMessageRequest = async (e) => {
-		
-	}
+		try {
+			const id = e.target.id;
+			const server_post_url = `http://localhost:4630/api/v1/messages/${id}`;
+			const response = await axios({ method: 'delete', url: server_post_url });
+			setMessageModal((prevState) => !prevState);
+			getMessagesRequest();
+			console.log(response);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	// opens the modal and sets message data on it to be viewed
 	const viewMessage = (e) => {
@@ -95,7 +103,12 @@ const Messages = () => {
 								icon={<BiChevronLeft />}
 								event={(e) => setMessageModal((prevState) => !prevState)}
 							/>
-							<Button id={id} text={'Eliminar mensagem'} icon={<BiTrash />} />
+							<Button
+								id={id}
+								text={'Eliminar mensagem'}
+								icon={<BiTrash />}
+								event={(e) => deleteMessageRequest(e)}
+							/>
 						</section>
 					</div>
 				</section>
