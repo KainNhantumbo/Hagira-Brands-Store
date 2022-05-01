@@ -3,8 +3,8 @@ import Button from '../../components/Button';
 import { BiBookmarkPlus, BiEdit, BiUpload } from 'react-icons/bi';
 import React, { useState } from 'react';
 import { createDate } from '../../modules/module-scripts';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Compressor from 'compressorjs';
 
 const NewProduct = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -24,8 +24,9 @@ const NewProduct = () => {
 	const [fabric, setFabric] = useState('Polyester');
 	const [productHeight, setProductHeight] = useState('');
 	const [productWidth, setProductWidth] = useState('');
-	const [image, setImage] = useState();
-	const navigate = useNavigate();
+
+	// variable to store compressed Blob data
+	var compressed = null;
 
 	// picks and reads the selected image
 	const imageHandler = async () => {
@@ -37,23 +38,36 @@ const NewProduct = () => {
 					{
 						description: 'Images',
 						accept: {
-							'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
+							'image/*': ['.gif', '.jpeg', '.jpg'],
 						},
 					},
 				],
 				excludeAcceptAllOption: true,
 			};
+
 			// new file reader instance
 			const reader = new FileReader();
 			// shows the window to oick the file
 			const [fileHandler] = await window.showOpenFilePicker(fileOptions);
 			const file = await fileHandler.getFile();
 
-			// reads the file and sets it on image state
-			reader.readAsDataURL(file);
-			reader.onloadend = () => {
-				setImage(() => reader.result);
-			};
+			// compresses the file
+			new Compressor(file, {
+				quality: 0.6,
+				success(result) {
+					const form = new FormData();
+					form.append('file', result, result.name);
+
+					// reads the file and sets it on image state
+					reader.readAsDataURL(result);
+					reader.onloadend = () => {
+						compressed = reader.result;
+					};
+				},
+				error(err) {
+					console.log(err);
+				},
+			});
 		} catch (e) {
 			console.log(e);
 		}
@@ -94,14 +108,14 @@ const NewProduct = () => {
 			product.price = price;
 		}
 
-		if (!image) {
+		if (!compressed) {
 			setErrorStyles(() => ({ color: 'red' }));
 			setErrorMessage(() => 'Selecione uma imagem do produto.');
 			return;
 		} else {
 			setErrorMessage(() => '');
 			setErrorStyles(() => ({}));
-			product.image = image;
+			product.image = compressed;
 		}
 
 		product.category = productCategory;
@@ -115,17 +129,25 @@ const NewProduct = () => {
 		product.width = productWidth;
 		product.date = createDate();
 
-		// navigate('/data-sent');
 		return product;
 	};
 
 	// sends a post request to the server
-	const url = 'http://localhost:4630/api/v1/products';
+	const server_url = 'http://localhost:4630/api/v1/products';
 	const sendData = async (e) => {
 		try {
 			const product = formDataHandler(e);
-			const response = await axios({ method: 'post', url: url, data: product });
-			console.log(response);
+			const response = await axios({
+				method: 'post',
+				url: server_url,
+				data: product,
+			});
+
+			// if sucess, navigates to sucessfully subscribed page
+			if (response.status === 201)
+				// return window.location.assign('/subscribed-sucessfully');
+				console.log('sent', response);
+			console.log('sent', product.image.length);
 		} catch (err) {
 			console.log(err);
 		}

@@ -3,13 +3,10 @@ import { BiSend } from 'react-icons/bi';
 import Button from './Button';
 import React, { useState } from 'react';
 import { createDate } from '../modules/module-scripts';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Footer = () => {
 	const [newsletterSubscriptor, setNewsletterSubscriptor] = useState('');
-	const navigate = useNavigate();
-
 	// makes email validation then sends it to the server
 	const process_subscription = () => {
 		if (!newsletterSubscriptor) return;
@@ -25,7 +22,6 @@ const Footer = () => {
 		};
 		return newsletter_subscriptor;
 		// navigates to a sucess feedback page
-		// navigate('/subscribed-sucessfully');
 	};
 
 	// sends subscription data to server
@@ -39,7 +35,10 @@ const Footer = () => {
 				data: subscriptor,
 				url: server_url,
 			});
-			console.log(response);
+			
+			// if sucess, navigates to sucessfully subscribed page
+			if (response.status === 201)
+				return window.location.assign('/subscribed-sucessfully');
 		} catch (error) {
 			console.log(error);
 		}
