@@ -104,9 +104,9 @@ const NewProduct = () => {
 		}
 
 		product.category = productCategory;
-		product.deafaultColor = defaultColor;
+		product.deafault_color = defaultColor;
 		product.colors = [colorA, colorB, colorC, colorD];
-		product.sellingType = sellingType;
+		product.sell_type = sellingType;
 		product.class = productClass;
 		product.size = size;
 		product.fabric = fabric;
@@ -155,7 +155,7 @@ const NewProduct = () => {
 						placeholder='Escreva uma breve descrição sobre o produto'
 						cols='20'
 						rows='8'
-						maxLength={'700'}
+						maxLength={'2500'}
 						onChange={(e) => setProductDescription(() => e.target.value)}
 					></textarea>
 					<div>
@@ -164,7 +164,7 @@ const NewProduct = () => {
 							<input
 								type='text'
 								placeholder='Cor'
-								maxLength={'20'}
+								maxLength={'30'}
 								onChange={(e) => setDefaultColor(() => e.target.value)}
 							/>
 						</section>
@@ -173,7 +173,7 @@ const NewProduct = () => {
 							<input
 								type='text'
 								placeholder='Tamanho'
-								maxLength={'20'}
+								maxLength={'30'}
 								onChange={(e) => setSize(() => e.target.value)}
 							/>
 						</section>

@@ -127,6 +127,7 @@ const Contact = () => {
 					<input
 						type='text'
 						id='assunto'
+						maxLength={'120'}
 						placeholder='Digite o assunto aqui...'
 						onChange={(e) => setMessageSubject(e.target.value)}
 					/>
@@ -135,6 +136,7 @@ const Contact = () => {
 						id='message'
 						cols='30'
 						rows='10'
+						maxLength={'2500'}
 						placeholder='Escreva a sua mensagem aqui...'
 						onChange={(e) => setMessageContent(e.target.value)}
 					></textarea>
@@ -143,6 +145,7 @@ const Contact = () => {
 						type='text'
 						id='email'
 						placeholder='E-mail'
+						maxLength={'30'}
 						onChange={(e) => setMessageEmail(e.target.value)}
 					/>
 					<label htmlFor='phone'>Telefone (opcional)</label>

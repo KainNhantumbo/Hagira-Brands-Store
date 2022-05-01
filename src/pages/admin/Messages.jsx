@@ -22,6 +22,7 @@ const Messages = () => {
 		const id = e.target.id;
 		const [message] = incomeMessages.filter((element) => {
 			if (element._id === id) return element;
+			return;
 		});
 		setEmail(() => message.email);
 		setMessage(() => message.message);
@@ -41,7 +42,7 @@ const Messages = () => {
 			{messageModal ? (
 				<section className='modal-container'>
 					<div className='message-previewer'>
-						<BiEnvelopeOpen className='svg'/>
+						<BiEnvelopeOpen className='svg' />
 						<div className='headers'>
 							<h2>
 								<strong>Remetente</strong>
