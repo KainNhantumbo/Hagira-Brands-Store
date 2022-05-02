@@ -72,6 +72,8 @@ export const HomeContainer = styled.main`
 				h3 {
 					font-weight: 500;
 					user-select: none;
+					line-height: 1.2rem;
+					padding-top: 5px;
 				}
 
 				div {
