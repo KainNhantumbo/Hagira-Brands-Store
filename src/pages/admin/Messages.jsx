@@ -31,7 +31,7 @@ const Messages = () => {
 	};
 
 	useEffect(() => {
-		// getMessagesRequest();
+		getMessagesRequest();
 	}, []);
 
 	//  deletes a message by its id and updates the panel

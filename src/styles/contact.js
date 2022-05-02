@@ -37,7 +37,7 @@ export const ContactContainer = styled.main`
 
 	line-height: 1.6rem;
 
-	i {
+	i, em {
 		font-style: italic;
 	}
 
