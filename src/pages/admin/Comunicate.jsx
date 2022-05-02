@@ -90,7 +90,7 @@ const Comunicate = () => {
 		<ComunicateContainer>
 			<section className='messageForm'>
 				<h1>
-					Nova mensagem <BiMessage />{' '}
+					Comunicar <BiMessage />{' '}
 				</h1>
 				<form onSubmit={sendMessageRequest}>
 					<label htmlFor='assunto'>Assunto</label>

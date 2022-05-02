@@ -14,18 +14,18 @@ export const ComunicateContainer = styled.section`
 			line-height: 0;
 			padding-bottom: 12px;
 
-			@media screen and (max-width: 370px) {
-				font-size: 1.3rem;
+			@media screen and (max-width: 300px) {
+				font-size: 1.6rem;
 			}
 
 			svg {
 				position: absolute;
 				width: 25px;
 				height: 25px;
-				left: 260px;
+				left: 170px;
 				top: -15px;
-				@media screen and (max-width: 370px) {
-					left: 165px;
+				@media screen and (max-width: 300px) {
+					left: 145px;
 				}
 			}
 		}
@@ -34,7 +34,7 @@ export const ComunicateContainer = styled.section`
 			display: flex;
 			justify-content: flex-start;
 			flex-direction: column;
-			gap: 10px;
+			gap: 15px;
 
 			span {
 				font-size: 0.9rem;

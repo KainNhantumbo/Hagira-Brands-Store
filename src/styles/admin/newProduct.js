@@ -25,7 +25,10 @@ export const NewProductContainer = styled.section`
 				left: 220px;
 				top: -15px;
 				@media screen and (max-width: 340px) {
-					left: 160px;
+					left: 165px;
+					width: 25px;
+					height: 25px;
+					top: -12px;
 				}
 			}
 		}

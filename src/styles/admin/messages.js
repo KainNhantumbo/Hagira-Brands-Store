@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const propagateFlex = `
+export const propagateFlex = `
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
@@ -150,7 +150,7 @@ export const MessagesContainer = styled.section`
 				padding: 5px 10px;
 				background: rgb(${({ theme }) => theme.inner});
 				font-weight: 500;
-				border-radius: 12px;
+				border-radius: 5px;
 				font-size: 0.9rem;
 			}
 
