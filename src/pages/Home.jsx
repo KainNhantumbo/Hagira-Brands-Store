@@ -3,16 +3,34 @@ import { HomeContainer } from '../styles/home';
 import { BiBookmarks, BiBulb, BiPurchaseTag } from 'react-icons/bi';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { createDate } from '../modules/module-scripts';
 
 const Home = () => {
 	const [products, setProducts] = useState([]);
 
 	// fetch products data from server
-	const server_url = 'http://localhost:4630/api/v1/products';
+	const server_getAllProductsUrl = 'http://localhost:4630/api/v1/products';
 	const getProductsRequest = async () => {
 		try {
-			const { data } = await axios({ method: 'get', url: server_url });
+			const { data } = await axios({
+				method: 'get',
+				url: server_getAllProductsUrl,
+			});
 			setProducts(() => data.products);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	// sends a visitor counto to the server
+	const server_setVisitorCounterUrl = 'http://localhost:4630/api/v1/visitors';
+	const countVisitorRequest = async () => {
+		try {
+			await axios({
+				method: 'post',
+				data: { visitor: 1, date: createDate() },
+				url: server_setVisitorCounterUrl,
+			});
 		} catch (err) {
 			console.log(err);
 		}
@@ -20,6 +38,7 @@ const Home = () => {
 
 	useEffect(() => {
 		getProductsRequest();
+		countVisitorRequest();
 	}, []);
 
 	return (
