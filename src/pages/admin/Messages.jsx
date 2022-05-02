@@ -5,6 +5,7 @@ import {
 	BiChevronLeft,
 	BiMessageDetail,
 } from 'react-icons/bi';
+import { FaReply } from 'react-icons/fa';
 import Button from '../../components/Button';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -71,7 +72,14 @@ const Messages = () => {
 			{messageModal ? (
 				<section className='modal-container'>
 					<div className='message-previewer'>
-						<BiEnvelopeOpen className='svg' />
+						<a
+							href={`mailto:${email}`}
+							className='reply'
+							target={'_blank'}
+							rel='noreferrer'
+						>
+							<FaReply />
+						</a>
 						<div className='headers'>
 							<h2>
 								<strong>Remetente</strong>

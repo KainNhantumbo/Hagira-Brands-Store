@@ -9,7 +9,7 @@ export const propagateFlex = `
 export const MessagesContainer = styled.section`
 	padding-left: 10px;
 	position: relative;
-	
+
 	span {
 		pointer-events: none;
 	}
@@ -38,13 +38,23 @@ export const MessagesContainer = styled.section`
 			overflow-y: auto;
 			position: relative;
 
-			.svg {
+			.reply {
 				position: absolute;
 				top: 10px;
 				right: 10px;
-				width: 20px;
-				height: 20px;
+				width: 30px;
+				height: 30px;
 				color: rgb(${({ theme }) => theme.primary});
+				background: rgb(${({ theme }) => theme.inner});
+				border-radius: 50%;
+				padding: 5px;
+				display: grid;
+				place-content: center;
+				
+				:hover {
+					transition: all 200ms ease-out;
+					color: rgb(${({ theme }) => theme.font});
+				}
 			}
 
 			h2 {
