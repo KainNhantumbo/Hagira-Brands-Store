@@ -1,9 +1,9 @@
 import { MessagesContainer } from '../../styles/admin/messages';
 import {
 	BiTrash,
-	BiEnvelopeOpen,
 	BiChevronLeft,
 	BiMessageDetail,
+	BiMessageAltX,
 } from 'react-icons/bi';
 import { FaReply } from 'react-icons/fa';
 import Button from '../../components/Button';
@@ -31,7 +31,7 @@ const Messages = () => {
 	};
 
 	useEffect(() => {
-		getMessagesRequest();
+		// getMessagesRequest();
 	}, []);
 
 	//  deletes a message by its id and updates the panel
@@ -70,7 +70,14 @@ const Messages = () => {
 				</h1>
 			</section>
 			{messageModal ? (
-				<section className='modal-container'>
+				<section
+					className='modal-container'
+					onClick={(e) => {
+						if (e.target.classList.contains('modal-container')) {
+							setMessageModal((prevState) => !prevState);
+						}
+					}}
+				>
 					<div className='message-previewer'>
 						<a
 							href={`mailto:${email}`}
@@ -120,35 +127,47 @@ const Messages = () => {
 				</section>
 			) : null}
 
-			<section className='messages-container'>
-				{incomeMessages.map(({ _id, subject, email, phone, date }) => {
-					if (email.length > 15) {
-						email = `${email.slice(0, 15)}...`;
-					}
+			{incomeMessages.length === 0 ? (
+				<article className='empty-message'>
+					<BiMessageAltX />
+					<section>
+						<h2>Sem Mensagens</h2>
+						<p>
+							Estarão aqui as mensagens que for a receber.
+						</p>
+					</section>
+				</article>
+			) : (
+				<section className='messages-container'>
+					{incomeMessages.map(({ _id, subject, email, phone, date }) => {
+						if (email.length > 15) {
+							email = `${email.slice(0, 15)}...`;
+						}
 
-					if (subject.length > 15) {
-						subject = `${subject.slice(0, 15)}...`;
-					}
+						if (subject.length > 15) {
+							subject = `${subject.slice(0, 15)}...`;
+						}
 
-					return (
-						<div key={_id} className='message'>
-							<section>
-								<div>
-									<h3>De:</h3> {!email ? phone : email}
-								</div>
-								<div>
-									<h3>Assunto: </h3>
-									{subject}
-								</div>
-							</section>
-							<span className='date'>
-								Data: {date.date},{'  '} às {date.time}{' '}
-							</span>
-							<Button id={_id} text={'Ver mensagem'} event={viewMessage} />
-						</div>
-					);
-				})}
-			</section>
+						return (
+							<div key={_id} className='message'>
+								<section>
+									<div>
+										<h3>De:</h3> {!email ? phone : email}
+									</div>
+									<div>
+										<h3>Assunto: </h3>
+										{subject}
+									</div>
+								</section>
+								<span className='date'>
+									Data: {date.date},{'  '} às {date.time}{' '}
+								</span>
+								<Button id={_id} text={'Ver mensagem'} event={viewMessage} />
+							</div>
+						);
+					})}
+				</section>
+			)}
 		</MessagesContainer>
 	);
 };

@@ -32,8 +32,9 @@ const Overview = () => {
 			setMessages(() => response_messages.results);
 			setVisitors(() => response_visitors.results);
 			setProduts(() => response_products.results);
-			console.log(response_messages.data);
-		} catch (err) {}
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	useEffect(() => {
