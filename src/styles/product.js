@@ -4,6 +4,7 @@ import { infograph } from './contact';
 export const ProductContainer = styled.main`
 	width: 100%;
 	max-width: 750px;
+  min-width: 100vh;
 	margin: 0 auto;
 	padding: 80px 10px;
 	display: flex;

@@ -52,22 +52,23 @@ const Home = () => {
 						{products.map((items, index) => {
 							return (
 								<div className='product' key={index}>
-									<img src={items.image} alt={items.name} />
-
-									<div className='details-product'>
-										<h3>{items.name}</h3>
-										<div>
-											<span>
-												<BiBulb /> {items.sell_type}
-											</span>
-											<span className='price'>
-												<BiPurchaseTag /> MZN {items.price},00
-											</span>
-											<span>
-												<BiBookmarks /> Listado em: {items.date.date}
-											</span>
+									<a href={`/product/${items._id}`}>
+										<img src={items.image} alt={items.name} />
+										<div className='details-product'>
+											<h3>{items.name}</h3>
+											<div>
+												<span>
+													<BiBulb /> {items.sell_type}
+												</span>
+												<span className='price'>
+													<BiPurchaseTag /> MZN {items.price},00
+												</span>
+												<span>
+													<BiBookmarks /> Listado em: {items.date.date}
+												</span>
+											</div>
 										</div>
-									</div>
+									</a>
 								</div>
 							);
 						})}

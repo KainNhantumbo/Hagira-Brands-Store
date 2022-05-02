@@ -46,6 +46,7 @@ export const HomeContainer = styled.main`
 			gap: 15px;
 			width: 210px;
 			padding-bottom: 10px;
+			cursor: pointer;
 
 			:hover {
 				box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
