@@ -3,7 +3,7 @@ import { infograph } from './contact';
 
 export const ProductContainer = styled.main`
 	width: 100%;
-	max-width: 750px;
+	max-width: 1250px;
   min-width: 100vh;
 	margin: 0 auto;
 	padding: 80px 10px;
@@ -45,5 +45,24 @@ export const ProductContainer = styled.main`
 			top: 3px;
 			left: 0;
 		}
+	}
+
+	.product-container {
+		display: grid;
+		grid-template-columns: 1fr 1.5fr;
+		justify-items: center;
+		gap: 20px;
+	}
+
+	.product-image {
+		max-width: 350px;
+		
+		img {
+			border-radius: 5px;
+		}
+	}
+
+	.product-body {
+	
 	}
 `;

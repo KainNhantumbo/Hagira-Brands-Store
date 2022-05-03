@@ -45,45 +45,47 @@ const Product = () => {
 					</figure>
 				</section>
 				<section className='product-body'>
+				<section className='product-price'>
+					<div>
+						<h2>Preço</h2>
+						<span>{product.price}</span>
+					</div>
+				</section>
 					<section className='product-caracteristics'>
 						<h2>Caraterísticas do produto</h2>
 						<div>
-							<h5>Preço</h5>
-							<span>{product.price}</span>
-						</div>
-						<div>
 							<h5>Cor principal</h5>
-							<span>{product.default_color}</span>
+							<span>{product.color}</span>
 						</div>
 						<div>
 							<h5>Tipo de aquisição</h5>
 							<span>
-								{product.sell_type === 'Estoque'
+								{product.request_type === 'Estoque'
 									? `Em estoque`
 									: `Por encomenda`}
 							</span>
 						</div>
 						<div className='colors'>
 							<h5>Variantes (cor)</h5>
-							{product.colors ? (
+							{product.variant_colors ? (
 								<>
-									{product.colors[0] ? (
-										<span style={{ background: `${product.colors[0]}` }}>
+									{product.variant_colors[0] ? (
+										<span style={{ background: `${product.variant_colors[0]}` }}>
 											Cor A
 										</span>
 									) : null}
-									{product.colors[1] ? (
-										<span style={{ background: `${product.colors[1]}` }}>
+									{product.variant_colors[1] ? (
+										<span style={{ background: `${product.variant_colors[1]}` }}>
 											Cor B
 										</span>
 									) : null}
-									{product.colors[2] ? (
-										<span style={{ background: `${product.colors[2]}` }}>
+									{product.variant_colors[2] ? (
+										<span style={{ background: `${product.variant_colors[2]}` }}>
 											Cor C
 										</span>
 									) : null}
-									{product.colors[3] ? (
-										<span style={{ background: `${product.colors[3]}` }}>
+									{product.variant_colors[3] ? (
+										<span style={{ background: `${product.variant_colors[3]}` }}>
 											Cor D
 										</span>
 									) : null}

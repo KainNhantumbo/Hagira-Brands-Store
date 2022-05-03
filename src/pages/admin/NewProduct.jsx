@@ -24,6 +24,7 @@ const NewProduct = () => {
 	const [fabric, setFabric] = useState('Polyester');
 	const [productHeight, setProductHeight] = useState('');
 	const [productWidth, setProductWidth] = useState('');
+	const [estimatedDeliveryDay, setEstimatedDeliveryDay] = useState('');
 
 	// variable to store compressed Blob data
 	var compressed = null;
@@ -98,6 +99,16 @@ const NewProduct = () => {
 			product.description = productDescription;
 		}
 
+		if (!defaultColor) {
+			setErrorStyles(() => ({ color: 'red' }));
+			setErrorMessage(() => 'Precisa definir a cor do produto.');
+			return;
+		} else {
+			setErrorMessage(() => '');
+			setErrorStyles(() => ({}));
+			product.color = defaultColor;
+		}
+
 		if (!price) {
 			setErrorStyles(() => ({ color: 'red' }));
 			setErrorMessage(() => 'Precisa especificar o preço do produto.');
@@ -119,16 +130,16 @@ const NewProduct = () => {
 		}
 
 		product.category = productCategory;
-		product.deafault_color = defaultColor;
-		product.colors = [colorA, colorB, colorC, colorD];
-		product.sell_type = sellingType;
+		product.variant_colors = [colorA, colorB, colorC, colorD];
+		product.request_type = sellingType;
 		product.class = productClass;
 		product.size = size;
 		product.fabric = fabric;
 		product.height = productHeight;
 		product.width = productWidth;
+		product.estimated_delivery_day = estimatedDeliveryDay.slice(0, 2);
 		product.date = createDate();
-
+		console.log(product)
 		return product;
 	};
 
@@ -156,8 +167,7 @@ const NewProduct = () => {
 			});
 
 			// if sucess, navigates to sucessfully subscribed page
-			if (response.status === 201)
-				return window.location.assign('/data-sent');
+			if (response.status === 201) return window.location.assign('/data-sent');
 		} catch (err) {
 			console.log(err);
 		}
@@ -210,6 +220,7 @@ const NewProduct = () => {
 								type='text'
 								placeholder='Cor'
 								maxLength={'30'}
+								id={'color'}
 								onChange={(e) => setDefaultColor(() => e.target.value)}
 							/>
 						</section>
@@ -235,7 +246,7 @@ const NewProduct = () => {
 							/>
 						</section>
 						<section>
-							<label htmlFor='category'>Categoria</label>
+							<label htmlFor='category'>Categoria do Produto</label>
 							<select
 								id='category'
 								onChange={(e) => setproductCategory(() => e.target.value)}
@@ -243,6 +254,7 @@ const NewProduct = () => {
 								<option value='Capulanas'>Capulanas</option>
 								<option value='Batas'>Batas</option>
 								<option value='Uniformes'>Uniformes</option>
+								<option value='Panos'>Panos</option>
 								<option value='Vestuário'>Vestuário</option>
 								<option value='Cortinas'>Cortinas</option>
 								<option value='Tapetes'>Tapetes</option>
@@ -261,6 +273,21 @@ const NewProduct = () => {
 								<option value='Estoque'>Estoque</option>
 							</select>
 						</section>
+						{sellingType === 'Encomenda' ? (
+							<section>
+								<label htmlFor='estimated'>Estimativa de Entrega</label>
+								<input
+									type='number'
+									name='estimated'
+									id='estimated'
+									maxLength={2}
+									onChange={(e) =>
+										setEstimatedDeliveryDay(() => e.target.value)
+									}
+									placeholder={'Estimativa em dias'}
+								/>
+							</section>
+						) : null}
 						<section>
 							<label htmlFor='fabric'>Qualidade de Tecido</label>
 							<select
