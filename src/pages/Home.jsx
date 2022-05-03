@@ -4,6 +4,7 @@ import { BiBookmarks, BiBulb, BiPurchaseTag } from 'react-icons/bi';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { createDate } from '../modules/module-scripts';
+import { FaCartArrowDown } from 'react-icons/fa';
 
 const Home = () => {
 	const [products, setProducts] = useState([]);
@@ -36,9 +37,17 @@ const Home = () => {
 		}
 	};
 
+	// runs on every render
 	useEffect(() => {
 		getProductsRequest();
 		countVisitorRequest();
+
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
 	}, []);
 
 	return (
@@ -46,34 +55,40 @@ const Home = () => {
 			<Aside />
 
 			<article>
-				<div>
-					<h2>Produtos</h2>
-					<section className='products'>
-						{products.map((items, index) => {
-							return (
-								<div className='product' key={index}>
-									<a href={`/product/${items._id}`}>
-										<img src={items.image} alt={items.name} />
-										<div className='details-product'>
-											<h3>{items.name}</h3>
-											<div>
-												<span>
-													<BiBulb /> {items.sell_type}
-												</span>
-												<span className='price'>
-													<BiPurchaseTag /> MZN {items.price},00
-												</span>
-												<span>
-													<BiBookmarks /> Listado em: {items.date.date}
-												</span>
-											</div>
+				<h2>Produtos</h2>
+				{products.length < 1 ? (
+					<article className='empty-message'>
+						<FaCartArrowDown />
+						<section>
+							<h2>Carregando produtos...</h2>
+						</section>
+					</article>
+				) : null}
+				<section className='products'>
+					{products.map((items, index) => {
+						return (
+							<div className='product' key={index}>
+								<a href={`/product/${items._id}`}>
+									<img src={items.image} alt={items.name} />
+									<div className='details-product'>
+										<h3>{items.name}</h3>
+										<div>
+											<span>
+												<BiBulb /> {items.sell_type}
+											</span>
+											<span className='price'>
+												<BiPurchaseTag /> MZN {items.price},00
+											</span>
+											<span>
+												<BiBookmarks /> Listado em: {items.date.date}
+											</span>
 										</div>
-									</a>
-								</div>
-							);
-						})}
-					</section>
-				</div>
+									</div>
+								</a>
+							</div>
+						);
+					})}
+				</section>
 			</article>
 		</HomeContainer>
 	);

@@ -6,6 +6,32 @@ export const propagateFlex = `
 	flex-direction: column;
 `;
 
+export const empty_message_styles = `
+	display: grid;
+	margin: 0;
+	padding: 0;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(2, 1fr);
+	place-content: center;
+	place-items: center;
+	flex-flow: column nowrap;
+	grid-gap: 20px;
+	padding-top: 12vh;
+	line-height: 1.6rem;
+	text-align: center;
+
+	h2 {
+		font-size: 1.2rem;
+		font-weight: 500;
+		padding-bottom: 12px;
+	}
+
+	svg {
+		width: 90px;
+		height: 90px;
+	}
+`;
+
 export const MessagesContainer = styled.section`
 	padding-left: 10px;
 	position: relative;
@@ -16,30 +42,7 @@ export const MessagesContainer = styled.section`
 	}
 
 	.empty-message {
-		display: grid;
-		margin: 0;
-		padding: 0;
-		grid-template-columns: 1fr;
-		grid-template-rows: repeat(2, 1fr);
-		place-content: center;
-		place-items: center;
-		flex-flow: column nowrap;
-		grid-gap: 20px;
-		padding-top: 12vh;
-
-
-		line-height: 1.6rem;
-		text-align: center;
-		h2 {
-			font-size: 1.2rem;
-			font-weight: 500;
-			padding-bottom: 12px;
-		}
-
-		svg {
-			width: 90px;
-			height: 90px;
-		}
+		${() => empty_message_styles}
 	}
 
 	.modal-container {

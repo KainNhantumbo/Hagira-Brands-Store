@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { empty_message_styles } from './admin/messages';
 
 export const HomeContainer = styled.main`
 	width: 100vw;
@@ -14,6 +15,10 @@ export const HomeContainer = styled.main`
 		h2 {
 			font-weight: 500;
 			margin-bottom: 12px;
+		}
+
+		.empty-message {
+			${() => empty_message_styles}
 		}
 
 		.products {
