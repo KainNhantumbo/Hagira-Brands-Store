@@ -30,8 +30,16 @@ const Messages = () => {
 		}
 	};
 
+	// runs on every render
 	useEffect(() => {
 		getMessagesRequest();
+
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
 	}, []);
 
 	//  deletes a message by its id and updates the panel
@@ -132,9 +140,7 @@ const Messages = () => {
 					<BiMessageAltX />
 					<section>
 						<h2>Sem Mensagens</h2>
-						<p>
-							Estarão aqui as mensagens que for a receber.
-						</p>
+						<p>Estarão aqui as mensagens que for a receber.</p>
 					</section>
 				</article>
 			) : (

@@ -37,8 +37,16 @@ const Overview = () => {
 		}
 	};
 
+	// runs on every render
 	useEffect(() => {
 		fetchData();
+
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
 	}, []);
 
 	return (

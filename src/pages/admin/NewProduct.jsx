@@ -1,7 +1,7 @@
 import { NewProductContainer } from '../../styles/admin/newProduct';
 import Button from '../../components/Button';
 import { BiBookmarkPlus, BiEdit, BiUpload } from 'react-icons/bi';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createDate } from '../../modules/module-scripts';
 import axios from 'axios';
 import Compressor from 'compressorjs';
@@ -28,6 +28,16 @@ const NewProduct = () => {
 
 	// variable to store compressed Blob data
 	var compressed = null;
+
+	// runs on every render
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 
 	// picks and reads the selected image
 	const imageHandler = async () => {
@@ -139,7 +149,7 @@ const NewProduct = () => {
 		product.width = productWidth;
 		product.estimated_delivery_day = estimatedDeliveryDay.slice(0, 2);
 		product.date = createDate();
-		console.log(product)
+		console.log(product);
 		return product;
 	};
 

@@ -17,10 +17,9 @@ import Messages from './Messages';
 import Comunicate from './Comunicate';
 import NewProduct from './NewProduct';
 
-
 const Admin = () => {
 	const [panel, setPanel] = useState(<Overview />);
-  const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	return (
 		<AdminContainer>

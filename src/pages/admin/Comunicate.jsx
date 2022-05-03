@@ -1,6 +1,6 @@
 import { ComunicateContainer } from '../../styles/admin/comunicate';
 import { BiMessage, BiSend } from 'react-icons/bi';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../../components/Button';
 import axios from 'axios';
 
@@ -85,6 +85,16 @@ const Comunicate = () => {
 			console.log(err);
 		}
 	};
+
+	// runs on every render
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 
 	return (
 		<ComunicateContainer>
