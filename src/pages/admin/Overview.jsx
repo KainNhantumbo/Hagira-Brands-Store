@@ -2,11 +2,13 @@ import { OverviewContainer } from '../../styles/admin/overview';
 import { BiStats, BiMessageDetail, BiStore, BiLayer } from 'react-icons/bi';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaClock } from 'react-icons/fa';
 
 const Overview = () => {
 	const [visitors, setVisitors] = useState('...');
 	const [messages, setMessages] = useState('...');
 	const [produts, setProduts] = useState('...');
+	const [time, setTime] = useState('...');
 
 	const server_getAmountOfProducts_url =
 		'http://localhost:4630/api/v1/products';
@@ -49,6 +51,21 @@ const Overview = () => {
 		});
 	}, []);
 
+	// sets a clock
+	const clock = () => {
+		let hours = new Date().getHours();
+		let minutes = new Date().getMinutes();
+
+		if (minutes >= 0 && minutes < 10) {
+			minutes = `0${minutes}`;
+		}
+		return `${hours}:${minutes}`;
+	};
+	setInterval(() => {
+		let actual_time = clock();
+		setTime(() => actual_time);
+	}, 1000);
+
 	return (
 		<OverviewContainer>
 			<section className='upper'>
@@ -57,6 +74,11 @@ const Overview = () => {
 				</h1>
 			</section>
 			<section className='infograph'>
+				<div>
+					<FaClock />
+					<h3>Relógio</h3>
+					<p>{time}</p>
+				</div>
 				<div>
 					<BiStats />
 					<h3>Visitas a Loja</h3>

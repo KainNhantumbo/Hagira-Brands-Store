@@ -1,8 +1,9 @@
 import { ComunicateContainer } from '../../styles/admin/comunicate';
-import { BiMessage, BiSend } from 'react-icons/bi';
+import { BiSend } from 'react-icons/bi';
 import React, { useState, useEffect } from 'react';
 import Button from '../../components/Button';
 import axios from 'axios';
+import { FaBullhorn } from 'react-icons/fa';
 
 const Comunicate = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -100,7 +101,7 @@ const Comunicate = () => {
 		<ComunicateContainer>
 			<section className='messageForm'>
 				<h1>
-					Comunicar <BiMessage />{' '}
+					Comunicar <FaBullhorn />{' '}
 				</h1>
 				<form onSubmit={sendMessageRequest}>
 					<label htmlFor='assunto'>Assunto</label>
