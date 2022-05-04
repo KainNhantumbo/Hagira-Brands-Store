@@ -3,6 +3,22 @@ import Button from '../components/Button';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import {
+	FaBrush,
+	FaCircleNotch,
+	FaDollarSign,
+	FaImage,
+	FaImages,
+	FaLeaf,
+	FaList,
+	FaLocationArrow,
+	FaMapMarker,
+	FaMapMarkerAlt,
+	FaPaperPlane,
+	FaShoppingBag,
+	FaTruck,
+	FaTruckLoading,
+} from 'react-icons/fa';
 
 const Product = () => {
 	const [product, setProduct] = useState([]);
@@ -34,13 +50,18 @@ const Product = () => {
 		<section className='product-intro'>
 			<h1>{product.name}</h1>
 			<span>
-				Artigo adicionado em {product.date?.date}, às {product.date?.time}
+				<em>
+					Artigo adicionado em {product.date?.date}, às {product.date?.time}
+				</em>
 			</span>
 		</section>
 	);
 
 	const ProductImage = () => (
 		<section className='product-image'>
+			<h2>
+				<FaImages /> Imagem do produto
+			</h2>
 			<figure>
 				<img src={product.image} alt={product.name} />
 				<figcaption>{product.name}</figcaption>
@@ -54,16 +75,24 @@ const Product = () => {
 			{product.variant_colors ? (
 				<i>
 					{product.variant_colors[0] ? (
-						<span style={{ background: `${product.variant_colors[0]}` }}></span>
+						<span style={{ background: `${product.variant_colors[0]}` }}>
+							<FaCircleNotch />
+						</span>
 					) : null}
 					{product.variant_colors[1] ? (
-						<span style={{ background: `${product.variant_colors[1]}` }}></span>
+						<span style={{ background: `${product.variant_colors[1]}` }}>
+							<FaCircleNotch />
+						</span>
 					) : null}
 					{product.variant_colors[2] ? (
-						<span style={{ background: `${product.variant_colors[2]}` }}></span>
+						<span style={{ background: `${product.variant_colors[2]}` }}>
+							<FaCircleNotch />
+						</span>
 					) : null}
 					{product.variant_colors[3] ? (
-						<span style={{ background: `${product.variant_colors[3]}` }}></span>
+						<span style={{ background: `${product.variant_colors[3]}` }}>
+							<FaCircleNotch />
+						</span>
 					) : null}
 				</i>
 			) : null}
@@ -77,7 +106,9 @@ const Product = () => {
 				<ProductImage />
 				<section className='product-body'>
 					<section className='product-caracteristics'>
-						<h2>Caraterísticas do produto</h2>
+						<h2>
+							<FaList /> Caraterísticas do produto
+						</h2>
 						<section>
 							<div>
 								<h5>Classe</h5>
@@ -115,18 +146,23 @@ const Product = () => {
 						</section>
 					</section>
 					<section className='product-description'>
-						<h2>Descrição</h2>
+						<h2><FaLeaf/> Descrição</h2>
 						<section className='description'>{product.description}</section>
 					</section>
 					<section className='product-details'>
-						<h2>Detalhes de Aquisição</h2>
+						<h2>
+							<FaPaperPlane /> Detalhes de Aquisição
+						</h2>
 						<section>
 							<div>
-								<h5>Preço</h5>
+								<h5><FaDollarSign/> Preço</h5>
 								<span>{`${product.price},00 MZN`}</span>
 							</div>
 							<div>
-								<h5>Tipo de aquisição</h5>
+								<h5>
+									{' '}
+									<FaTruckLoading /> Tipo de aquisição
+								</h5>
 								<span>
 									{product.request_type === 'Estoque'
 										? `Em estoque`
@@ -134,14 +170,25 @@ const Product = () => {
 								</span>
 							</div>
 							<div>
-								<h5>Data estimada de entrega</h5>
+								<h5>
+									<FaTruck /> Data estimada de entrega
+								</h5>
 								{Number(product.estimated_delivery_day) < 2 ? (
 									<span>{product.estimated_delivery_day} dia</span>
 								) : (
 									<span>{product.estimated_delivery_day} dias</span>
 								)}
 							</div>
+							<div>
+								<h5>
+									<FaMapMarkerAlt /> Localização
+								</h5>
+								<span>Maputo, Matola - São Damaso</span>
+							</div>
 						</section>
+					</section>
+					<section className='product-actions'>
+						<Button text={'Encomendar produto'} icon={<FaShoppingBag />} />
 					</section>
 				</section>
 			</article>

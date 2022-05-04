@@ -21,12 +21,17 @@ export const ProductContainer = styled.main`
 	h2,
 	h3,
 	h5,
+	em,
 	label {
 		font-weight: 500;
 	}
 
 	a {
 		color: rgb(${({ theme }) => theme.primary});
+	}
+
+	em {
+		font-style: italic;
 	}
 
 	h3,
@@ -64,7 +69,9 @@ export const ProductContainer = styled.main`
 
 	.product-image {
 		max-width: 350px;
-		padding-top: 30px;
+		display: flex;
+		flex-flow: column nowrap;
+		gap: 10px;
 
 		img {
 			border-radius: 5px;
@@ -85,11 +92,17 @@ export const ProductContainer = styled.main`
 				gap: 8px;
 				background: none;
 				border: none;
-				
+
 				span {
 					border-radius: 50%;
-					width: 25px;
-					height: 25px;
+					width: 28px;
+					height: 28px;
+					display: grid;
+					place-content: center;
+
+					svg {
+						color: rgb(${({ theme }) => theme.text});
+					}
 				}
 			}
 		}
