@@ -29,69 +29,98 @@ const Product = () => {
 	}, []);
 	console.log(product);
 
+	//  extensive components
+	const Intro = () => (
+		<section className='product-intro'>
+			<h1>{product.name}</h1>
+			<span>
+				Artigo adicionado em {product.date?.date}, às {product.date?.time}
+			</span>
+		</section>
+	);
+
+	const ProductImage = () => (
+		<section className='product-image'>
+			<figure>
+				<img src={product.image} alt={product.name} />
+				<figcaption>{product.name}</figcaption>
+			</figure>
+		</section>
+	);
+
+	const VariantColors = () => (
+		<div className='colors'>
+			<h5>Cores disponíveis</h5>
+			{product.variant_colors ? (
+				<div>
+					{product.variant_colors[0] ? (
+						<span style={{ background: `${product.variant_colors[0]}` }}>
+							Cor A
+						</span>
+					) : null}
+					{product.variant_colors[1] ? (
+						<span style={{ background: `${product.variant_colors[1]}` }}>
+							Cor B
+						</span>
+					) : null}
+					{product.variant_colors[2] ? (
+						<span style={{ background: `${product.variant_colors[2]}` }}>
+							Cor C
+						</span>
+					) : null}
+					{product.variant_colors[3] ? (
+						<span style={{ background: `${product.variant_colors[3]}` }}>
+							Cor D
+						</span>
+					) : null}
+				</div>
+			) : null}
+		</div>
+	);
+
 	return (
 		<ProductContainer>
-			<section className='product-intro'>
-				<h1>{product.name}</h1>
-				<span>
-					Artigo adicionado em {product.date?.date}, às {product.date?.time}
-				</span>
-			</section>
+			<Intro />
+			<ProductImage />
 			<article className='product-container'>
-				<section className='product-image'>
-					<figure>
-						<img src={product.image} alt={product.name} />
-						<figcaption>{product.name}</figcaption>
-					</figure>
-				</section>
 				<section className='product-body'>
-				<section className='product-price'>
-					<div>
-						<h2>Preço</h2>
-						<span>{product.price}</span>
-					</div>
-				</section>
 					<section className='product-caracteristics'>
 						<h2>Caraterísticas do produto</h2>
-						<div>
-							<h5>Cor principal</h5>
-							<span>{product.color}</span>
-						</div>
-						<div>
-							<h5>Tipo de aquisição</h5>
-							<span>
-								{product.request_type === 'Estoque'
-									? `Em estoque`
-									: `Por encomenda`}
-							</span>
-						</div>
-						<div className='colors'>
-							<h5>Variantes (cor)</h5>
-							{product.variant_colors ? (
-								<>
-									{product.variant_colors[0] ? (
-										<span style={{ background: `${product.variant_colors[0]}` }}>
-											Cor A
-										</span>
-									) : null}
-									{product.variant_colors[1] ? (
-										<span style={{ background: `${product.variant_colors[1]}` }}>
-											Cor B
-										</span>
-									) : null}
-									{product.variant_colors[2] ? (
-										<span style={{ background: `${product.variant_colors[2]}` }}>
-											Cor C
-										</span>
-									) : null}
-									{product.variant_colors[3] ? (
-										<span style={{ background: `${product.variant_colors[3]}` }}>
-											Cor D
-										</span>
-									) : null}
-								</>
+						<section>
+							<div>
+								<h5>Classe</h5>
+								<span>{product.class}</span>
+							</div>
+							<div>
+								<h5>Categoria</h5>
+								<span>{product.category}</span>
+							</div>
+							<div>
+								<h5>Cor principal</h5>
+								<span>{product.color}</span>
+							</div>
+							<div>
+								<h5>Tipo de Tecido</h5>
+								<span>{product.fabric}</span>
+							</div>
+							<VariantColors />
+							<div>
+								<h5>Tamanho</h5>
+								<span>{product.size}</span>
+							</div>
+							{product.width ? (
+								<div>
+									<h5>Largura</h5>
+									<span>{product.width}</span>
+								</div>
 							) : null}
-						</div>
+							{product.height ? (
+								<div>
+									<h5>Comprimento</h5>
+									<span>{product.height}</span>
+								</div>
+							) : null}
+						</section>
 					</section>
 					<section className='product-description'>
 						<h2>Descrição</h2>
@@ -99,17 +128,28 @@ const Product = () => {
 					</section>
 					<section className='product-details'>
 						<h2>Detalhes do Produto</h2>
-						<div>
-							<h5>Classe</h5>
-							<span>{product.class}</span>
-						</div>
-						<div>
-							<h5>Categoria</h5>
-							<span>{product.category}</span>
-						</div>
-						<div>
-							<h5></h5>
-						</div>
+						<section className='product-price'>
+							<div>
+								<h2>Preço</h2>
+								<span>{product.price}</span>
+							</div>
+							<div>
+								<h5>Tipo de aquisição</h5>
+								<span>
+									{product.request_type === 'Estoque'
+										? `Em estoque`
+										: `Por encomenda`}
+								</span>
+							</div>
+							<div>
+								<h5>Data estimada de entrega</h5>
+								{Number(product.estimated_delivery_day) < 2 ? (
+									<span>{product.estimated_delivery_day} dia</span>
+								) : (
+									<span>{product.estimated_delivery_day} dias</span>
+								)}
+							</div>
+						</section>
 					</section>
 				</section>
 			</article>

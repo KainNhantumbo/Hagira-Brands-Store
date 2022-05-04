@@ -152,11 +152,23 @@ export const MessagesContainer = styled.section`
 	}
 
 	.messages-container {
-		display: flex;
+		display: grid;
 		gap: 20px;
-		justify-content: space-evenly;
-		flex-flow: row wrap;
 		padding-top: 15px;
+		grid-template-columns: repeat(4, 1fr);
+		justify-items: center;
+		place-content: center;
+		place-items: center;
+
+		@media screen and (max-width: 1080px) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+		@media screen and (max-width: 715px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@media screen and (max-width: 505px) {
+			grid-template-columns: 1fr;
+		}
 
 		.message {
 			display: flex;
@@ -167,7 +179,6 @@ export const MessagesContainer = styled.section`
 			box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
 			padding: 10px;
 			border-radius: 5px;
-			width: 250px;
 
 			:hover {
 				box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});

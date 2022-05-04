@@ -306,10 +306,10 @@ const NewProduct = () => {
 							>
 								<option value='Polyester'>Polyester</option>
 								<option value='Trevira'>Trevira</option>
-								<option value='algodão'>Algodão</option>
+								<option value='Algodão'>Algodão</option>
 								<option value='Linho'>Linho</option>
 								<option value='Sarja'>Sarja</option>
-								<option value='Outro'>Outro</option>
+								<option value='Não especificado'>Não especificado</option>
 							</select>
 						</section>
 					</div>

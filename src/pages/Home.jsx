@@ -74,7 +74,7 @@ const Home = () => {
 										<h3>{items.name}</h3>
 										<div>
 											<span>
-												<BiBulb /> {items.sell_type}
+												<BiBulb /> {items.request_type}
 											</span>
 											<span className='price'>
 												<BiPurchaseTag /> MZN {items.price},00

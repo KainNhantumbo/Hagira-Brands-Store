@@ -8,7 +8,10 @@ const Overview = () => {
 	const [visitors, setVisitors] = useState('...');
 	const [messages, setMessages] = useState('...');
 	const [produts, setProduts] = useState('...');
-	const [time, setTime] = useState('...');
+	const [time, setTime] = useState(() => {
+		let time = clock();
+		return time;
+	});
 
 	const server_getAmountOfProducts_url =
 		'http://localhost:4630/api/v1/products';
@@ -52,15 +55,19 @@ const Overview = () => {
 	}, []);
 
 	// sets a clock
-	const clock = () => {
+	function clock() {
 		let hours = new Date().getHours();
 		let minutes = new Date().getMinutes();
 
 		if (minutes >= 0 && minutes < 10) {
 			minutes = `0${minutes}`;
 		}
+
+		if (hours >= 0 && hours < 10) {
+			hours = `0${hours}`;
+		}
 		return `${hours}:${minutes}`;
-	};
+	}
 	setInterval(() => {
 		let actual_time = clock();
 		setTime(() => actual_time);

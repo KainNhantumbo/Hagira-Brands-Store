@@ -8,7 +8,7 @@ export const ProductsContainer = styled.section`
 		${() => empty_message_styles}
 	}
 
-  .upper {
+	.upper {
 		${() => propagateFlex}
 		gap: 10px;
 		max-width: 670px;

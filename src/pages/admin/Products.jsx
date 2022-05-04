@@ -28,7 +28,7 @@ const Products = () => {
 					<article className='empty-message'>
 						<FaArchive />
 						<section>
-							<h2>Sem produtos na loja</h2>
+							<h2>Sem produtos na loja.</h2>
 						</section>
 					</article>
 				) : null}
