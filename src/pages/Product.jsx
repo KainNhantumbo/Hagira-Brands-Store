@@ -52,28 +52,20 @@ const Product = () => {
 		<div className='colors'>
 			<h5>Cores disponíveis</h5>
 			{product.variant_colors ? (
-				<div>
+				<i>
 					{product.variant_colors[0] ? (
-						<span style={{ background: `${product.variant_colors[0]}` }}>
-							Cor A
-						</span>
+						<span style={{ background: `${product.variant_colors[0]}` }}></span>
 					) : null}
 					{product.variant_colors[1] ? (
-						<span style={{ background: `${product.variant_colors[1]}` }}>
-							Cor B
-						</span>
+						<span style={{ background: `${product.variant_colors[1]}` }}></span>
 					) : null}
 					{product.variant_colors[2] ? (
-						<span style={{ background: `${product.variant_colors[2]}` }}>
-							Cor C
-						</span>
+						<span style={{ background: `${product.variant_colors[2]}` }}></span>
 					) : null}
 					{product.variant_colors[3] ? (
-						<span style={{ background: `${product.variant_colors[3]}` }}>
-							Cor D
-						</span>
+						<span style={{ background: `${product.variant_colors[3]}` }}></span>
 					) : null}
-				</div>
+				</i>
 			) : null}
 		</div>
 	);
@@ -81,8 +73,8 @@ const Product = () => {
 	return (
 		<ProductContainer>
 			<Intro />
-			<ProductImage />
 			<article className='product-container'>
+				<ProductImage />
 				<section className='product-body'>
 					<section className='product-caracteristics'>
 						<h2>Caraterísticas do produto</h2>
@@ -111,13 +103,13 @@ const Product = () => {
 							{product.width ? (
 								<div>
 									<h5>Largura</h5>
-									<span>{product.width}</span>
+									<span>{`${product.width} m`}</span>
 								</div>
 							) : null}
 							{product.height ? (
 								<div>
 									<h5>Comprimento</h5>
-									<span>{product.height}</span>
+									<span>{`${product.height} m`}</span>
 								</div>
 							) : null}
 						</section>
@@ -127,11 +119,11 @@ const Product = () => {
 						<section className='description'>{product.description}</section>
 					</section>
 					<section className='product-details'>
-						<h2>Detalhes do Produto</h2>
-						<section className='product-price'>
+						<h2>Detalhes de Aquisição</h2>
+						<section>
 							<div>
-								<h2>Preço</h2>
-								<span>{product.price}</span>
+								<h5>Preço</h5>
+								<span>{`${product.price},00 MZN`}</span>
 							</div>
 							<div>
 								<h5>Tipo de aquisição</h5>
