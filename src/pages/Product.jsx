@@ -4,14 +4,22 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {
+	FaAward,
+	FaBrush,
 	FaCircleNotch,
 	FaDollarSign,
+	FaFillDrip,
 	FaImages,
 	FaLeaf,
 	FaList,
 	FaMapMarkerAlt,
 	FaPaperPlane,
+	FaRulerCombined,
+	FaRulerHorizontal,
+	FaRulerVertical,
+	FaScroll,
 	FaShoppingBag,
+	FaTags,
 	FaTruck,
 	FaTruckLoading,
 } from 'react-icons/fa';
@@ -67,7 +75,9 @@ const Product = () => {
 
 	const VariantColors = () => (
 		<div className='colors'>
-			<h5>Cores disponíveis</h5>
+			<h5>
+				<FaBrush /> Cores disponíveis
+			</h5>
 			{product.variant_colors ? (
 				<i>
 					{product.variant_colors[0] ? (
@@ -103,46 +113,56 @@ const Product = () => {
 				<section className='product-body'>
 					<section className='product-caracteristics'>
 						<h2>
-							<FaList /> Caraterísticas do produto
+							<FaList /> Caraterísticas do Produto
 						</h2>
 						<section>
 							<div>
-								<h5>Classe</h5>
+								<h5><FaAward/> Classe</h5>
 								<span>{product.class}</span>
 							</div>
 							<div>
-								<h5>Categoria</h5>
+								<h5><FaTags/> Categoria</h5>
 								<span>{product.category}</span>
 							</div>
 							<div>
-								<h5>Cor principal</h5>
+								<h5>
+									<FaFillDrip /> Cor principal
+								</h5>
 								<span>{product.color}</span>
 							</div>
 							<div>
-								<h5>Tipo de Tecido</h5>
+								<h5><FaScroll/> Tipo de Tecido</h5>
 								<span>{product.fabric}</span>
 							</div>
 							<VariantColors />
 							<div>
-								<h5>Tamanho</h5>
+								<h5>
+									<FaRulerCombined /> Tamanho
+								</h5>
 								<span>{product.size}</span>
 							</div>
 							{product.width ? (
 								<div>
-									<h5>Largura</h5>
+									<h5>
+										<FaRulerHorizontal /> Largura
+									</h5>
 									<span>{`${product.width} m`}</span>
 								</div>
 							) : null}
 							{product.height ? (
 								<div>
-									<h5>Comprimento</h5>
+									<h5>
+										<FaRulerVertical /> Comprimento
+									</h5>
 									<span>{`${product.height} m`}</span>
 								</div>
 							) : null}
 						</section>
 					</section>
 					<section className='product-description'>
-						<h2><FaLeaf/> Descrição</h2>
+						<h2>
+							<FaLeaf /> Descrição
+						</h2>
 						<section className='description'>{product.description}</section>
 					</section>
 					<section className='product-details'>
@@ -151,7 +171,9 @@ const Product = () => {
 						</h2>
 						<section>
 							<div>
-								<h5><FaDollarSign/> Preço</h5>
+								<h5>
+									<FaDollarSign /> Preço
+								</h5>
 								<span>{`${product.price},00 MZN`}</span>
 							</div>
 							<div>

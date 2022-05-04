@@ -54,6 +54,20 @@ export const ProductContainer = styled.main`
 		}
 	}
 
+	h5 {
+		position: relative;
+		padding-left: 20px;
+
+		svg {
+			color: rgb(${({ theme }) => theme.font});
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			top: 3.5px;
+			left: -2px;
+		}
+	}
+
 	.product-intro {
 		display: flex;
 		justify-content: center;
@@ -135,15 +149,11 @@ export const ProductContainer = styled.main`
 
 				span {
 					border-radius: 50%;
-					width: 28px;
-					height: 28px;
+					width: 24px;
+					height: 24px;
 					display: grid;
 					place-content: center;
 
-					@media screen and (max-width: 365px) {
-						width: 24px;
-						height: 24px;
-					}
 					@media screen and (max-width: 325px) {
 						width: 20px;
 						height: 20px;
