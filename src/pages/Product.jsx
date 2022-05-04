@@ -4,15 +4,11 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {
-	FaBrush,
 	FaCircleNotch,
 	FaDollarSign,
-	FaImage,
 	FaImages,
 	FaLeaf,
 	FaList,
-	FaLocationArrow,
-	FaMapMarker,
 	FaMapMarkerAlt,
 	FaPaperPlane,
 	FaShoppingBag,
@@ -183,7 +179,7 @@ const Product = () => {
 								<h5>
 									<FaMapMarkerAlt /> Localização
 								</h5>
-								<span>Maputo, Matola - São Damaso</span>
+								<span>Maputo - Matola</span>
 							</div>
 						</section>
 					</section>

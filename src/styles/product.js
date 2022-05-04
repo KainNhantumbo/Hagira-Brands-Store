@@ -4,7 +4,6 @@ import { infograph } from './contact';
 export const ProductContainer = styled.main`
 	width: 100%;
 	max-width: 1250px;
-	min-width: 100vh;
 	margin: 0 auto;
 	padding: 80px 10px;
 	display: flex;
@@ -37,9 +36,13 @@ export const ProductContainer = styled.main`
 	h3,
 	h2 {
 		position: relative;
-		padding-left: 20px;
+		padding-left: 25px;
 		font-size: 1.1rem;
 		color: rgb(${({ theme }) => theme.primary});
+
+		@media screen and (max-width: 380px) {
+			font-size: 1rem;
+		}
 
 		svg {
 			color: rgb(${({ theme }) => theme.primary});
@@ -58,6 +61,19 @@ export const ProductContainer = styled.main`
 		align-content: center;
 		align-items: center;
 		justify-items: center;
+
+		@media screen and (max-width: 350px) {
+			h1 {
+				font-size: 1.2rem;
+			}
+			span {
+				font-size: 0.9rem;
+
+				@media screen and (max-width: 305px) {
+					font-size: 0.8rem;
+				}
+			}
+		}
 	}
 
 	.product-container {
@@ -65,6 +81,11 @@ export const ProductContainer = styled.main`
 		grid-template-columns: 1fr 1.5fr;
 		justify-items: center;
 		gap: 20px;
+
+		@media screen and (max-width: 675px) {
+			grid-template-columns: 1fr;
+			padding: 0 10px;
+		}
 	}
 
 	.product-image {
@@ -72,6 +93,25 @@ export const ProductContainer = styled.main`
 		display: flex;
 		flex-flow: column nowrap;
 		gap: 10px;
+
+		@media screen and (max-width: 345px) {
+			h2 {
+				display: none;
+			}
+		}
+
+		figcaption {
+			@media screen and (max-width: 350px) {
+				font-size: 0.9rem;
+			}
+			@media screen and (max-width: 305px) {
+				display: none;
+			}
+		}
+
+		@media screen and (max-width: 675px) {
+			width: 60%;
+		}
 
 		img {
 			border-radius: 5px;
@@ -99,6 +139,15 @@ export const ProductContainer = styled.main`
 					height: 28px;
 					display: grid;
 					place-content: center;
+
+					@media screen and (max-width: 365px) {
+						width: 24px;
+						height: 24px;
+					}
+					@media screen and (max-width: 325px) {
+						width: 20px;
+						height: 20px;
+					}
 
 					svg {
 						color: rgb(${({ theme }) => theme.text});
@@ -138,6 +187,7 @@ export const ProductContainer = styled.main`
 					justify-content: space-between;
 					align-items: center;
 					flex-flow: row nowrap;
+					gap: 5px;
 					background: rgb(${({ theme }) => theme.backgroundAlt});
 					padding: 3px 10px;
 					border-radius: 5px;
