@@ -26,10 +26,10 @@ import {
 
 const Product = () => {
 	const [product, setProduct] = useState([]);
-	const { id } = useParams();
+	const { id: product_id } = useParams();
 
 	// server request to get product by its id
-	const server_productRequest_url = `http://localhost:4630/api/v1/products/${id}`;
+	const server_productRequest_url = `http://localhost:4630/api/v1/products/${product_id}`;
 	const productRequest = async () => {
 		try {
 			const { data: product } = await axios({
@@ -213,7 +213,7 @@ const Product = () => {
 						</section>
 					</section>
 					<section className='product-actions'>
-						<a href={`${id}/payment/${id}`}>
+						<a href={`${product_id}/payment/${product_id}`}>
 							<Button text={'Encomendar produto'} icon={<FaShoppingBag />} />
 						</a>
 					</section>

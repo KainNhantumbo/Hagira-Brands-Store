@@ -82,7 +82,7 @@ export const PaymentContainer = styled.main`
 			}
 
 			input[type='text'],
-			input[type='number'],
+			input[type='number'],input[type='email'],
 			textarea {
 				border: 2px solid rgb(${({ theme }) => theme.primary});
 				border-radius: 5px;
