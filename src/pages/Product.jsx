@@ -47,7 +47,6 @@ const Product = () => {
 	useEffect(() => {
 		productRequest();
 	}, []);
-	console.log(product);
 
 	//  extensive components
 	const Intro = () => (

@@ -52,6 +52,7 @@ export const HomeContainer = styled.main`
 			width: 210px;
 			padding-bottom: 10px;
 			cursor: pointer;
+			overflow: hidden;
 
 			:hover {
 				box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
@@ -63,6 +64,13 @@ export const HomeContainer = styled.main`
 				height: 220px;
 				border-radius: 10px 10px 0 0;
 				object-fit: cover;
+				object-position: center;
+				aspect-ratio: 9/16;
+
+				:hover {
+					transform: scale(1.025);
+					transition: all 300ms ease-in-out;
+				}
 			}
 
 			.details-product {

@@ -55,6 +55,13 @@ const Payment = () => {
 	// runs on every render to get data from server
 	useEffect(() => {
 		requestProduct();
+
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
 	}, []);
 
 	return (
@@ -73,116 +80,149 @@ const Payment = () => {
 			<article className='messageForm'>
 				<form onSubmit={requestPaidProduct}>
 					<h3>Informações Pessoais</h3>
-					<div>
-						<label>Nome</label>
-						<input
-							type='text'
-							placeholder='Escreva o seu nome'
-							maxLength={'30'}
-							onChange={(e) => setName(() => e.target.value)}
-						/>
-						<label>Apelido</label>
-						<input
-							type='text'
-							placeholder='Escreva o seu apelido'
-							maxLength={'30'}
-							onChange={(e) => setSurname(() => e.target.value)}
-						/>
-					</div>
-					<div>
-						<label>O seu email</label>
-						<input
-							type={'email'}
-							placeholder='E-mail'
-							maxLength={'30'}
-							onChange={(e) => setEmail(() => e.target.value)}
-						/>
-						<label>Telefone</label>
-						<input
-							type='number'
-							maxLength='20'
-							placeholder='Número de telefone'
-							onChange={(e) => setPhone(() => e.target.value)}
-						/>
-					</div>
+					<section>
+						<div>
+							<label>Nome</label>
+							<input
+								type='text'
+								placeholder='Escreva o seu nome'
+								maxLength={'30'}
+								onChange={(e) => setName(() => e.target.value)}
+							/>
+						</div>
+						<div>
+							<label>Apelido</label>
+							<input
+								type='text'
+								placeholder='Escreva o seu apelido'
+								maxLength={'30'}
+								onChange={(e) => setSurname(() => e.target.value)}
+							/>
+						</div>
+					</section>
+					<section>
+						<div>
+							<label>O seu email</label>
+							<input
+								type={'email'}
+								placeholder='E-mail'
+								maxLength={'30'}
+								onChange={(e) => setEmail(() => e.target.value)}
+							/>
+						</div>
+						<div>
+							<label>Telefone</label>
+							<input
+								type='number'
+								maxLength='20'
+								placeholder='Número de telefone'
+								onChange={(e) => setPhone(() => e.target.value)}
+							/>
+						</div>
+					</section>
 					<h3>Endereço de entrega</h3>
-					<div>
-						<label>Cidade</label>
-						<input
-							type='text'
-							placeholder='Cidade ou localicade'
-							onChange={(e) => setCity(() => e.target.value)}
-						/>
-						<label>Bairro</label>
-						<input
-							type='text'
-							placeholder='Bairro'
-							onChange={(e) => setNeighbourhood(() => e.target.value)}
-						/>
-					</div>
-					<div>
-						<label>Avenida e Número da Casa</label>
-						<input
-							type='text'
-							placeholder='Nome e número'
-							onChange={(e) => setAdress(() => e.target.value)}
-						/>
-						<label>Código Postal</label>
-						<input
-							type='text'
-							placeholder='Número do código'
-							onChange={(e) => setPostNumber(() => e.target.value)}
-						/>
-					</div>
+					<section>
+						<div>
+							<label>Cidade</label>
+							<input
+								type='text'
+								placeholder='Cidade ou localicade'
+								onChange={(e) => setCity(() => e.target.value)}
+							/>
+						</div>
+						<div>
+							<label>Bairro</label>
+							<input
+								type='text'
+								placeholder='Bairro'
+								onChange={(e) => setNeighbourhood(() => e.target.value)}
+							/>
+						</div>
+					</section>
+					<section>
+						<div>
+							<label>Avenida e Número da Casa</label>
+							<input
+								type='text'
+								placeholder='Nome e número'
+								onChange={(e) => setAdress(() => e.target.value)}
+							/>
+						</div>
+						<div>
+							<label>Código Postal</label>
+							<input
+								type='text'
+								placeholder='Número do código'
+								onChange={(e) => setPostNumber(() => e.target.value)}
+							/>
+						</div>
+					</section>
 					<h3>Quantidade</h3>
-					<div>
-						<label>Quantidade de Peças</label>
-						<input
-							type='number'
-							defaultValue={'1'}
-							min={'1'}
-							max={'10'}
-							onChange={(e) => {
-								setQuantity(() => e.target.value);
-								setPayment_value(() => {
-									const value = Number(e.target.value);
-									const price = Number(product_data.product.price);
-									if (!value) return;
-									return value * price;
-								});
-							}}
-						/>
-						<label> Valor Total a Pagar</label>
-						<input type='text' disabled defaultValue={payment_value} />
-					</div>
+					<section>
+						<div>
+							<label>Quantidade de Peças</label>
+							<input
+								type='number'
+								defaultValue={'1'}
+								min={'1'}
+								max={'10'}
+								onChange={(e) => {
+									setQuantity(() => e.target.value);
+									setPayment_value(() => {
+										const value = Number(e.target.value);
+										const price = Number(product_data.product.price);
+										if (!value) return;
+										return value * price;
+									});
+								}}
+							/>
+						</div>
+						<div>
+							<label> Valor Total a Pagar</label>
+							<input type='text' disabled defaultValue={payment_value} />
+						</div>
+					</section>
 					<h3>Meio de Pagamento</h3>
-					<div>
-						<label htmlFor='mpesa-method'>M-Pesa</label>
-						<input
-							type='radio'
-							name='payment-method'
-							id='mpesa-method'
-							value='M-PESA'
-							onChange={(e) => setPaymentMethod(() => e.target.value)}
-						/>
-						<label htmlFor='emola-method'>E-Mola</label>
-						<input
-							type='radio'
-							name='payment-method'
-							id='emola-method'
-							value='E-MOLA'
-							onChange={(e) => setPaymentMethod(() => e.target.value)}
-						/>
-						<label htmlFor='conta_movel-method'>Conta Móvel</label>
-						<input
-							type='radio'
-							name='payment-method'
-							id='conta_movel-method'
-							placeholder='Conta-Móvel'
-							value={'CONTA-MÓVEL'}
-							onChange={(e) => setPaymentMethod(() => e.target.value)}
-						/>
-					</div>
+					<section className='payment'>
+						<span>
+							<label htmlFor='mpesa-method'>
+								M-Pesa
+								<input
+									type='radio'
+									name='payment-method'
+									id='mpesa-method'
+									value='M-PESA'
+                  defaultChecked
+									onChange={(e) => setPaymentMethod(() => e.target.value)}
+								/>
+							</label>
+						</span>
+						<span>
+							<label htmlFor='emola-method'>
+								E-Mola
+								<input
+									type='radio'
+									name='payment-method'
+									id='emola-method'
+									value='E-MOLA'
+									onChange={(e) => setPaymentMethod(() => e.target.value)}
+								/>
+							</label>
+						</span>
+						<span>
+							<label htmlFor='conta_movel-method'>
+								Conta Móvel
+								<input
+									type='radio'
+									name='payment-method'
+									id='conta_movel-method'
+									placeholder='Conta-Móvel'
+									value={'CONTA-MÓVEL'}
+									onChange={(e) => setPaymentMethod(() => e.target.value)}
+								/>
+							</label>
+						</span>
+					</section>
 					<label htmlFor='comment'>Informações adicionais</label>
 					<textarea
 						id='comment'
@@ -194,7 +234,7 @@ const Payment = () => {
 					></textarea>
 
 					<span style={errorStyles}>{messageStatus}</span>
-					<div>
+					<div className='actions'>
 						<Button type={'submit'} text={'Encomendar'} icon={<BiLock />} />
 						<Button
 							type={'reset'}
