@@ -15,6 +15,7 @@ import About from './pages/About';
 import Support from './pages/Support';
 import HireService from './pages/HireService';
 import Product from './pages/Product';
+import Payment from './pages/Payment';
 import Button from './components/Button';
 import { ThemeProvider } from 'styled-components';
 import { primary, dark } from './styles/themes';
@@ -130,6 +131,7 @@ const App = () => {
 					<Route path='/login' element={<Login />} />
 					<Route path='/about' element={<About />} />
 					<Route path='/support' element={<Support />} />
+					<Route path='/product/:id/payment/:id' element={<Payment />} />
 					<Route path='/request-service' element={<HireService />} />
 					<Route path='/product/:id' element={<Product />} />
 					<Route

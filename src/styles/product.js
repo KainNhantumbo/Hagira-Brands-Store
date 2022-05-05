@@ -113,6 +113,7 @@ export const ProductContainer = styled.main`
 				display: none;
 			}
 		}
+		
 
 		figcaption {
 			@media screen and (max-width: 350px) {
@@ -128,6 +129,7 @@ export const ProductContainer = styled.main`
 		}
 
 		img {
+			box-shadow: 0 0 5px 1px rgb(${({ theme }) => theme.shadows});
 			border-radius: 5px;
 		}
 	}

@@ -117,11 +117,15 @@ const Product = () => {
 						</h2>
 						<section>
 							<div>
-								<h5><FaAward/> Classe</h5>
+								<h5>
+									<FaAward /> Classe
+								</h5>
 								<span>{product.class}</span>
 							</div>
 							<div>
-								<h5><FaTags/> Categoria</h5>
+								<h5>
+									<FaTags /> Categoria
+								</h5>
 								<span>{product.category}</span>
 							</div>
 							<div>
@@ -131,7 +135,9 @@ const Product = () => {
 								<span>{product.color}</span>
 							</div>
 							<div>
-								<h5><FaScroll/> Tipo de Tecido</h5>
+								<h5>
+									<FaScroll /> Tipo de Tecido
+								</h5>
 								<span>{product.fabric}</span>
 							</div>
 							<VariantColors />
