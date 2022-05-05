@@ -35,14 +35,14 @@ export const PaymentContainer = styled.main`
 
 	h3 {
 		position: relative;
-		padding-left: 20px;
+		padding-left: 25px;
 
 		svg {
 			color: rgb(${({ theme }) => theme.primary});
 			position: absolute;
 			width: 18px;
 			height: 18px;
-			top: 3px;
+			top: 15px;
 			left: 0;
 		}
 	}

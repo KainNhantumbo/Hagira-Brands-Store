@@ -1,8 +1,19 @@
 import { PaymentContainer } from '../styles/Payment';
 import Button from '../components/Button';
 import React, { useState, useEffect } from 'react';
-import {} from 'react-icons/fa';
-import { BiAlarm, BiHelpCircle, BiLock, BiTrash } from 'react-icons/bi';
+import {
+	FaMapMarkerAlt,
+	FaMoneyCheckAlt,
+	FaTruckLoading,
+	FaUser,
+} from 'react-icons/fa';
+import {
+	BiAlarm,
+	BiHelpCircle,
+	BiLock,
+	BiMap,
+	BiTrash,
+} from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -79,7 +90,9 @@ const Payment = () => {
 			</section>
 			<article className='messageForm'>
 				<form onSubmit={requestPaidProduct}>
-					<h3>Informações Pessoais</h3>
+					<h3>
+						<FaUser /> Informações Pessoais
+					</h3>
 					<section>
 						<div>
 							<label>Nome</label>
@@ -120,7 +133,9 @@ const Payment = () => {
 							/>
 						</div>
 					</section>
-					<h3>Endereço de entrega</h3>
+					<h3>
+						<FaMapMarkerAlt /> Endereço de entrega
+					</h3>
 					<section>
 						<div>
 							<label>Cidade</label>
@@ -157,7 +172,9 @@ const Payment = () => {
 							/>
 						</div>
 					</section>
-					<h3>Quantidade</h3>
+					<h3>
+						<FaTruckLoading /> Quantidade
+					</h3>
 					<section>
 						<div>
 							<label>Quantidade de Peças</label>
@@ -182,7 +199,9 @@ const Payment = () => {
 							<input type='text' disabled defaultValue={payment_value} />
 						</div>
 					</section>
-					<h3>Meio de Pagamento</h3>
+					<h3>
+						<FaMoneyCheckAlt /> Meio de Pagamento
+					</h3>
 					<section className='payment'>
 						<span>
 							<label htmlFor='mpesa-method'>
@@ -192,7 +211,7 @@ const Payment = () => {
 									name='payment-method'
 									id='mpesa-method'
 									value='M-PESA'
-                  defaultChecked
+									defaultChecked
 									onChange={(e) => setPaymentMethod(() => e.target.value)}
 								/>
 							</label>
@@ -232,8 +251,13 @@ const Payment = () => {
 						placeholder='Escreva quaisquer outras informações que precisar aqui...'
 						onChange={(e) => setComment(e.target.value)}
 					></textarea>
-
 					<span style={errorStyles}>{messageStatus}</span>
+					<span>
+						Ao clicar em <em>Encomendar</em>, você concorda com os nossos{' '}
+						<a href='/terms-and-conditions'>termos de uso</a> e{' '}
+						<a href='/privacy-policy'>política de privacidade</a> da nossa
+						plataforma.
+					</span>
 					<div className='actions'>
 						<Button type={'submit'} text={'Encomendar'} icon={<BiLock />} />
 						<Button
