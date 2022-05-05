@@ -207,5 +207,10 @@ export const ProductContainer = styled.main`
 				}
 			}
 		}
+
+		.advice {
+			font-size: .9rem;
+			font-weight: 500;
+		}
 	}
 `;

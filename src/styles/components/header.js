@@ -5,7 +5,7 @@ export const Container = styled.header`
 	top: 0;
 	left: 0;
 	width: 100vw;
-	height: 8vh;
+	height: 55px;
 	padding: 5px 10px;
 	box-shadow: 0 0 5px 1px rgb(${({ theme }) => theme.shadows});
 	background-color: rgba(${({ theme }) => theme.background}, .5);
