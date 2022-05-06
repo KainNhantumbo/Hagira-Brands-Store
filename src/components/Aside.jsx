@@ -7,15 +7,12 @@ import axios from 'axios';
 import { FaSyncAlt, FaWind } from 'react-icons/fa';
 
 const Aside = () => {
-	const categories = {
-		category: ['Todos', 'Uniformes', 'Panos', 'Batas', 'Capulanas'],
-		classes: ['Alta', 'Média', 'Baixa', 'Premium'],
-	};
-
+	const [productClass, setProductClass] = useState('');
+	const [productCategories, setProductCategories] = useState('');
 	const [searchQuery, setSearchQuery] = useState('');
 	const { setProducts, setLoadState, getProductsRequest } =
 		useContext(searchContext);
-	// 
+	//
 	const server_searchProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_name=${searchQuery}`;
 	const search = async () => {
 		try {
@@ -38,6 +35,10 @@ const Aside = () => {
 		}
 	};
 
+	const searchClasses = async (e) => {};
+
+	const searchTags = async (e) => {};
+
 	return (
 		<ToolboxContainer>
 			<section>
@@ -56,27 +57,39 @@ const Aside = () => {
 			</section>
 			<section>
 				<div className='title'>Categorias e Tags</div>
-				<ul>
-					{categories.category.map((category, index) => {
-						return (
-							<li key={index} className='tags'>
-								<span>{category}</span>
-							</li>
-						);
-					})}
-				</ul>
+				<select
+					className='options'
+					onChange={(e) => {
+						setProductCategories(() => e.target.value);
+						getProductsRequest();
+					}}
+				>
+					<option value=''>Todas categorias</option>
+					<option value='Capulanas'>Capulanas</option>
+					<option value='Batas'>Batas</option>
+					<option value='Uniformes'>Uniformes</option>
+					<option value='Panos'>Panos</option>
+					<option value='Vestuário'>Vestuário</option>
+					<option value='Cortinas'>Cortinas</option>
+					<option value='Tapetes'>Tapetes</option>
+					<option value='Outros'>Outros</option>
+				</select>
 			</section>
 			<section>
 				<div className='title'>Classes</div>
-				<ul>
-					{categories.classes.map((classe, index) => {
-						return (
-							<li key={index} className='tags'>
-								<span>{classe}</span>
-							</li>
-						);
-					})}
-				</ul>
+				<select
+					className='options'
+					onChange={(e) => {
+						setProductClass(() => e.target.value);
+						getProductsRequest();
+					}}
+				>
+					<option value=''>Todas as classes</option>
+					<option value='Baixa'>Baixa</option>
+					<option value='Média'>Média</option>
+					<option value='Alta'>Alta</option>
+					<option value='Premium'>Premium</option>
+				</select>
 			</section>
 		</ToolboxContainer>
 	);

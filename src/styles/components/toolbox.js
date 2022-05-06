@@ -14,25 +14,25 @@ export const ToolboxContainer = styled.aside`
 	}
 
 	section {
-		ul {
-			display: flex;
-			justify-content: flex-start;
-			flex-flow: row wrap;
-			gap: 15px;
+		.options {
+			width: 210px;
+			height: 38px;
 
-			.tags {
-				padding: 7px 0;
-				span {
-					padding: 5px 8px;
-					border-radius: 3px;
-					font-size: 0.9rem;
-					color: rgb(${({ theme }) => theme.text});
-					background: rgb(${({ theme }) => theme.primary});
+			border: 2px solid rgb(${({ theme }) => theme.primary});
+			border-radius: 5px;
+			padding: 5px;
+			resize: none;
+			background: rgb(${({ theme }) => theme.inner});
 
-					:hover {
-						background: rgb(${({ theme }) => theme.secondary});
-					}
-				}
+			::placeholder {
+				font-size: 1rem;
+				font-style: italic;
+			}
+
+			:focus {
+				box-shadow: 0 0 10px rgb(${({ theme }) => theme.primary});
+				border: 2px solid rgb(${({ theme }) => theme.primary});
+				outline-color: rgb(${({ theme }) => theme.primary});
 			}
 		}
 
@@ -46,7 +46,13 @@ export const ToolboxContainer = styled.aside`
 			justify-content: flex-start;
 			gap: 5px;
 
+			svg {
+				top: 12px;
+			}
+
 			input {
+				width: 210px;
+				height: 38px;
 				border: 2px solid rgb(${({ theme }) => theme.primary});
 				border-radius: 3px;
 				padding: 5px;
