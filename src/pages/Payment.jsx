@@ -7,13 +7,7 @@ import {
 	FaTruckLoading,
 	FaUser,
 } from 'react-icons/fa';
-import {
-	BiAlarm,
-	BiHelpCircle,
-	BiLock,
-	BiMap,
-	BiTrash,
-} from 'react-icons/bi';
+import { BiAlarm, BiHelpCircle, BiLock, BiTrash } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -83,9 +77,10 @@ const Payment = () => {
 					Preencha o formulário correctamente para validar a sua encomenda.
 				</h2>
 				<p>
-					Por favor use uma das formas de contacto descritas abaixo, clique no{' '}
-					<i>link</i> de e-mail ou use o<strong> formulário</strong> de contacto
-					mais abaixo se tiver questões de sobre os nossos produtos e serviços.
+					Por favor, tenha em mente que a inserção de valores inválidos,
+					incorrectos ou que ferem os nossos{' '}
+					<a href='/terms-and-conditions'>termos e condições</a> nesta página,
+					resultará na invalidação da sua encomenda.
 				</p>
 			</section>
 			<article className='messageForm'>
@@ -115,7 +110,7 @@ const Payment = () => {
 					</section>
 					<section>
 						<div>
-							<label>O seu email</label>
+							<label>E-mail</label>
 							<input
 								type={'email'}
 								placeholder='E-mail'
@@ -188,7 +183,7 @@ const Payment = () => {
 									setPayment_value(() => {
 										const value = Number(e.target.value);
 										const price = Number(product_data.product.price);
-										if (!value) return;
+										if (!value || value === undefined) return 0;
 										return value * price;
 									});
 								}}

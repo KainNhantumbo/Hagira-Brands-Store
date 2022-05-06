@@ -163,7 +163,7 @@ const Contact = () => {
 						placeholder='Escreva a sua mensagem aqui...'
 						onChange={(e) => setMessageContent(e.target.value)}
 					></textarea>
-					<label htmlFor='email'>O seu email</label>
+					<label htmlFor='email'>E-mail</label>
 					<input
 						type='text'
 						id='email'

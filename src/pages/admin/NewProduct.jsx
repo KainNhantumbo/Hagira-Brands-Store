@@ -11,7 +11,7 @@ const NewProduct = () => {
 	const [errorStyles, setErrorStyles] = useState({});
 	const [productName, setProductName] = useState('');
 	const [productClass, setProductClass] = useState('Média');
-	const [productDescription, setProductDescription] = useState('');
+	const [productDescription, setProductDescription] = useState(``);
 	const [colorA, setColorA] = useState('');
 	const [colorB, setColorB] = useState('');
 	const [colorC, setColorC] = useState('');
@@ -282,6 +282,7 @@ const NewProduct = () => {
 								<option value='Encomenda'>Encomenda</option>
 								<option value='Estoque'>Estoque</option>
 							</select>
+						
 						</section>
 						{sellingType === 'Encomenda' ? (
 							<section>

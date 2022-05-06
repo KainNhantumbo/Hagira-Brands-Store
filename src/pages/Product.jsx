@@ -183,7 +183,8 @@ const Product = () => {
 							</div>
 							<div>
 								<h5>
-									<FaTruckLoading />Tipo de aquisição
+									<FaTruckLoading />
+									Tipo de aquisição
 								</h5>
 								<span>
 									{product.request_type === 'Estoque'
@@ -196,11 +197,15 @@ const Product = () => {
 									<FaTruck />
 									Data estimada de entrega*
 								</h5>
-								{Number(product.estimated_delivery_day) < 2 ? (
+								{!Number(product.estimated_delivery_day) ? (
+									<span>Não especificado</span>
+								) : null}
+								{Number(product.estimated_delivery_day) === 1 ? (
 									<span>{product.estimated_delivery_day} dia</span>
-								) : (
+								) : null}
+								{Number(product.estimated_delivery_day) > 1 ? (
 									<span>{product.estimated_delivery_day} dias</span>
-								)}
+								) : null}
 							</div>
 							<div>
 								<h5>
@@ -208,7 +213,10 @@ const Product = () => {
 								</h5>
 								<span>Maputo - Matola</span>
 							</div>
-							<span className='advice'>* a data estimada de entrega pode variar de acordo com a quantidade de peças que for encomendar.</span>
+							<span className='advice'>
+								* a data estimada de entrega pode variar de acordo com a
+								quantidade de produtos que for encomendar.
+							</span>
 						</section>
 					</section>
 					<section className='product-actions'>

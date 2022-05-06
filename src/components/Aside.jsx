@@ -3,8 +3,8 @@ import Button from './Button';
 import { BiSearch } from 'react-icons/bi';
 const Aside = () => {
 	const categories = {
-		category: ['Todos', 'Cozinha', 'Panos', 'Batas', 'Cortinas'],
-		classes: ['Alta', 'Média', 'Baixa'],
+		category: ['Todos', 'Uniformes', 'Panos', 'Batas', 'Capulanas'],
+		classes: ['Alta', 'Média', 'Baixa', 'Premium'],
 	};
 
 	return (
