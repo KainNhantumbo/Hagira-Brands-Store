@@ -7,7 +7,6 @@ import axios from 'axios';
 import { FaSyncAlt, FaWind } from 'react-icons/fa';
 
 const Aside = () => {
-	const [productCategories, setProductCategories] = useState('');
 	const [searchQuery, setSearchQuery] = useState('');
 	const { setProducts, setLoadState, getProductsRequest } =
 		useContext(searchContext);
@@ -52,24 +51,58 @@ const Aside = () => {
 			// if is not any class type, cancels the request
 			if (!productClass) return getProductsRequest();
 
-			const server_classesProductsUrl = `http://localhost:4630/api/v1/products?product_class=${productClass}`;
+			const server_url = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_class=${productClass}`;
 			// response data
 			const { data: response } = await axios({
 				method: 'get',
-				url: server_classesProductsUrl,
+				url: server_url,
 			});
 			setProducts(() => response.products);
 
 			// if there are no results, triggers this condition
 			if (response.products.length < 1) {
-				setLoadState(() => ({ icon: <FaWind />, info: 'Sem resultados.' }));
+				setLoadState(() => ({
+					icon: <FaWind />,
+					info: 'Sem resultados para a classe selecionada.',
+				}));
 			}
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
-	const searchTags = async (e) => {};
+	const searchCategories = async (e) => {
+		try {
+			const product_category = e.target.value;
+			// sets loading information
+			setLoadState(() => ({
+				icon: <FaSyncAlt />,
+				info: 'Buscando informações...',
+			}));
+
+			// if is not any class type, cancels the request
+			if (!product_category) return getProductsRequest();
+
+			const server_url = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_category=${product_category}`;
+
+			// response data
+			const { data: response } = await axios({
+				method: 'get',
+				url: server_url,
+			});
+			setProducts(() => response.products);
+
+			// if there are no results, triggers this condition
+			if (response.products.length < 1) {
+				setLoadState(() => ({
+					icon: <FaWind />,
+					info: 'Sem resultados para a categoria selecionada.',
+				}));
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	return (
 		<ToolboxContainer>
@@ -89,13 +122,7 @@ const Aside = () => {
 			</section>
 			<section>
 				<div className='title'>Categorias e Tags</div>
-				<select
-					className='options'
-					onChange={(e) => {
-						setProductCategories(() => e.target.value);
-						getProductsRequest();
-					}}
-				>
+				<select className='options' onChange={(e) => searchCategories(e)}>
 					<option value=''>Todas categorias</option>
 					<option value='Capulanas'>Capulanas</option>
 					<option value='Batas'>Batas</option>
@@ -109,13 +136,7 @@ const Aside = () => {
 			</section>
 			<section>
 				<div className='title'>Classes</div>
-				<select
-					className='options'
-					onChange={(e) => {
-						// setProductClass(() => e.target.value);
-						searchClasses(e);
-					}}
-				>
+				<select className='options' onChange={(e) => searchClasses(e)}>
 					<option value=''>Todas as classes</option>
 					<option value='Baixa'>Baixa</option>
 					<option value='Média'>Média</option>
