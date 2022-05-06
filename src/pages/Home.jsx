@@ -1,13 +1,18 @@
 import Aside from '../components/Aside';
 import { HomeContainer } from '../styles/home';
 import { BiBookmarks, BiBulb, BiPurchaseTag } from 'react-icons/bi';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import { createDate } from '../modules/module-scripts';
-import { FaCartArrowDown } from 'react-icons/fa';
+import { FaCartArrowDown, FaArrowCircleDown } from 'react-icons/fa';
 import Button from '../components/Button';
 
+export const searchContext = createContext();
 const Home = () => {
+	const [loadState, setLoadState] = useState({
+		icon: <FaCartArrowDown />,
+		info: 'Carregando informações...',
+	});
 	const [products, setProducts] = useState([]);
 	const [skipLength, setSkipLength] = useState(0);
 	console.log(skipLength);
@@ -21,7 +26,7 @@ const Home = () => {
 				url: server_getAllProductsUrl,
 			});
 			setProducts(() => data.products);
-			setSkipLength((prev) => data.products.length + prev);
+			setSkipLength(() => data.products.length);
 		} catch (err) {
 			console.log(err);
 		}
@@ -78,15 +83,17 @@ const Home = () => {
 
 	return (
 		<HomeContainer>
-			<Aside />
+			<searchContext.Provider value={setProducts}>
+				<Aside />
+			</searchContext.Provider>
 
 			<article>
 				<h2>Produtos</h2>
 				{products.length < 1 ? (
 					<article className='empty-message'>
-						<FaCartArrowDown />
+						{loadState.icon}
 						<section>
-							<h2>Carregando produtos...</h2>
+							<h2>{loadState.info}</h2>
 						</section>
 					</article>
 				) : null}
@@ -116,7 +123,11 @@ const Home = () => {
 					})}
 				</section>
 				<div className='load-more'>
-					<Button text={'Carregar mais postagens'} event={loadMoreProducts} />
+					<Button
+						text={'Carregar mais postagens'}
+						icon={<FaArrowCircleDown />}
+						event={loadMoreProducts}
+					/>
 				</div>
 			</article>
 		</HomeContainer>

@@ -14,7 +14,7 @@ const Overview = () => {
 	});
 
 	const server_getAmountOfProducts_url =
-		'http://localhost:4630/api/v1/products';
+		'http://localhost:4630/api/v1/products?product_fields=name';
 	const server_getAmountOfVisitors_url =
 		'http://localhost:4630/api/v1/visitors';
 	const server_getAmountOfMessages_url =
@@ -36,7 +36,7 @@ const Overview = () => {
 			});
 			setMessages(() => response_messages.results);
 			setVisitors(() => response_visitors.results);
-			setProduts(() => response_products.results);
+			setProduts(() => response_products.results);	
 		} catch (err) {
 			console.log(err);
 		}

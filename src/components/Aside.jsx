@@ -1,10 +1,31 @@
 import { ToolboxContainer } from '../styles/components/toolbox';
 import Button from './Button';
 import { BiSearch } from 'react-icons/bi';
+import { searchContext } from '../pages/Home';
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+
 const Aside = () => {
 	const categories = {
 		category: ['Todos', 'Uniformes', 'Panos', 'Batas', 'Capulanas'],
 		classes: ['Alta', 'Média', 'Baixa', 'Premium'],
+	};
+
+	const [searchQuery, setSearchQuery] = useState('');
+	const setProducts = useContext(searchContext);
+
+	const server_searchProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_name=${searchQuery}`;
+	const search = async () => {
+		try {
+			const { data: response } = await axios({
+				method: 'get',
+				url: server_searchProductsUrl,
+			});
+			setProducts(() => response.products);
+			console.log(response);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (
@@ -12,8 +33,12 @@ const Aside = () => {
 			<section>
 				<div className='title'>Pesquisa</div>
 				<div className='search'>
-					<input type='search' placeholder='Digite algo aqui...' />
-					<Button text={'Buscar'} icon={<BiSearch />} />
+					<input
+						type='search'
+						placeholder='Digite algo aqui...'
+						onChange={(e) => setSearchQuery(() => e.target.value)}
+					/>
+					<Button text={'Buscar'} icon={<BiSearch />} event={search} />
 				</div>
 			</section>
 			<section>
