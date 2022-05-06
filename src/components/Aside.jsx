@@ -7,25 +7,29 @@ import axios from 'axios';
 import { FaSyncAlt, FaWind } from 'react-icons/fa';
 
 const Aside = () => {
-	const [productClass, setProductClass] = useState('');
 	const [productCategories, setProductCategories] = useState('');
 	const [searchQuery, setSearchQuery] = useState('');
 	const { setProducts, setLoadState, getProductsRequest } =
 		useContext(searchContext);
-	//
+
 	const server_searchProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_name=${searchQuery}`;
 	const search = async () => {
 		try {
+			// if the search input is empty, cancels the request
 			if (searchQuery.length < 1) return;
+			// sets loading information
 			setLoadState(() => ({
 				icon: <FaSyncAlt />,
 				info: 'Procurando...',
 			}));
+			// request
 			const { data: response } = await axios({
 				method: 'get',
 				url: server_searchProductsUrl,
 			});
 			setProducts(() => response.products);
+
+			// if there are no results, triggers this condition
 			if (response.products.length < 1) {
 				setLoadState(() => ({ icon: <FaWind />, info: 'Sem resultados.' }));
 			}
@@ -35,7 +39,35 @@ const Aside = () => {
 		}
 	};
 
-	const searchClasses = async (e) => {};
+	// searches products by classes
+	const searchClasses = async (e) => {
+		try {
+			const productClass = e.target.value;
+			// sets loading information
+			setLoadState(() => ({
+				icon: <FaSyncAlt />,
+				info: 'Buscando informações...',
+			}));
+
+			// if is not any class type, cancels the request
+			if (!productClass) return getProductsRequest();
+
+			const server_classesProductsUrl = `http://localhost:4630/api/v1/products?product_class=${productClass}`;
+			// response data
+			const { data: response } = await axios({
+				method: 'get',
+				url: server_classesProductsUrl,
+			});
+			setProducts(() => response.products);
+
+			// if there are no results, triggers this condition
+			if (response.products.length < 1) {
+				setLoadState(() => ({ icon: <FaWind />, info: 'Sem resultados.' }));
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	const searchTags = async (e) => {};
 
@@ -80,8 +112,8 @@ const Aside = () => {
 				<select
 					className='options'
 					onChange={(e) => {
-						setProductClass(() => e.target.value);
-						getProductsRequest();
+						// setProductClass(() => e.target.value);
+						searchClasses(e);
 					}}
 				>
 					<option value=''>Todas as classes</option>
