@@ -71,6 +71,7 @@ const Aside = () => {
 		}
 	};
 
+	// searches products by category
 	const searchCategories = async (e) => {
 		try {
 			const product_category = e.target.value;
