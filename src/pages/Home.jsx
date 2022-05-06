@@ -18,7 +18,7 @@ const Home = () => {
 	console.log(skipLength);
 
 	// fetch products data from server
-	const server_getAllProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=2&product_skip=0`;
+	const server_getAllProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=5&product_skip=0`;
 	const getProductsRequest = async () => {
 		try {
 			const { data } = await axios({
@@ -32,7 +32,7 @@ const Home = () => {
 		}
 	};
 
-	const server_loadProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=2&product_skip=${skipLength}`;
+	const server_loadProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=5&product_skip=${skipLength}`;
 	const loadMoreProducts = async () => {
 		try {
 			if (skipLength === 10) return;
@@ -83,7 +83,7 @@ const Home = () => {
 
 	return (
 		<HomeContainer>
-			<searchContext.Provider value={setProducts}>
+			<searchContext.Provider value={{setProducts, setLoadState, getProductsRequest}}>
 				<Aside />
 			</searchContext.Provider>
 

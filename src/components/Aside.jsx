@@ -4,6 +4,7 @@ import { BiSearch } from 'react-icons/bi';
 import { searchContext } from '../pages/Home';
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { FaSyncAlt, FaWind } from 'react-icons/fa';
 
 const Aside = () => {
 	const categories = {
@@ -12,16 +13,25 @@ const Aside = () => {
 	};
 
 	const [searchQuery, setSearchQuery] = useState('');
-	const setProducts = useContext(searchContext);
-
+	const { setProducts, setLoadState, getProductsRequest } =
+		useContext(searchContext);
+	// 
 	const server_searchProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_name=${searchQuery}`;
 	const search = async () => {
 		try {
+			if (searchQuery.length < 1) return;
+			setLoadState(() => ({
+				icon: <FaSyncAlt />,
+				info: 'Procurando...',
+			}));
 			const { data: response } = await axios({
 				method: 'get',
 				url: server_searchProductsUrl,
 			});
 			setProducts(() => response.products);
+			if (response.products.length < 1) {
+				setLoadState(() => ({ icon: <FaWind />, info: 'Sem resultados.' }));
+			}
 			console.log(response);
 		} catch (err) {
 			console.log(err);
@@ -36,7 +46,10 @@ const Aside = () => {
 					<input
 						type='search'
 						placeholder='Digite algo aqui...'
-						onChange={(e) => setSearchQuery(() => e.target.value)}
+						onChange={(e) => {
+							setSearchQuery(() => e.target.value);
+							getProductsRequest();
+						}}
 					/>
 					<Button text={'Buscar'} icon={<BiSearch />} event={search} />
 				</div>
