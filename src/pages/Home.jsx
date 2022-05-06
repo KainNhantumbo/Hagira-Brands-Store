@@ -5,12 +5,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { createDate } from '../modules/module-scripts';
 import { FaCartArrowDown } from 'react-icons/fa';
+import Button from '../components/Button';
 
 const Home = () => {
 	const [products, setProducts] = useState([]);
+	const [skipLength, setSkipLength] = useState(0);
+	console.log(skipLength);
 
 	// fetch products data from server
-	const server_getAllProductsUrl = 'http://localhost:4630/api/v1/products';
+	const server_getAllProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=2&product_skip=0`;
 	const getProductsRequest = async () => {
 		try {
 			const { data } = await axios({
@@ -18,6 +21,29 @@ const Home = () => {
 				url: server_getAllProductsUrl,
 			});
 			setProducts(() => data.products);
+			setSkipLength((prev) => data.products.length + prev);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const server_loadProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=2&product_skip=${skipLength}`;
+	const loadMoreProducts = async () => {
+		try {
+			if (skipLength === 10) return;
+			const { data } = await axios({
+				method: 'get',
+				url: server_loadProductsUrl,
+			});
+
+			setProducts((prev) => {
+				let date = data.products;
+				prev.forEach((item) => {
+					date.push(item);
+				});
+				return date;
+			});
+			setSkipLength(() => data.products.length);
 		} catch (err) {
 			console.log(err);
 		}
@@ -89,6 +115,9 @@ const Home = () => {
 						);
 					})}
 				</section>
+				<div className='load-more'>
+					<Button text={'Carregar mais postagens'} event={loadMoreProducts} />
+				</div>
 			</article>
 		</HomeContainer>
 	);

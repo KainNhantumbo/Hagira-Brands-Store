@@ -17,6 +17,14 @@ export const HomeContainer = styled.main`
 			margin-bottom: 12px;
 		}
 
+		.load-more {
+			margin: 0 auto;
+			padding-top: 3ch;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+
 		.empty-message {
 			${() => empty_message_styles}
 		}
@@ -25,6 +33,7 @@ export const HomeContainer = styled.main`
 			display: grid;
 			grid-template-columns: repeat(5, 1fr);
 			justify-items: center;
+			
 			gap: 20px 12px;
 
 			@media screen and (max-width: 1180px) {
