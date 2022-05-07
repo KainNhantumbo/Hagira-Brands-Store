@@ -8,9 +8,10 @@ import {
 	FaUser,
 } from 'react-icons/fa';
 import { BiAlarm, BiHelpCircle, BiLock, BiTrash } from 'react-icons/bi';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { server_url } from '../services/urls';
+import { createDate } from '../modules/module-scripts';
 
 const Payment = () => {
 	const [phone, setPhone] = useState('');
@@ -45,6 +46,7 @@ const Payment = () => {
 				payment_method: paymentMethod,
 				comment,
 				payment_value,
+				date: createDate(),
 			};
 			const server_payment_url = `${server_url}/api/v1/payments`;
 
