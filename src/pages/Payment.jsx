@@ -10,42 +10,60 @@ import {
 import { BiAlarm, BiHelpCircle, BiLock, BiTrash } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { server_url } from '../services/urls';
 
 const Payment = () => {
 	const [phone, setPhone] = useState('');
 	const [comment, setComment] = useState('');
 	const [email, setEmail] = useState('');
-	const [errorStyles, setErrorStyles] = useState();
-	const [messageStatus, setMessageStatus] = useState('');
 	const [name, setName] = useState('');
 	const [surname, setSurname] = useState('');
 	const [payment_value, setPayment_value] = useState('');
-	const [quantity, setQuantity] = useState('');
+	const [quantity, setQuantity] = useState(1);
 	const [city, setCity] = useState('');
 	const [neighbourhood, setNeighbourhood] = useState();
 	const [postNumber, setPostNumber] = useState('');
 	const [adress, setAdress] = useState('');
-	const [paymentMethod, setPaymentMethod] = useState('');
+	const [paymentMethod, setPaymentMethod] = useState('M-PESA');
 	const { id: product_id } = useParams();
 	const [product_data, setProduct_data] = useState([]);
 
-	function log(term) {
-		return console.log(term);
-	}
-	const validateFormInputs = () => {};
-
+	// sends a post request to server
 	const requestPaidProduct = async (e) => {
 		try {
 			e.preventDefault();
+			const paymentData = {
+				name,
+				surname,
+				phone: phone.slice(0, 19),
+				email,
+				quantity,
+				city,
+				neighbourhood,
+				post_number: postNumber,
+				adress,
+				payment_method: paymentMethod,
+				comment,
+				payment_value,
+			};
+			const server_payment_url = `${server_url}/api/v1/payments`;
+
+			await axios({
+				method: 'post',
+				url: server_payment_url,
+				data: paymentData,
+			});
+
+			window.location.assign('/data-sent');
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
 	// request product info
-	const server_product_url = `http://localhost:4630/api/v1/products/${product_id}`;
 	const requestProduct = async () => {
 		try {
+			const server_product_url = `${server_url}/api/v1/products/${product_id}`;
 			const { data: response } = await axios({
 				method: 'get',
 				url: server_product_url,
@@ -95,6 +113,7 @@ const Payment = () => {
 								type='text'
 								placeholder='Escreva o seu nome'
 								maxLength={'30'}
+								required
 								onChange={(e) => setName(() => e.target.value)}
 							/>
 						</div>
@@ -104,6 +123,7 @@ const Payment = () => {
 								type='text'
 								placeholder='Escreva o seu apelido'
 								maxLength={'30'}
+								required
 								onChange={(e) => setSurname(() => e.target.value)}
 							/>
 						</div>
@@ -115,6 +135,7 @@ const Payment = () => {
 								type={'email'}
 								placeholder='E-mail'
 								maxLength={'30'}
+								required
 								onChange={(e) => setEmail(() => e.target.value)}
 							/>
 						</div>
@@ -124,6 +145,7 @@ const Payment = () => {
 								type='number'
 								maxLength='20'
 								placeholder='Número de telefone'
+								required
 								onChange={(e) => setPhone(() => e.target.value)}
 							/>
 						</div>
@@ -137,6 +159,7 @@ const Payment = () => {
 							<input
 								type='text'
 								placeholder='Cidade ou localicade'
+								required
 								onChange={(e) => setCity(() => e.target.value)}
 							/>
 						</div>
@@ -145,6 +168,7 @@ const Payment = () => {
 							<input
 								type='text'
 								placeholder='Bairro'
+								required
 								onChange={(e) => setNeighbourhood(() => e.target.value)}
 							/>
 						</div>
@@ -155,6 +179,7 @@ const Payment = () => {
 							<input
 								type='text'
 								placeholder='Nome e número'
+								required
 								onChange={(e) => setAdress(() => e.target.value)}
 							/>
 						</div>
@@ -163,6 +188,7 @@ const Payment = () => {
 							<input
 								type='text'
 								placeholder='Número do código'
+								maxLength={'10'}
 								onChange={(e) => setPostNumber(() => e.target.value)}
 							/>
 						</div>
@@ -246,7 +272,7 @@ const Payment = () => {
 						placeholder='Escreva quaisquer outras informações que precisar aqui...'
 						onChange={(e) => setComment(e.target.value)}
 					></textarea>
-					<span style={errorStyles}>{messageStatus}</span>
+
 					<span>
 						Ao clicar em <em>Encomendar</em>, você concorda com os nossos{' '}
 						<a href='/terms-and-conditions'>termos de uso</a> e{' '}
