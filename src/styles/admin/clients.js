@@ -39,6 +39,63 @@ export const ClientsContainer = styled.section`
 		}
 	}
 
+	.modal-container {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 3300;
+		padding: 90px 10px;
+		background: rgba(${({ theme }) => theme.background}, 0.5);
+		backdrop-filter: blur(10px);
+		display: grid;
+		place-content: center;
+		place-items: center;
+
+		.message-previewer {
+			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
+			background: rgb(${({ theme }) => theme.background});
+			padding: 10px 15px;
+			max-width: 550px;
+			border-radius: 5px;
+			margin: 0 auto;
+			${() => propagateFlex}
+			gap: 25px;
+			max-height: 550px;
+			overflow-y: auto;
+			position: relative;
+
+			.advice-info {
+				display: flex;
+				justify-items: center;
+				flex-direction: column;
+				align-items: center;
+				gap: 15px;
+
+				svg {
+					width: 45px;
+					height: 45px;
+					color: rgb(${({ theme }) => theme.secondary});
+				}
+			}
+
+			.actions {
+				${() => propagateFlex}
+				gap: 15px;
+				flex-flow: row wrap;
+				justify-content: space-evenly;
+				justify-items: center;
+				span {
+					padding: 0;
+				}
+				button {
+					width: 40%;
+				}
+			}
+		}
+	}
+
 	.payments {
 		display: flex;
 		justify-content: flex-start;

@@ -1,8 +1,10 @@
 import {
+	FaChevronLeft,
 	FaClock,
 	FaEllipsisV,
 	FaEnvelope,
 	FaTrash,
+	FaTrashAlt,
 	FaUser,
 	FaUserFriends,
 } from 'react-icons/fa';
@@ -14,6 +16,8 @@ import { server_url } from '../../services/urls';
 
 const Clients = () => {
 	const [clients, setClients] = useState([]);
+	const [modalState, setModalState] = useState(true);
+	const [id, setId] = useState('');
 
 	// fetch data from server
 	const fetchClients = async () => {
@@ -52,6 +56,36 @@ const Clients = () => {
 
 	return (
 		<ClientsContainer>
+			{modalState ? (
+				<section
+					className='modal-container'
+					onClick={(e) => {
+						if (e.target.classList.contains('modal-container')) {
+							setModalState((prevState) => !prevState);
+						}
+					}}
+				>
+					<div className='message-previewer'>
+						<section className='advice-info'>
+							<FaTrashAlt />
+							<h3>Pretende eliminar permanentemente este pedido?</h3>
+						</section>
+						<section className='actions'>
+							<Button
+								text={'Cancelar'}
+						
+								event={(e) => setModalState((prevState) => !prevState)}
+							/>
+							<Button
+								id={id}
+								text={'Eliminar'}
+							
+								// event={(e) => deleteMessageRequest(e)}
+							/>
+						</section>
+					</div>
+				</section>
+			) : null}
 			<section className='upper'>
 				<h1>
 					Clientes <FaUserFriends />{' '}
