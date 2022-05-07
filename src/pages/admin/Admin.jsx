@@ -16,6 +16,8 @@ import Manage from './Manage';
 import Messages from './Messages';
 import Comunicate from './Comunicate';
 import NewProduct from './NewProduct';
+import Clients from './Clients';
+import { FaUserFriends } from 'react-icons/fa';
 
 const Admin = () => {
 	const [panel, setPanel] = useState(<Overview />);
@@ -44,10 +46,15 @@ const Admin = () => {
 					<BiMessageAltDetail />
 					<span>Mensagens</span>
 				</div>
+				<div onClick={() => setPanel(() => <Clients />)}>
+					<FaUserFriends />
+					<span>Clientes</span>
+				</div>
 				<div onClick={() => setPanel(() => <Manage />)}>
 					<BiCog />
 					<span>Gerenciar</span>
 				</div>
+				
 				<div onClick={() => navigate('/')}>
 					<BiLogOut />
 					<span>Sair</span>
