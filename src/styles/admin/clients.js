@@ -88,6 +88,7 @@ export const ClientsContainer = styled.section`
 				justify-items: center;
 				span {
 					padding: 0;
+					pointer-events: none;
 				}
 				button {
 					width: 40%;
@@ -149,6 +150,12 @@ export const ClientsContainer = styled.section`
 
 				.date {
 					text-align: center;
+				}
+
+				button {
+					span {
+						pointer-events: none;
+					}
 				}
 			}
 

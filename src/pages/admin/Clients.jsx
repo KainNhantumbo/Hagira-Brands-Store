@@ -16,16 +16,17 @@ import { server_url } from '../../services/urls';
 
 const Clients = () => {
 	const [clients, setClients] = useState([]);
-	const [modalState, setModalState] = useState(true);
+	const [modalState, setModalState] = useState(false);
+	const [infoModalState, setinfoModalState] = useState(true);
 	const [id, setId] = useState('');
 
 	// fetch data from server
 	const fetchClients = async () => {
 		try {
-			const server_payments_url = `${server_url}/api/v1/payments`;
+			const payments_url = `${server_url}/api/v1/payments`;
 			const { data: response } = await axios({
 				method: 'get',
-				url: server_payments_url,
+				url: payments_url,
 			});
 
 			setClients(() => response.payments);
@@ -54,6 +55,18 @@ const Clients = () => {
 		return names;
 	};
 
+	const deletePaymentRequest = async (e) => {
+		try {
+			const deletePayments_url = `${server_url}/api/v1/payments/${id}`;
+			console.log(e.target, id);
+			await axios({ method: 'delete', url: deletePayments_url });
+			setModalState((prevState) => !prevState);
+			fetchClients();
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<ClientsContainer>
 			{modalState ? (
@@ -73,14 +86,12 @@ const Clients = () => {
 						<section className='actions'>
 							<Button
 								text={'Cancelar'}
-						
 								event={(e) => setModalState((prevState) => !prevState)}
 							/>
 							<Button
 								id={id}
 								text={'Eliminar'}
-							
-								// event={(e) => deleteMessageRequest(e)}
+								event={(e) => deletePaymentRequest(e)}
 							/>
 						</section>
 					</div>
@@ -93,7 +104,7 @@ const Clients = () => {
 			</section>
 			<section>
 				<ul className='payments'>
-					{clients.map(({ _id, name, surname, quantity, email, date }) => {
+					{clients.map(({ _id, name, surname, email, date }) => {
 						return (
 							<li key={_id}>
 								<div className='common'>
@@ -115,9 +126,19 @@ const Clients = () => {
 									<span className='date'>{date?.date}</span>
 								</div>
 								<div className='common buttons'>
-									<span>
+									<span id={_id}>
 										{' '}
-										<Button id={_id} text={'Rejeitar'} icon={<FaTrash />} />
+										<Button
+											id={_id}
+											text={'Rejeitar'}
+											icon={<FaTrash />}
+											event={(e) => {
+												setId(() => {
+													return e.target.id;
+												});
+												setModalState((prevState) => !prevState);
+											}}
+										/>
 									</span>
 									<span>
 										<Button id={_id} text={'Detalhes'} icon={<FaEllipsisV />} />
