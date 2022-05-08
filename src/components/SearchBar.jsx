@@ -22,7 +22,6 @@ const SearchBar = ({ count, location }) => {
 
 			if (location === 'clients') {
 				setClients(() => response.payments);
-				console.log(response);
 				return;
 			}
 		} catch (err) {
@@ -40,8 +39,8 @@ const SearchBar = ({ count, location }) => {
 						onChange={(e) => {
 							setSearch(() => e.target.value);
 
-							if (location === 'clients') {
-								if (e.target.value.length < 1) {
+							if (e.target.value.length < 1) {
+								if (location === 'clients') {
 									fetchClients();
 									return;
 								}

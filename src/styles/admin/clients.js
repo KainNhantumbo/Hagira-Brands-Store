@@ -21,11 +21,9 @@ export const ClientsContainer = styled.section`
 		}
 	}
 
-	
 	.empty-message {
 		${() => empty_message_styles}
 	}
-
 
 	.main-container {
 		display: grid;
@@ -213,7 +211,6 @@ export const ClientsContainer = styled.section`
 		@media screen and (max-width: 495px) {
 			grid-template-columns: 1fr;
 		}
-	
 
 		li {
 			display: flex;
@@ -233,17 +230,16 @@ export const ClientsContainer = styled.section`
 
 			@media screen and (max-width: 850px) {
 				flex-direction: column;
-				align-items: center;
+				align-items: flex-start;
+				justify-content: start;
+				width: fit-content;
 			}
 
 			.common {
 				display: flex;
 				flex-flow: column wrap;
 				gap: 10px;
-
-				.date {
-					text-align: center;
-				}
+				width: 100%;
 
 				button {
 					span {
@@ -253,8 +249,9 @@ export const ClientsContainer = styled.section`
 			}
 
 			.buttons {
-				flex-flow: row wrap;
+				flex-flow: row nowrap;
 				align-items: center;
+				justify-content: center;
 
 				button {
 					:hover {
@@ -263,6 +260,8 @@ export const ClientsContainer = styled.section`
 					}
 				}
 				@media screen and (max-width: 850px) {
+					flex-flow: row wrap;
+
 					span,
 					button {
 						width: 100%;

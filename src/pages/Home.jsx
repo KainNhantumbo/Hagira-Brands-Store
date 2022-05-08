@@ -28,7 +28,7 @@ const Home = () => {
 			setProducts(() => data.products);
 			setSkipLength(() => data.products.length);
 		} catch (err) {
-			console.log(err);
+			console.log(err);	
 		}
 	};
 

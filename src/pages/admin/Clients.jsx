@@ -10,12 +10,12 @@ import {
 	FaUser,
 	FaUserFriends,
 } from 'react-icons/fa';
-import { ClientsContainer } from '../../styles/admin/clients';
 import React, { useState, useEffect, createContext } from 'react';
+import { ClientsContainer } from '../../styles/admin/clients';
+import { server_url } from '../../services/urls';
 import axios from 'axios';
 import SearchBar from '../../components/SearchBar';
 import Button from '../../components/Button';
-import { server_url } from '../../services/urls';
 
 export const clientsContext = createContext();
 
@@ -101,7 +101,7 @@ const Clients = () => {
 
 		const [paymentDetails] = clients.filter((client) => {
 			if (client._id === id) return client;
-			return;
+			return null;
 		});
 
 		setEmail(() => paymentDetails.email);
