@@ -39,9 +39,31 @@ export const ManageContainer = styled.section`
 		}
 
 		.reseters {
-			
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+
+			div {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-between;
+				align-items: center;
+				box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
+				background: rgb(${({ theme }) => theme.backgroundAlt});
+				border-radius: 5px;
+				padding: 10px;
+				border-radius: 5px;
+
+				:hover {
+					box-shadow: 0 0 15px 0px rgba(${({ theme }) => theme.shadows}, 0.5);
+					transition: all 200ms ease-in-out;
+				}
+
+				@media screen and (max-width: 535px){
+					flex-direction: column;
+					gap: 10px;
+				}
+			}
 		}
-
 	}
-
 `;
