@@ -1,8 +1,10 @@
 import {
 	FaChevronLeft,
+	FaCity,
 	FaClock,
 	FaEllipsisV,
 	FaEnvelope,
+	FaReply,
 	FaTrash,
 	FaTrashAlt,
 	FaUser,
@@ -17,8 +19,23 @@ import { server_url } from '../../services/urls';
 const Clients = () => {
 	const [clients, setClients] = useState([]);
 	const [modalState, setModalState] = useState(false);
-	const [infoModalState, setinfoModalState] = useState(true);
+	const [infoModalState, setInfoModalState] = useState(false);
 	const [id, setId] = useState('');
+
+	// detail states
+	const [email, setEmail] = useState('');
+	const [phone, setPhone] = useState('');
+	const [comment, setComment] = useState('');
+	const [date, setDate] = useState({});
+	const [name, setName] = useState('');
+	const [surname, setSurname] = useState('');
+	const [quantity, setQuantity] = useState('');
+	const [neighbourhood, setNeighbourhood] = useState('');
+	const [paymentMethod, setPaymentMethod] = useState('');
+	const [paymentValue, setPaymentValue] = useState('');
+	const [postNumber, setPostNumber] = useState('');
+	const [city, setCity] = useState('');
+	const [adress, setAdress] = useState();
 
 	// fetch data from server
 	const fetchClients = async () => {
@@ -30,7 +47,6 @@ const Clients = () => {
 			});
 
 			setClients(() => response.payments);
-			console.log(response);
 		} catch (err) {
 			console.log(err);
 		}
@@ -67,36 +83,167 @@ const Clients = () => {
 		}
 	};
 
+	// loads the clients object to show its details
+	const viewPaymentDetails = (e) => {
+		const id = e.target.id;
+
+		const [paymentDetails] = clients.filter((client) => {
+			if (client._id === id) return client;
+			return;
+		});
+
+		setEmail(() => paymentDetails.email);
+		setPhone(() => paymentDetails.phone);
+		setAdress(() => paymentDetails.adress);
+		setCity(() => paymentDetails.city);
+		setComment(() => paymentDetails.comment);
+		setDate(() => paymentDetails.date);
+		setNeighbourhood(() => paymentDetails.neighbourhood);
+		setName(() => paymentDetails.name);
+		setSurname(() => paymentDetails.surname);
+		setPaymentMethod(() => paymentDetails.paymentMethod);
+		setPaymentValue(() => paymentDetails.paymentValue);
+		setPostNumber(() => paymentDetails.post_number);
+		setQuantity(() => paymentDetails.quantity);
+		setInfoModalState((prevState) => !prevState);
+	};
+
+	const ConfirmModal = () => (
+		<section
+			className='modal-container'
+			onClick={(e) => {
+				if (e.target.classList.contains('modal-container')) {
+					setModalState((prevState) => !prevState);
+				}
+			}}
+		>
+			<div className='message-previewer'>
+				<section className='advice-info'>
+					<FaTrashAlt />
+					<h3>Pretende eliminar permanentemente este pedido?</h3>
+				</section>
+				<section className='actions'>
+					<Button
+						text={'Cancelar'}
+						event={(e) => setModalState((prevState) => !prevState)}
+					/>
+					<Button
+						id={id}
+						text={'Eliminar'}
+						event={(e) => deletePaymentRequest(e)}
+					/>
+				</section>
+			</div>
+		</section>
+	);
+
+	const PaymentDetailsModal = () => (
+		<section
+			className='modal-container'
+			onClick={(e) => {
+				if (e.target.classList.contains('modal-container')) {
+					setInfoModalState((prevState) => !prevState);
+				}
+			}}
+		>
+			<div className='message-previewer'>
+				<a
+					href={`mailto:${email}`}
+					className='reply'
+					target={'_blank'}
+					rel='noreferrer'
+				>
+					<FaReply />
+				</a>
+				<div className='headers'>
+					<h2>
+						<strong>Cliente</strong>
+					</h2>
+					<span>
+						<strong>Nome</strong>
+						{`${name} ${surname}`}
+					</span>
+					<span>
+						<strong>E-mail: </strong>
+						{email}
+					</span>
+					<span>
+						<strong>Telefone: </strong>
+						{phone}
+					</span>
+					<h2>
+						<strong>Localização</strong>
+					</h2>
+					<span>
+						<strong>Cidade</strong>
+						<span>{city}</span>
+					</span>
+					<span>
+						<strong>Bairro</strong>
+						{neighbourhood}
+					</span>
+					<span>
+						<strong>Endereço</strong>
+						{adress}
+					</span>
+					{postNumber ? (
+						<span>
+							<strong>Caixa Postal</strong>
+							{postNumber}
+						</span>
+					) : null}
+
+					<h2>
+						<strong>Valores</strong>
+					</h2>
+					<span>
+						<strong>Pago por:</strong>
+						{paymentMethod}
+					</span>
+					<span>
+						<strong>Valor total</strong>
+						{paymentValue}
+					</span>
+					<span>
+						<strong>Quantidade</strong>
+						{quantity}
+					</span>
+				</div>
+				{comment ? (
+					<section className='message'>
+						<h2>
+							<strong>Comentário</strong>
+						</h2>
+						<div>{comment}</div>
+					</section>
+				) : null}
+				<section className='details-footer'>
+					<span>{date?.date}</span>
+					<span>{date?.time}</span>
+				</section>
+				<section className='actions'>
+					<Button
+						text={'Voltar'}
+						icon={<FaChevronLeft />}
+						event={(e) => setInfoModalState((prevState) => !prevState)}
+					/>
+					<Button
+						id={id}
+						text={'Eliminar mensagem'}
+						icon={<FaTrash />}
+						event={(e) => deletePaymentRequest(e)}
+					/>
+				</section>
+			</div>
+		</section>
+	);
+
 	return (
 		<ClientsContainer>
-			{modalState ? (
-				<section
-					className='modal-container'
-					onClick={(e) => {
-						if (e.target.classList.contains('modal-container')) {
-							setModalState((prevState) => !prevState);
-						}
-					}}
-				>
-					<div className='message-previewer'>
-						<section className='advice-info'>
-							<FaTrashAlt />
-							<h3>Pretende eliminar permanentemente este pedido?</h3>
-						</section>
-						<section className='actions'>
-							<Button
-								text={'Cancelar'}
-								event={(e) => setModalState((prevState) => !prevState)}
-							/>
-							<Button
-								id={id}
-								text={'Eliminar'}
-								event={(e) => deletePaymentRequest(e)}
-							/>
-						</section>
-					</div>
-				</section>
-			) : null}
+			{modalState ? <ConfirmModal /> : null}
+
+			{infoModalState ? <PaymentDetailsModal /> : null}
+
 			<section className='upper'>
 				<h1>
 					Clientes <FaUserFriends />{' '}
@@ -141,7 +288,14 @@ const Clients = () => {
 										/>
 									</span>
 									<span>
-										<Button id={_id} text={'Detalhes'} icon={<FaEllipsisV />} />
+										<Button
+											id={_id}
+											text={'Detalhes'}
+											icon={<FaEllipsisV />}
+											event={(e) => {
+												viewPaymentDetails(e);
+											}}
+										/>
 									</span>
 								</div>
 							</li>
