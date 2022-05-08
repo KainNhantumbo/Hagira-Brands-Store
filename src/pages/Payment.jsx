@@ -47,6 +47,9 @@ const Payment = () => {
 				comment,
 				payment_value,
 				date: createDate(),
+				paid_product_id: product_data.product._id,
+				paid_product_name: product_data.product.name,
+				paid_product_price: product_data.product.price,
 			};
 			const server_payment_url = `${server_url}/api/v1/payments`;
 

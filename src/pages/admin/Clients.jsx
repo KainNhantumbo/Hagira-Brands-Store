@@ -36,6 +36,9 @@ const Clients = () => {
 	const [postNumber, setPostNumber] = useState('');
 	const [city, setCity] = useState('');
 	const [adress, setAdress] = useState();
+	const [paid_id, setPaid_id] = useState('');
+	const [paid_name, setPaid_name] = useState('');
+	const [paid_price, setPaid_price] = useState('');
 
 	// fetch data from server
 	const fetchClients = async () => {
@@ -101,11 +104,14 @@ const Clients = () => {
 		setNeighbourhood(() => paymentDetails.neighbourhood);
 		setName(() => paymentDetails.name);
 		setSurname(() => paymentDetails.surname);
-		setPaymentMethod(() => paymentDetails.paymentMethod);
-		setPaymentValue(() => paymentDetails.paymentValue);
+		setPaymentMethod(() => paymentDetails.payment_method);
+		setPaymentValue(() => paymentDetails.payment_value);
 		setPostNumber(() => paymentDetails.post_number);
 		setQuantity(() => paymentDetails.quantity);
 		setInfoModalState((prevState) => !prevState);
+		setPaid_id(() => paymentDetails.paid_product_id);
+		setPaid_name(() => paymentDetails.paid_product_name);
+		setPaid_price(() => paymentDetails.paid_product_price);
 	};
 
 	const ConfirmModal = () => (
@@ -139,9 +145,9 @@ const Clients = () => {
 
 	const PaymentDetailsModal = () => (
 		<section
-			className='modal-container'
+			className='modal_info-container'
 			onClick={(e) => {
-				if (e.target.classList.contains('modal-container')) {
+				if (e.target.classList.contains('modal_info-container')) {
 					setInfoModalState((prevState) => !prevState);
 				}
 			}}
@@ -157,10 +163,10 @@ const Clients = () => {
 				</a>
 				<div className='headers'>
 					<h2>
-						<strong>Cliente</strong>
+						<strong>Dados do Cliente</strong>
 					</h2>
 					<span>
-						<strong>Nome</strong>
+						<strong>Nome: </strong>
 						{`${name} ${surname}`}
 					</span>
 					<span>
@@ -172,66 +178,80 @@ const Clients = () => {
 						{phone}
 					</span>
 					<h2>
-						<strong>Localização</strong>
+						<strong>Endereço de Entrega</strong>
 					</h2>
 					<span>
-						<strong>Cidade</strong>
+						<strong>Cidade: </strong>
 						<span>{city}</span>
 					</span>
 					<span>
-						<strong>Bairro</strong>
+						<strong>Bairro: </strong>
 						{neighbourhood}
 					</span>
 					<span>
-						<strong>Endereço</strong>
+						<strong>Endereço: </strong>
 						{adress}
 					</span>
 					{postNumber ? (
 						<span>
-							<strong>Caixa Postal</strong>
+							<strong>Caixa Postal: </strong>
 							{postNumber}
 						</span>
 					) : null}
 
 					<h2>
-						<strong>Valores</strong>
+						<strong>Detalhes do Produto Pago</strong>
 					</h2>
 					<span>
-						<strong>Pago por:</strong>
+						<strong>ID do Producto: </strong>
+						{paid_id}
+					</span>
+					<span>
+						<strong>Nome do Produto: </strong>
+						{paid_name}
+					</span>
+					<span>
+						<strong>Preço do Produto: </strong>
+						{paid_price},00 MT
+					</span>
+
+					<h2>
+						<strong>Detalhes do Pagamento</strong>
+					</h2>
+					<span>
+						<strong>Pago por: </strong>
 						{paymentMethod}
 					</span>
 					<span>
-						<strong>Valor total</strong>
-						{paymentValue}
+						<strong>Valor total: </strong>
+						{paymentValue},00 MT
 					</span>
 					<span>
-						<strong>Quantidade</strong>
+						<strong>Quantidade: </strong>
 						{quantity}
 					</span>
 				</div>
 				{comment ? (
 					<section className='message'>
 						<h2>
-							<strong>Comentário</strong>
+							<strong>Comentário do Cliente</strong>
 						</h2>
 						<div>{comment}</div>
 					</section>
 				) : null}
 				<section className='details-footer'>
-					<span>{date?.date}</span>
-					<span>{date?.time}</span>
+					<span>
+						<strong>Data:</strong> {date?.date}
+					</span>
+					<span>
+						<strong>Hora:</strong> {date?.time}
+					</span>
 				</section>
 				<section className='actions'>
 					<Button
 						text={'Voltar'}
 						icon={<FaChevronLeft />}
 						event={(e) => setInfoModalState((prevState) => !prevState)}
-					/>
-					<Button
-						id={id}
-						text={'Eliminar mensagem'}
-						icon={<FaTrash />}
-						event={(e) => deletePaymentRequest(e)}
 					/>
 				</section>
 			</div>
