@@ -8,6 +8,8 @@ import axios from 'axios';
 const SearchBar = () => {
 	const [count, setCount] = useState(0);
 	const [sort, setSort] = useState('name');
+  const [search, setSearch] = useState('');
+
 
 	return (
 		<SearchBarContainer>
@@ -21,8 +23,8 @@ const SearchBar = () => {
 					<select>
 						<option value='name'>Nome</option>
 						<option value='-name'>Nome Decrescente</option>
-						<option value='date'>Data</option>
-						<option value='-date'>Data Decrescente</option>
+						<option value='createdAt'>Data</option>
+						<option value='-createdAt'>Data Decrescente</option>
 					</select>
 				</div>
 			</section>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { propagateFlex } from './messages';
+import { empty_message_styles } from './messages';
 
 export const ClientsContainer = styled.section`
 	min-height: 100vh;
@@ -19,6 +20,12 @@ export const ClientsContainer = styled.section`
 			left: 0;
 		}
 	}
+
+	
+	.empty-message {
+		${() => empty_message_styles}
+	}
+
 
 	.main-container {
 		display: grid;

@@ -3,11 +3,13 @@ import {
 	FaClock,
 	FaEllipsisV,
 	FaEnvelope,
+	FaParachuteBox,
 	FaReply,
 	FaTrash,
 	FaTrashAlt,
 	FaUser,
 	FaUserFriends,
+	FaWind,
 } from 'react-icons/fa';
 import { ClientsContainer } from '../../styles/admin/clients';
 import React, { useState, useEffect } from 'react';
@@ -276,59 +278,70 @@ const Clients = () => {
 				</h1>
 			</section>
 			<section className='main-container'>
-				<SearchBar/>
-				<ul className='payments'>
-					{clients.map(({ _id, name, surname, email, date }) => {
-						return (
-							<li key={_id}>
-								<div className='common'>
-									<h3>
-										<FaUser /> Nome
-									</h3>
-									<span>{nameSlicer(name, surname)}</span>
-								</div>
-								<div className='common'>
-									<h3>
-										<FaEnvelope /> E-mail
-									</h3>
-									<span>{emailSlicer(email)}</span>
-								</div>
-								<div className='common'>
-									<h3>
-										<FaClock /> Data do Pedido
-									</h3>
-									<span className='date'>{date?.date}</span>
-								</div>
-								<div className='common buttons'>
-									<span id={_id}>
-										{' '}
-										<Button
-											id={_id}
-											text={'Rejeitar'}
-											icon={<FaTrash />}
-											event={(e) => {
-												setId(() => {
-													return e.target.id;
-												});
-												setModalState((prevState) => !prevState);
-											}}
-										/>
-									</span>
-									<span>
-										<Button
-											id={_id}
-											text={'Detalhes'}
-											icon={<FaEllipsisV />}
-											event={(e) => {
-												viewPaymentDetails(e);
-											}}
-										/>
-									</span>
-								</div>
-							</li>
-						);
-					})}
-				</ul>
+				<SearchBar />
+
+				{clients.length < 1 ? (
+					<article className='empty-message'>
+						<FaParachuteBox />
+						<section>
+							<h2>Sem Clientes.</h2>
+							<p>Estarão aqui os relatórios de pagamento que for a receber.</p>
+						</section>
+					</article>
+				) : (
+					<ul className='payments'>
+						{clients.map(({ _id, name, surname, email, date }) => {
+							return (
+								<li key={_id}>
+									<div className='common'>
+										<h3>
+											<FaUser /> Nome
+										</h3>
+										<span>{nameSlicer(name, surname)}</span>
+									</div>
+									<div className='common'>
+										<h3>
+											<FaEnvelope /> E-mail
+										</h3>
+										<span>{emailSlicer(email)}</span>
+									</div>
+									<div className='common'>
+										<h3>
+											<FaClock /> Data do Pedido
+										</h3>
+										<span className='date'>{date?.date}</span>
+									</div>
+									<div className='common buttons'>
+										<span id={_id}>
+											{' '}
+											<Button
+												id={_id}
+												text={'Rejeitar'}
+												icon={<FaTrash />}
+												event={(e) => {
+													setId(() => {
+														return e.target.id;
+													});
+													setModalState((prevState) => !prevState);
+												}}
+											/>
+										</span>
+										<span>
+											<Button
+												id={_id}
+												text={'Detalhes'}
+												icon={<FaEllipsisV />}
+												event={(e) => {
+													viewPaymentDetails(e);
+												}}
+											/>
+										</span>
+									</div>
+								</li>
+							);
+						})}
+					</ul>
+				)}
 			</section>
 		</ClientsContainer>
 	);
