@@ -9,14 +9,15 @@ import {
 	FaTrashAlt,
 	FaUser,
 	FaUserFriends,
-	FaWind,
 } from 'react-icons/fa';
 import { ClientsContainer } from '../../styles/admin/clients';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import SearchBar from '../../components/SearchBar';
 import Button from '../../components/Button';
 import { server_url } from '../../services/urls';
+
+export const clientsContext = createContext();
 
 const Clients = () => {
 	const [clients, setClients] = useState([]);
@@ -278,7 +279,9 @@ const Clients = () => {
 				</h1>
 			</section>
 			<section className='main-container'>
-				<SearchBar />
+				<clientsContext.Provider value={[setClients, fetchClients]}>
+					<SearchBar count={clients.length} location={'clients'} />
+				</clientsContext.Provider>
 
 				{clients.length < 1 ? (
 					<article className='empty-message'>
