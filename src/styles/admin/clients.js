@@ -20,6 +20,11 @@ export const ClientsContainer = styled.section`
 		}
 	}
 
+	.main-container {
+		display: grid;
+		gap: 20px;
+	}
+
 	.upper {
 		${() => propagateFlex}
 		gap: 10px;
@@ -201,10 +206,12 @@ export const ClientsContainer = styled.section`
 		@media screen and (max-width: 495px) {
 			grid-template-columns: 1fr;
 		}
+	
 
 		li {
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 			gap: 8px;
 			box-shadow: 0 0 2px rgb(${({ theme }) => theme.shadows});
 			background: rgb(${({ theme }) => theme.backgroundAlt});
@@ -224,10 +231,8 @@ export const ClientsContainer = styled.section`
 
 			.common {
 				display: flex;
-				justify-content: space-evenly;
 				flex-flow: column wrap;
 				gap: 10px;
-				overflow: hidden;
 
 				.date {
 					text-align: center;

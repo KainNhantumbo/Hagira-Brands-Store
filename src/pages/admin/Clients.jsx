@@ -1,6 +1,5 @@
 import {
 	FaChevronLeft,
-	FaCity,
 	FaClock,
 	FaEllipsisV,
 	FaEnvelope,
@@ -13,6 +12,7 @@ import {
 import { ClientsContainer } from '../../styles/admin/clients';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import SearchBar from '../../components/SearchBar';
 import Button from '../../components/Button';
 import { server_url } from '../../services/urls';
 
@@ -66,6 +66,11 @@ const Clients = () => {
 		});
 	}, []);
 
+	const emailSlicer = (email) => {
+		if (email.length > 20) return email.slice(0, 19) + '...';
+		return email;
+	};
+
 	const nameSlicer = (name, surname) => {
 		let names = `${name} ${surname}`;
 		if (names.length > 15) {
@@ -74,6 +79,7 @@ const Clients = () => {
 		return names;
 	};
 
+	// deletes a payment
 	const deletePaymentRequest = async (e) => {
 		try {
 			const deletePayments_url = `${server_url}/api/v1/payments/${id}`;
@@ -269,7 +275,8 @@ const Clients = () => {
 					Clientes <FaUserFriends />{' '}
 				</h1>
 			</section>
-			<section>
+			<section className='main-container'>
+				<SearchBar/>
 				<ul className='payments'>
 					{clients.map(({ _id, name, surname, email, date }) => {
 						return (
@@ -284,7 +291,7 @@ const Clients = () => {
 									<h3>
 										<FaEnvelope /> E-mail
 									</h3>
-									<span>{email}</span>
+									<span>{emailSlicer(email)}</span>
 								</div>
 								<div className='common'>
 									<h3>

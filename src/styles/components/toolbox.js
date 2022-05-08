@@ -17,7 +17,6 @@ export const ToolboxContainer = styled.aside`
 		.options {
 			width: 210px;
 			height: 38px;
-
 			border: 2px solid rgb(${({ theme }) => theme.primary});
 			border-radius: 5px;
 			padding: 5px;
