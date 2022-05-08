@@ -21,4 +21,27 @@ export const ManageContainer = styled.section`
 			}
 		}
 	}
+
+	.reseters-container {
+		display: flex;
+		justify-content: flex-start;
+		flex-direction: column;
+		gap: 10px;
+
+		.danger {
+			color: red;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 500;
+			line-height: 1.6rem;
+		}
+
+		.reseters {
+			
+		}
+
+	}
+
 `;

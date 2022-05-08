@@ -210,10 +210,10 @@ export const ClientsContainer = styled.section`
 			background: rgb(${({ theme }) => theme.backgroundAlt});
 			border-radius: 5px;
 			padding: 10px;
-			width: fit-content;
+			width: 100%;
 
 			:hover {
-				box-shadow: 0 0 15px 0px rgba(${({ theme }) => theme.shadows}, .5);
+				box-shadow: 0 0 15px 0px rgba(${({ theme }) => theme.shadows}, 0.5);
 				transition: all 200ms ease-in-out;
 			}
 
@@ -227,7 +227,7 @@ export const ClientsContainer = styled.section`
 				justify-content: space-evenly;
 				flex-flow: column wrap;
 				gap: 10px;
-				
+				overflow: hidden;
 
 				.date {
 					text-align: center;
