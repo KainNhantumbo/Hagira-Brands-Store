@@ -19,6 +19,11 @@ export const ProductsContainer = styled.section`
 		}
 	}
 
+	.main-container {
+		display: grid;
+		gap: 20px;
+	}
+
 	.empty-message {
 		${() => empty_message_styles}
 	}

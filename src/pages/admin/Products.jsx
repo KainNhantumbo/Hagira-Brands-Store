@@ -1,5 +1,5 @@
 import { ProductsContainer } from '../../styles/admin/products';
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	FaClock,
 	FaDollarSign,
@@ -13,8 +13,6 @@ import axios from 'axios';
 import Button from '../../components/Button';
 import { server_url } from '../../services/urls';
 import SearchBar from '../../components/SearchBar';
-
-export const productsContext = createContext();
 
 const Products = () => {
 	const [products, setProducts] = useState([]);
@@ -54,7 +52,13 @@ const Products = () => {
 					Produtos <BiCollection />{' '}
 				</h1>
 			</section>
-			<section>
+			<section className='main-container'>
+				<SearchBar
+					fetcher={fetchProducts}
+					seter={setProducts}
+					location={'products'}
+					count={products.length}
+				/>
 				{products.length < 1 ? (
 					<article className='empty-message'>
 						<FaStore />
@@ -86,7 +90,9 @@ const Products = () => {
 											<FaClock />
 											Publicado
 										</h3>
-										<span className='date'>{date?.date}</span>
+										<span className='date'>
+											{date?.date} {date?.time}{' '}
+										</span>
 									</div>
 									<div className='common buttons'>
 										<span id={_id}>

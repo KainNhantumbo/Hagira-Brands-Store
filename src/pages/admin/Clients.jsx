@@ -275,13 +275,16 @@ const Clients = () => {
 
 			<section className='upper'>
 				<h1>
-					Clientes <FaUserFriends />{' '}
+					Clientes <FaUserFriends />
 				</h1>
 			</section>
 			<section className='main-container'>
-				<clientsContext.Provider value={[setClients, fetchClients]}>
-					<SearchBar count={clients.length} location={'clients'} />
-				</clientsContext.Provider>
+				<SearchBar
+					seter={setClients}
+					fetcher={fetchClients}
+					count={clients.length}
+					location={'clients'}
+				/>
 
 				{clients.length < 1 ? (
 					<article className='empty-message'>
@@ -312,7 +315,9 @@ const Clients = () => {
 										<h3>
 											<FaClock /> Data do Pedido
 										</h3>
-										<span className='date'>{date?.date}</span>
+										<span className='date'>
+											{date?.date} {date?.time}{' '}
+										</span>
 									</div>
 									<div className='common buttons'>
 										<span id={_id}>
