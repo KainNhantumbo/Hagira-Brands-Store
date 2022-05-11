@@ -65,6 +65,10 @@ export const ManageContainer = styled.section`
 			overflow-y: auto;
 			position: relative;
 
+			h3 {
+				padding: 0;
+			}
+			
 			.advice-info {
 				display: flex;
 				justify-items: center;
@@ -75,7 +79,7 @@ export const ManageContainer = styled.section`
 				svg {
 					width: 45px;
 					height: 45px;
-					color: rgb(${({ theme }) => theme.secondary});
+					color: red;
 				}
 			}
 
@@ -101,6 +105,7 @@ export const ManageContainer = styled.section`
 		justify-content: flex-start;
 		flex-direction: column;
 		gap: 10px;
+		user-select: none;
 
 		.danger {
 			color: red;
@@ -111,7 +116,7 @@ export const ManageContainer = styled.section`
 			font-weight: 500;
 			line-height: 1.6rem;
 		}
-
+		
 		.reseters {
 			display: flex;
 			flex-direction: column;
@@ -136,6 +141,12 @@ export const ManageContainer = styled.section`
 				@media screen and (max-width: 570px){
 					flex-direction: column;
 					gap: 20px;
+				}
+
+				button {
+					span {
+						pointer-events: none;
+					}
 				}
 			}
 		}

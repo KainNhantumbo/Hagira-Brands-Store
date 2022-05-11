@@ -1,13 +1,13 @@
 import { ManageContainer } from '../../styles/admin/manage';
 import React, { useState, useEffect } from 'react';
-import { FaCogs, FaInfoCircle, FaTrash, FaTrashAlt } from 'react-icons/fa';
+import { FaCogs, FaExclamationCircle, FaExclamationTriangle, FaInfoCircle, FaTrash, FaTrashAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { server_url } from '../../services/urls';
 import Button from '../../components/Button';
 
 const Manage = () => {
 	const [modalState, setModalState] = useState(false);
-	const [actionFunction, setActionFunction] = useState();
+	const [url, setUrl] = useState('');
 
 	// runs on every render
 	useEffect(() => {
@@ -20,44 +20,12 @@ const Manage = () => {
 	}, []);
 
 	// deletes all messages
-	const deleteAllMessages = async () => {
+	const eraseData = async (e) => {
 		try {
-			const delete_url = `${server_url}/api/v1/messages`;
+			const delete_url = e.target.id;
 			const response = await axios({ method: 'delete', url: delete_url });
-			console.log('dast');
-		} catch (err) {
-			console.log(err);
-		}
-	};
-
-	// deletes all visitors history
-	const deleteVisitors = async () => {
-		try {
-			const delete_url = `${server_url}/api/v1/visitors`;
-			const response = await axios({ method: 'delete', url: delete_url });
-			console.log('dast');
-		} catch (err) {
-			console.log(err);
-		}
-	};
-
-	// deletes all newsletter subscriptors
-	const deleteSubscriptors = async () => {
-		try {
-			const delete_url = `${server_url}/api/v1/newsletter`;
-			const response = await axios({ method: 'delete', url: delete_url });
-			console.log('dast');
-		} catch (err) {
-			console.log(err);
-		}
-	};
-
-	// deletes all products
-	const deleteProducts = async () => {
-		try {
-			const delete_url = `${server_url}/api/v1/products`;
-			const response = await axios({ method: 'delete', url: delete_url });
-			console.log('dast');
+			console.log(response.status);
+			setModalState((prevState) => !prevState)
 		} catch (err) {
 			console.log(err);
 		}
@@ -74,15 +42,15 @@ const Manage = () => {
 		>
 			<div className='message-previewer'>
 				<section className='advice-info'>
-					<FaTrashAlt />
-					<h3>Pretende eliminar permanentemente este pedido?</h3>
+					<FaExclamationTriangle />
+					<h3>Pretende eliminar os dados permanentemente?</h3>
 				</section>
 				<section className='actions'>
 					<Button
 						text={'Cancelar'}
 						event={(e) => setModalState((prevState) => !prevState)}
 					/>
-					<Button text={'Eliminar'} event={(e) => [actionFunction()]} />
+					<Button id={url} text={'Eliminar'} event={eraseData} />
 				</section>
 			</div>
 		</section>
@@ -93,7 +61,7 @@ const Manage = () => {
 			{modalState ? <ConfirmModal /> : null}
 			<section className='upper'>
 				<h1>
-					Gerenciar <FaCogs />{' '}
+					Gerenciar <FaCogs />
 				</h1>
 			</section>
 			<section className='reseters-container'>
@@ -106,11 +74,18 @@ const Manage = () => {
 				<section className='reseters'>
 					<div>
 						<h3>
-							{' '}
 							<FaInfoCircle /> Eliminar todos os produtos da loja
 						</h3>
 						<span>
-							<Button text={'Eliminar'} icon={<FaTrash />} />
+							<Button
+								id={`${server_url}/api/v1/products`}
+								text={'Eliminar'}
+								icon={<FaTrash />}
+								event={(e) => {
+									setUrl(e.target.id);
+									setModalState((prevState) => !prevState);
+								}}
+							/>
 						</span>
 					</div>
 					<div>
@@ -119,7 +94,15 @@ const Manage = () => {
 							Resetar o histórico de visitas à loja
 						</h3>
 						<span>
-							<Button text={'Eliminar'} icon={<FaTrash />} />
+							<Button
+								id={`${server_url}/api/v1/visitors`}
+								text={'Eliminar'}
+								icon={<FaTrash />}
+								event={(e) => {
+									setUrl(e.target.id);
+									setModalState((prevState) => !prevState);
+								}}
+							/>
 						</span>
 					</div>
 					<div>
@@ -128,7 +111,15 @@ const Manage = () => {
 							Eliminar todos subscritores de newsletter
 						</h3>
 						<span>
-							<Button text={'Eliminar'} icon={<FaTrash />} />
+							<Button
+								id={`${server_url}/api/v1/newsletter`}
+								text={'Eliminar'}
+								icon={<FaTrash />}
+								event={(e) => {
+									setUrl(e.target.id);
+									setModalState((prevState) => !prevState);
+								}}
+							/>
 						</span>
 					</div>
 					<div>
@@ -137,7 +128,15 @@ const Manage = () => {
 							Eliminar todas as mensagens
 						</h3>
 						<span>
-							<Button text={'Eliminar'} icon={<FaTrash />} />
+							<Button
+								id={`${server_url}/api/v1/messages`}
+								text={'Eliminar'}
+								icon={<FaTrash />}
+								event={(e) => {
+									setUrl(e.target.id);
+									setModalState((prevState) => !prevState);
+								}}
+							/>
 						</span>
 					</div>
 				</section>
