@@ -320,6 +320,16 @@ const Clients = () => {
 										</span>
 									</div>
 									<div className='common buttons'>
+										<span>
+											<Button
+												id={_id}
+												text={'Detalhes'}
+												icon={<FaEllipsisV />}
+												event={(e) => {
+													viewPaymentDetails(e);
+												}}
+											/>
+										</span>
 										<span id={_id}>
 											{' '}
 											<Button
@@ -331,16 +341,6 @@ const Clients = () => {
 														return e.target.id;
 													});
 													setModalState((prevState) => !prevState);
-												}}
-											/>
-										</span>
-										<span>
-											<Button
-												id={_id}
-												text={'Detalhes'}
-												icon={<FaEllipsisV />}
-												event={(e) => {
-													viewPaymentDetails(e);
 												}}
 											/>
 										</span>

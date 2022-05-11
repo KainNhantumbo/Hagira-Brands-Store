@@ -1,6 +1,6 @@
 import { ManageContainer } from '../../styles/admin/manage';
 import React, { useState, useEffect } from 'react';
-import { FaCogs, FaTrash, FaTrashAlt } from 'react-icons/fa';
+import { FaCogs, FaInfoCircle, FaTrash, FaTrashAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { server_url } from '../../services/urls';
 import Button from '../../components/Button';
@@ -63,7 +63,6 @@ const Manage = () => {
 		}
 	};
 
-
 	const ConfirmModal = () => (
 		<section
 			className='modal-container'
@@ -106,25 +105,37 @@ const Manage = () => {
 				</p>
 				<section className='reseters'>
 					<div>
-						<h3>Elimninar Produtos da Loja</h3>
+						<h3>
+							{' '}
+							<FaInfoCircle /> Eliminar todos os produtos da loja
+						</h3>
 						<span>
 							<Button text={'Eliminar'} icon={<FaTrash />} />
 						</span>
 					</div>
 					<div>
-						<h3>Resetar o histórico de visitas à Loja</h3>
+						<h3>
+							<FaInfoCircle />
+							Resetar o histórico de visitas à loja
+						</h3>
 						<span>
 							<Button text={'Eliminar'} icon={<FaTrash />} />
 						</span>
 					</div>
 					<div>
-						<h3>Eliminar todos subscritores de Newsletter</h3>
+						<h3>
+							<FaInfoCircle />
+							Eliminar todos subscritores de newsletter
+						</h3>
 						<span>
 							<Button text={'Eliminar'} icon={<FaTrash />} />
 						</span>
 					</div>
 					<div>
-						<h3>Eliminar todas as mensagens</h3>
+						<h3>
+							<FaInfoCircle />
+							Eliminar todas as mensagens
+						</h3>
 						<span>
 							<Button text={'Eliminar'} icon={<FaTrash />} />
 						</span>

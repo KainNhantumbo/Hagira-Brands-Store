@@ -95,19 +95,6 @@ const Products = () => {
 										</span>
 									</div>
 									<div className='common buttons'>
-										<span id={_id}>
-											<Button
-												id={_id}
-												text={'Rejeitar'}
-												icon={<FaTrash />}
-												event={(e) => {
-													setId(() => {
-														return e.target.id;
-													});
-													setModalState((prevState) => !prevState);
-												}}
-											/>
-										</span>
 										<span>
 											<Button
 												id={_id}
@@ -115,6 +102,19 @@ const Products = () => {
 												icon={<FaEllipsisV />}
 												event={(e) => {
 													// viewPaymentDetails(e);
+												}}
+											/>
+										</span>
+										<span id={_id}>
+											<Button
+												id={_id}
+												text={'Eliminar'}
+												icon={<FaTrash />}
+												event={(e) => {
+													setId(() => {
+														return e.target.id;
+													});
+													setModalState((prevState) => !prevState);
 												}}
 											/>
 										</span>

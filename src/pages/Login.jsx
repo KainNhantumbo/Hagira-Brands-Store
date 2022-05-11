@@ -1,30 +1,31 @@
 import { LoginContainer } from '../styles/login';
 import Button from '../components/Button';
-import {
-	BiLogIn,
-	BiEnvelope,
-	BiLockAlt,
-	BiChevronLeft,
-} from 'react-icons/bi';
+import { BiLogIn, BiEnvelope, BiLockAlt, BiChevronLeft } from 'react-icons/bi';
 import { useState, useContext } from 'react';
 import { Context } from '../App';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [emailError, setEmailError] = useState('');
-	const [passwordError, setPasswordError] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 	const setUser = useContext(Context);
 
+	const [formData, setFormData] = useState({ email: '', password: '' });
+
 	const navigate = useNavigate();
+
+	const populateData = (e) => {
+		setFormData((prevState) => ({
+			...prevState,
+			[e.target.name]: e.target.value,
+		}));
+	};
 
 	// sets the user data form login
 	const log = (e) => {
 		e.preventDefault();
-		setUser({ email, password });
-		console.log({ email, password });
-		navigate('/admin');
+		setUser(formData);
+		// navigate('/admin');
+		console.log(formData);
 	};
 
 	return (
@@ -43,10 +44,8 @@ const Login = () => {
 					id='email'
 					name='email'
 					placeholder='Digite os seu email'
-					onChange={(e) => setEmail(() => e.target.value)}
+					onChange={populateData}
 				/>
-				<span className='error'>{emailError}</span>
-
 				<label htmlFor='password'>
 					<BiLockAlt />
 					<span>Password</span>
@@ -56,16 +55,16 @@ const Login = () => {
 					id='password'
 					name='password'
 					placeholder='Digite a sua senha'
-					onChange={(e) => setPassword(() => e.target.value)}
+					onChange={populateData}
 				/>
-				<span className='error'>{passwordError}</span>
+				<span className='error'>{errorMessage}</span>
 
 				<section className='buttons'>
 					<Button text={'Entrar'} icon={<BiLogIn />} type={'submit'} />
 					<Button
 						event={(e) => {
 							e.preventDefault();
-							navigate('/');
+							// navigate('/');
 						}}
 						text={'Voltar'}
 						icon={<BiChevronLeft />}

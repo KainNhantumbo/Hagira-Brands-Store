@@ -3,6 +3,22 @@ import { propagateFlex } from './messages';
 
 export const ManageContainer = styled.section`
 	min-height: 100vh;
+
+	h3 {
+		position: relative;
+		padding-left: 25px;
+		font-weight: 500;
+
+		svg {
+			color: rgb(${({ theme }) => theme.primary});
+			position: absolute;
+			width: 18px;
+			height: 18px;
+			top: -0.5px;
+			left: 0;
+		}
+	}
+
 	.upper {
 		${() => propagateFlex}
 		gap: 10px;
@@ -117,9 +133,9 @@ export const ManageContainer = styled.section`
 					transition: all 200ms ease-in-out;
 				}
 
-				@media screen and (max-width: 535px){
+				@media screen and (max-width: 570px){
 					flex-direction: column;
-					gap: 10px;
+					gap: 20px;
 				}
 			}
 		}

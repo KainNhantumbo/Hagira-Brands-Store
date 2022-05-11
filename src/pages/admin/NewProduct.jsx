@@ -4,27 +4,31 @@ import { BiBookmarkPlus, BiEdit, BiUpload } from 'react-icons/bi';
 import React, { useState, useEffect } from 'react';
 import { createDate } from '../../modules/module-scripts';
 import axios from 'axios';
+import { server_url } from '../../services/urls';
 import Compressor from 'compressorjs';
+import { server_url } from '../../services/urls';
 
 const NewProduct = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [errorStyles, setErrorStyles] = useState({});
-	const [productName, setProductName] = useState('');
-	const [productClass, setProductClass] = useState('Média');
-	const [productDescription, setProductDescription] = useState(``);
 	const [colorA, setColorA] = useState('');
 	const [colorB, setColorB] = useState('');
 	const [colorC, setColorC] = useState('');
 	const [colorD, setColorD] = useState('');
-	const [defaultColor, setDefaultColor] = useState('');
-	const [size, setSize] = useState('');
-	const [price, setPrice] = useState('');
-	const [productCategory, setproductCategory] = useState('Outros');
-	const [sellingType, setSellingType] = useState('Encomenda');
-	const [fabric, setFabric] = useState('Polyester');
-	const [productHeight, setProductHeight] = useState('');
-	const [productWidth, setProductWidth] = useState('');
-	const [estimatedDeliveryDay, setEstimatedDeliveryDay] = useState('');
+	const [formData, setFormData] = useState({
+		name: '',
+		description: '',
+		color: '',
+		price: '',
+		category: 'Outros',
+		request_type: 'Encomenda',
+		class: 'Média',
+		size: '',
+		fabric: 'Polyester',
+		height: '',
+		width: '',
+		estimated_delivery_day: '',
+	});
 
 	// variable to store compressed Blob data
 	var compressed = null;
@@ -84,50 +88,17 @@ const NewProduct = () => {
 		}
 	};
 
+	// function that populates formData object
+	const populateFormData = (e) => {
+		setFormData((prevData) => ({
+			...prevData,
+			[e.target.name]: e.target.value,
+		}));
+	};
+
 	// wrappes all data into a object and sends it to the server
 	const formDataHandler = (e) => {
 		e.preventDefault();
-		const product = {};
-
-		if (!productName) {
-			setErrorStyles(() => ({ color: 'red' }));
-			setErrorMessage(() => 'Precisa escrever o nome do produto.');
-			return;
-		} else {
-			setErrorMessage(() => '');
-			setErrorStyles(() => ({}));
-			product.name = productName;
-		}
-
-		if (!productDescription) {
-			setErrorStyles(() => ({ color: 'red' }));
-			setErrorMessage(() => 'Precisa escrever a descrição do produto.');
-			return;
-		} else {
-			setErrorMessage(() => '');
-			setErrorStyles(() => ({}));
-			product.description = productDescription;
-		}
-
-		if (!defaultColor) {
-			setErrorStyles(() => ({ color: 'red' }));
-			setErrorMessage(() => 'Precisa definir a cor do produto.');
-			return;
-		} else {
-			setErrorMessage(() => '');
-			setErrorStyles(() => ({}));
-			product.color = defaultColor;
-		}
-
-		if (!price) {
-			setErrorStyles(() => ({ color: 'red' }));
-			setErrorMessage(() => 'Precisa especificar o preço do produto.');
-			return;
-		} else {
-			setErrorMessage(() => '');
-			setErrorStyles(() => ({}));
-			product.price = price;
-		}
 
 		if (!compressed) {
 			setErrorStyles(() => ({ color: 'red' }));
@@ -139,22 +110,12 @@ const NewProduct = () => {
 			product.image = compressed;
 		}
 
-		product.category = productCategory;
-		product.variant_colors = [colorA, colorB, colorC, colorD];
-		product.request_type = sellingType;
-		product.class = productClass;
-		product.size = size;
-		product.fabric = fabric;
-		product.height = productHeight;
-		product.width = productWidth;
-		product.estimated_delivery_day = estimatedDeliveryDay.slice(0, 2);
-		product.date = createDate();
-		console.log(product);
-		return product;
+		formData.variant_colors = [colorA, colorB, colorC, colorD];
+		formData.date = createDate();
+		return formData;
 	};
 
 	// sends a post request to the server
-	const server_url = 'http://localhost:4630/api/v1/products';
 	const sendData = async (e) => {
 		try {
 			const product = formDataHandler(e);
@@ -169,10 +130,10 @@ const NewProduct = () => {
 				}, 3000);
 				return;
 			}
-
+			const url = `${server_url}/api/v1/products`;
 			const response = await axios({
 				method: 'post',
-				url: server_url,
+				url: url,
 				data: product,
 			});
 
@@ -196,17 +157,16 @@ const NewProduct = () => {
 							<input
 								type='text'
 								id='nome'
+								name='name'
 								maxLength={'20'}
+								required
 								placeholder={'Nome do produto'}
-								onChange={(e) => setProductName(() => e.target.value)}
+								onChange={populateFormData}
 							/>
 						</section>
 						<section>
-							<label htmlFor='classe'>Classe do Produto</label>
-							<select
-								id='classe'
-								onChange={(e) => setProductClass(() => e.target.value)}
-							>
+							<label>Classe do Produto</label>
+							<select name='class' onChange={populateFormData}>
 								<option value='Baixa'>Baixa</option>
 								<option value='Média'>Média</option>
 								<option value='Alta'>Alta</option>
@@ -214,24 +174,26 @@ const NewProduct = () => {
 							</select>
 						</section>
 					</div>
-					<label htmlFor='description'>Descrição (obrigatório)</label>
+					<label>Descrição (obrigatório)</label>
 					<textarea
-						id='description'
+						name='description'
 						placeholder='Escreva uma breve descrição sobre o produto'
 						cols='20'
 						rows='8'
+						required
 						maxLength={'2500'}
-						onChange={(e) => setProductDescription(() => e.target.value)}
+						onChange={populateFormData}
 					></textarea>
 					<div>
 						<section>
-							<label htmlFor='color'>Cor</label>
+							<label>Cor</label>
 							<input
 								type='text'
 								placeholder='Cor'
 								maxLength={'30'}
-								id={'color'}
-								onChange={(e) => setDefaultColor(() => e.target.value)}
+								name='color'
+								required
+								onChange={populateFormData}
 							/>
 						</section>
 						<section>
@@ -239,28 +201,27 @@ const NewProduct = () => {
 							<input
 								type='text'
 								placeholder='Tamanho'
+								name='size'
 								maxLength={'30'}
-								onChange={(e) => setSize(() => e.target.value)}
+								onChange={populateFormData}
 							/>
 						</section>
 					</div>
 					<div>
 						<section>
-							<label htmlFor='price'>Preço (obrigatório)</label>
+							<label>Preço (obrigatório)</label>
 							<input
 								type='number'
-								id='price'
+								name='price'
+								required
 								maxLength={'10'}
 								placeholder={'Preço do produto'}
-								onChange={(e) => setPrice(() => e.target.value)}
+								onChange={populateFormData}
 							/>
 						</section>
 						<section>
-							<label htmlFor='category'>Categoria do Produto</label>
-							<select
-								id='category'
-								onChange={(e) => setproductCategory(() => e.target.value)}
-							>
+							<label>Categoria do Produto</label>
+							<select name='category' onChange={populateFormData}>
 								<option value='Capulanas'>Capulanas</option>
 								<option value='Batas'>Batas</option>
 								<option value='Uniformes'>Uniformes</option>
@@ -274,37 +235,27 @@ const NewProduct = () => {
 					</div>
 					<div>
 						<section>
-							<label htmlFor='type'>Tipo de aquisição</label>
-							<select
-								id='type'
-								onChange={(e) => setSellingType(() => e.target.value)}
-							>
+							<label>Tipo de aquisição</label>
+							<select name='request_type' onChange={populateFormData}>
 								<option value='Encomenda'>Encomenda</option>
 								<option value='Estoque'>Estoque</option>
 							</select>
-						
 						</section>
-						{sellingType === 'Encomenda' ? (
+						{formData.request_type !== 'Estoque' ? (
 							<section>
-								<label htmlFor='estimated'>Estimativa de Entrega</label>
+								<label>Estimativa de Entrega</label>
 								<input
 									type='number'
-									name='estimated'
-									id='estimated'
+									name='estimated_delivery_day'
 									maxLength={2}
-									onChange={(e) =>
-										setEstimatedDeliveryDay(() => e.target.value)
-									}
+									onChange={populateFormData}
 									placeholder={'Estimativa em dias'}
 								/>
 							</section>
 						) : null}
 						<section>
-							<label htmlFor='fabric'>Qualidade de Tecido</label>
-							<select
-								id='fabric'
-								onChange={(e) => setFabric(() => e.target.value)}
-							>
+							<label>Qualidade de Tecido</label>
+							<select name='fabric' onChange={populateFormData}>
 								<option value='Polyester'>Polyester</option>
 								<option value='Trevira'>Trevira</option>
 								<option value='Algodão'>Algodão</option>
@@ -315,36 +266,32 @@ const NewProduct = () => {
 						</section>
 					</div>
 					<label>Variantes de Cor do Produto</label>
-					<div>
+					<div className='variant-colors'>
 						<section>
-							<label htmlFor='colorA'>Cor A</label>
+							<label>Cor A</label>
 							<input
 								type='color'
-								id='colorA'
 								onChange={(e) => setColorA(() => e.target.value)}
 							/>
 						</section>
 						<section>
-							<label htmlFor='colorB'>Cor B</label>
+							<label>Cor B</label>
 							<input
 								type='color'
-								id='colorB'
 								onChange={(e) => setColorB(() => e.target.value)}
 							/>
 						</section>
 						<section>
-							<label htmlFor='colorC'>Cor C</label>
+							<label>Cor C</label>
 							<input
 								type='color'
-								id='color'
 								onChange={(e) => setColorC(() => e.target.value)}
 							/>
 						</section>
 						<section>
-							<label htmlFor='colorD'>Cor D</label>
+							<label>Cor D</label>
 							<input
 								type='color'
-								id='colorD'
 								onChange={(e) => setColorD(() => e.target.value)}
 							/>
 						</section>
@@ -352,29 +299,29 @@ const NewProduct = () => {
 					<label>Medidas (em metros)</label>
 					<div>
 						<section>
-							<label htmlFor='width'>Comprimento</label>
+							<label>Comprimento</label>
 							<input
 								type='number'
-								id='width'
+								name='width'
 								maxLength='4'
 								placeholder='Comprimento da peça'
-								onChange={(e) => setProductWidth(() => e.target.value)}
+								onChange={populateFormData}
 							/>
 						</section>
 						<section>
-							<label htmlFor='height'>Altura</label>
+							<label>Altura</label>
 							<input
 								type='number'
-								id='height'
+								name='height'
 								maxLength={'4'}
 								placeholder='Altura da peça'
-								onChange={(e) => setProductHeight(() => e.target.value)}
+								onChange={populateFormData}
 							/>
 						</section>
 					</div>
-					<label htmlFor='image'>Selecionar imagem</label>
+					<label>Carregar fotografia</label>
 					<Button
-						text={'Carregar Imagem'}
+						text={'Carregar fotografia'}
 						icon={<BiUpload />}
 						event={(e) => {
 							e.preventDefault();

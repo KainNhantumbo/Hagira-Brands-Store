@@ -40,11 +40,21 @@ export const NewProductContainer = styled.section`
 			gap: 20px;
 
 			div {
-				display: flex;
+				/* display: flex;
 				justify-content: flex-start;
-				flex-flow: row wrap;
+				flex-flow: row wrap; */
 				gap: 25px;
 				align-items: center;
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+
+				@media screen and (max-width: 450px) {
+					grid-template-columns: 1fr;
+				}
+
+				input[type='color'] {
+					width: 100px;
+				}
 			}
 
 			span {
