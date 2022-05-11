@@ -7,6 +7,7 @@ import {
 	FaProductHunt,
 	FaStore,
 	FaTrash,
+	FaTrashAlt,
 } from 'react-icons/fa';
 import { BiCollection } from 'react-icons/bi';
 import axios from 'axios';
@@ -19,6 +20,7 @@ const Products = () => {
 	const [modalState, setModalState] = useState(false);
 	const [id, setId] = useState('');
 
+	// fetchs products data from the server
 	const fetchProducts = async () => {
 		try {
 			const products_url = `${server_url}/api/v1/products`;
@@ -45,8 +47,51 @@ const Products = () => {
 		});
 	}, []);
 
+	//
+
+	// confirm modal for delete operations
+	const ConfirmModal = () => (
+		<section
+			className='modal-container'
+			onClick={(e) => {
+				if (e.target.classList.contains('modal-container')) {
+					setModalState((prevState) => !prevState);
+				}
+			}}
+		>
+			<div className='message-previewer'>
+				<section className='advice-info'>
+					<FaTrashAlt />
+					<h3>Pretende eliminar permanentemente este produto?</h3>
+				</section>
+				<section className='actions'>
+					<Button
+						text={'Cancelar'}
+						event={(e) => setModalState((prevState) => !prevState)}
+					/>
+					<Button id={id} text={'Eliminar'} event={deleteProduct} />
+				</section>
+			</div>
+		</section>
+	);
+
+	// deletes a product
+	const deleteProduct = async (e) => {
+		try {
+			const id = e.target.id;
+			const url = `${server_url}/api/v1/products/${id}`;
+			await axios({ method: 'delete', url: url });
+			fetchProducts();
+			setModalState((prevState) => !prevState);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<ProductsContainer>
+			{modalState ? <ConfirmModal /> : null}
+
 			<section className='upper'>
 				<h1>
 					Produtos <BiCollection />{' '}
@@ -64,6 +109,7 @@ const Products = () => {
 						<FaStore />
 						<section>
 							<h2>Sem produtos na loja.</h2>
+							<p>Estarão listados aqui os produtos da loja.</p>
 						</section>
 					</article>
 				) : (

@@ -54,8 +54,8 @@ export const ManageContainer = styled.section`
 
 		.message-previewer {
 			box-shadow: 0 0 10px rgb(${({ theme }) => theme.shadows});
-			background: rgb(${({ theme }) => theme.background});
-			padding: 10px 15px;
+			background: rgb(${({ theme }) => theme.backgroundAlt});
+			padding: 20px 15px;
 			max-width: 550px;
 			border-radius: 5px;
 			margin: 0 auto;

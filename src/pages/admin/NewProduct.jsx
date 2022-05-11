@@ -73,7 +73,7 @@ const NewProduct = () => {
 
 			// compresses the file
 			new Compressor(file, {
-				quality: 0.8,
+				quality: 0.6,
 				success(result) {
 					const form = new FormData();
 					form.append('file', result, result.name);

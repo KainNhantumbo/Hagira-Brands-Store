@@ -53,11 +53,11 @@ const Aside = () => {
 			// if is not any class type, cancels the request
 			if (!productClass) return getProductsRequest();
 
-			const server_url = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_class=${productClass}`;
+			const url = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_class=${productClass}`;
 			// response data
 			const { data: response } = await axios({
 				method: 'get',
-				url: server_url,
+				url: url,
 			});
 			setProducts(() => response.products);
 
@@ -86,12 +86,12 @@ const Aside = () => {
 			// if is not any class type, cancels the request
 			if (!product_category) return getProductsRequest();
 
-			const server_url = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_category=${product_category}`;
+			const url = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_category=${product_category}`;
 
 			// response data
 			const { data: response } = await axios({
 				method: 'get',
-				url: server_url,
+				url: url,
 			});
 			setProducts(() => response.products);
 

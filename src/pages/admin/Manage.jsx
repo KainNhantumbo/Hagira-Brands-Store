@@ -1,6 +1,11 @@
 import { ManageContainer } from '../../styles/admin/manage';
 import React, { useState, useEffect } from 'react';
-import { FaCogs, FaExclamationCircle, FaExclamationTriangle, FaInfoCircle, FaTrash, FaTrashAlt } from 'react-icons/fa';
+import {
+	FaCogs,
+	FaExclamationTriangle,
+	FaInfoCircle,
+	FaTrash,
+} from 'react-icons/fa';
 import axios from 'axios';
 import { server_url } from '../../services/urls';
 import Button from '../../components/Button';
@@ -24,8 +29,10 @@ const Manage = () => {
 		try {
 			const delete_url = e.target.id;
 			const response = await axios({ method: 'delete', url: delete_url });
-			console.log(response.status);
-			setModalState((prevState) => !prevState)
+			setModalState((prevState) => !prevState);
+			if (response.status !== 200) {
+				alert('Houve um erro ao tentar elinar os dados. Tente novamente.');
+			}
 		} catch (err) {
 			console.log(err);
 		}

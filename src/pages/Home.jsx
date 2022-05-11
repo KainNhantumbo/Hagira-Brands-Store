@@ -3,9 +3,9 @@ import { HomeContainer } from '../styles/home';
 import { BiBookmarks, BiBulb, BiPurchaseTag } from 'react-icons/bi';
 import { FaCartArrowDown, FaArrowCircleDown } from 'react-icons/fa';
 import React, { useState, useEffect, createContext } from 'react';
+import { server_url } from '../services/urls';
 import axios from 'axios';
 import { createDate } from '../modules/module-scripts';
-import { server_url } from '../services/urls';
 import Button from '../components/Button';
 
 export const searchContext = createContext();
@@ -36,8 +36,8 @@ const Home = () => {
 
 	// loads more page products
 	const loadMoreProducts = async () => {
+		const server_loadProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=5&product_skip=${skipLength}`;
 		try {
-			const server_loadProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=5&product_skip=${skipLength}`;
 			const { data } = await axios({
 				method: 'get',
 				url: server_loadProductsUrl,

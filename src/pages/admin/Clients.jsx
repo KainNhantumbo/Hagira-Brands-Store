@@ -212,7 +212,7 @@ const Clients = () => {
 						<strong>Detalhes do Produto Pago</strong>
 					</h2>
 					<span>
-						<strong>ID do Producto: </strong>
+						<strong>ID do Produto: </strong>
 						{paid_id}
 					</span>
 					<span>
