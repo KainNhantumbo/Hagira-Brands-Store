@@ -1,13 +1,15 @@
 import Aside from '../components/Aside';
 import { HomeContainer } from '../styles/home';
 import { BiBookmarks, BiBulb, BiPurchaseTag } from 'react-icons/bi';
+import { FaCartArrowDown, FaArrowCircleDown } from 'react-icons/fa';
 import React, { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import { createDate } from '../modules/module-scripts';
-import { FaCartArrowDown, FaArrowCircleDown } from 'react-icons/fa';
+import { server_url } from '../services/urls';
 import Button from '../components/Button';
 
 export const searchContext = createContext();
+
 const Home = () => {
 	const [loadState, setLoadState] = useState({
 		icon: <FaCartArrowDown />,
@@ -18,9 +20,9 @@ const Home = () => {
 	const [loadButtonText, setLoadButtonText] = useState('Ver mais produtos');
 
 	// fetch products data from server
-	const server_getAllProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=5&product_skip=0`;
 	const getProductsRequest = async () => {
 		try {
+			const server_getAllProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=10&product_skip=0`;
 			const { data } = await axios({
 				method: 'get',
 				url: server_getAllProductsUrl,
@@ -28,13 +30,14 @@ const Home = () => {
 			setProducts(() => data.products);
 			setSkipLength(() => data.products.length);
 		} catch (err) {
-			console.log(err);	
+			console.log(err);
 		}
 	};
 
-	const server_loadProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=5&product_skip=${skipLength}`;
+	// loads more page products
 	const loadMoreProducts = async () => {
 		try {
+			const server_loadProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=5&product_skip=${skipLength}`;
 			const { data } = await axios({
 				method: 'get',
 				url: server_loadProductsUrl,
@@ -50,18 +53,17 @@ const Home = () => {
 			setSkipLength(() => data.products.length);
 
 			if (data.products.length === 0) {
-				setLoadButtonText(() => 'Não há mais para mostrar');
+				setLoadButtonText(() => 'Não há mais nada');
 			}
-			console.log(data);
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
 	// sends a visitor counto to the server
-	const server_setVisitorCounterUrl = 'http://localhost:4630/api/v1/visitors';
 	const countVisitorRequest = async () => {
 		try {
+			const server_setVisitorCounterUrl = `${server_url}/api/v1/visitors`;
 			await axios({
 				method: 'post',
 				data: { visitor: 1, date: createDate() },

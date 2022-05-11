@@ -23,14 +23,15 @@ import {
 	FaTruck,
 	FaTruckLoading,
 } from 'react-icons/fa';
+import { server_url } from '../services/urls';
 
 const Product = () => {
 	const [product, setProduct] = useState([]);
 	const { id: product_id } = useParams();
 
 	// server request to get product by its id
-	const server_productRequest_url = `http://localhost:4630/api/v1/products/${product_id}`;
 	const productRequest = async () => {
+		const server_productRequest_url = `${server_url}/api/v1/products/${product_id}`;
 		try {
 			const { data: product } = await axios({
 				method: 'get',

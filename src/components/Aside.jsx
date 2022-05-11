@@ -5,15 +5,17 @@ import { searchContext } from '../pages/Home';
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { FaSyncAlt, FaWind } from 'react-icons/fa';
+import { server_url } from '../services/urls';
 
 const Aside = () => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const { setProducts, setLoadState, getProductsRequest } =
 		useContext(searchContext);
 
-	const server_searchProductsUrl = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_name=${searchQuery}`;
+	// makes a search request to the server
 	const search = async () => {
 		try {
+			const server_searchProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_name=${searchQuery}`;
 			// if the search input is empty, cancels the request
 			if (searchQuery.length < 1) return;
 			// sets loading information
@@ -51,7 +53,7 @@ const Aside = () => {
 			// if is not any class type, cancels the request
 			if (!productClass) return getProductsRequest();
 
-			const server_url = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_class=${productClass}`;
+			const server_url = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_class=${productClass}`;
 			// response data
 			const { data: response } = await axios({
 				method: 'get',
@@ -84,7 +86,7 @@ const Aside = () => {
 			// if is not any class type, cancels the request
 			if (!product_category) return getProductsRequest();
 
-			const server_url = `http://localhost:4630/api/v1/products?product_fields=price,image,name,request_type,date&product_category=${product_category}`;
+			const server_url = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_category=${product_category}`;
 
 			// response data
 			const { data: response } = await axios({

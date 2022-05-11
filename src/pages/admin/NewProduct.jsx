@@ -6,7 +6,6 @@ import { createDate } from '../../modules/module-scripts';
 import axios from 'axios';
 import { server_url } from '../../services/urls';
 import Compressor from 'compressorjs';
-import { server_url } from '../../services/urls';
 
 const NewProduct = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -51,9 +50,15 @@ const NewProduct = () => {
 				multiple: false,
 				types: [
 					{
-						description: 'Images',
+						description: 'JPG Images',
 						accept: {
 							'image/jpg': ['.gif', '.jpeg', '.jpg'],
+						},
+					},
+					{
+						description: 'JPEG Images',
+						accept: {
+							'image/jpeg': ['.gif', '.jpeg', '.jpg'],
 						},
 					},
 				],
@@ -107,7 +112,7 @@ const NewProduct = () => {
 		} else {
 			setErrorMessage(() => '');
 			setErrorStyles(() => ({}));
-			product.image = compressed;
+			formData.image = compressed;
 		}
 
 		formData.variant_colors = [colorA, colorB, colorC, colorD];
