@@ -1,10 +1,13 @@
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // used to restrict acess to admin routes
-const RestritectedRoute = ({ children, user }) => {
-	// if (!user?.email || !user?.password) {  
-	// 	return <Navigate to={'/login'} />;
-	// }
+const RestritectedRoute = ({ children }) => {
+	const navigate = useNavigate();
+	const access_token = JSON.parse(localStorage.getItem('accessToken'));
+	if (!access_token || access_token === undefined) {
+		navigate('/login');
+		return;
+	}
 	return children;
 };
 

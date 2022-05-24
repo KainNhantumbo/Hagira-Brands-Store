@@ -1,14 +1,11 @@
 import { LoginContainer } from '../styles/login';
 import Button from '../components/Button';
 import { BiLogIn, BiEnvelope, BiLockAlt, BiChevronLeft } from 'react-icons/bi';
-import { useState, useContext } from 'react';
-import { Context } from '../App';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 	const [errorMessage, setErrorMessage] = useState('');
-	const setUser = useContext(Context);
-
 	const [formData, setFormData] = useState({ email: '', password: '' });
 
 	const navigate = useNavigate();
@@ -23,7 +20,6 @@ const Login = () => {
 	// sets the user data form login
 	const log = (e) => {
 		e.preventDefault();
-		setUser(formData);
 		// navigate('/admin');
 		console.log(formData);
 	};
