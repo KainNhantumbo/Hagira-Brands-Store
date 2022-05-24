@@ -3,6 +3,7 @@ import Button from '../components/Button';
 import { BiLogIn, BiEnvelope, BiLockAlt, BiChevronLeft } from 'react-icons/bi';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { authUser } from '../services/auth';
 
 const Login = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -20,7 +21,7 @@ const Login = () => {
 	// sets the user data form login
 	const log = (e) => {
 		e.preventDefault();
-		// navigate('/admin');
+		authUser(formData,navigate, setErrorMessage)
 		console.log(formData);
 	};
 
