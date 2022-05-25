@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { server_url } from './urls';
 
-export const authUser = (user_data, navigate, setData) => {
+// sends a auth request to get token and authenticate the user
+export const authUser = (event, user_data, navigate, setData) => {
 	if (navigate instanceof Function === false)
 		throw new Error('The second argument must be a navigation function.');
 	if (setData instanceof Function === false)
@@ -9,6 +10,7 @@ export const authUser = (user_data, navigate, setData) => {
 			'The third argument must be an instance of update state function.'
 		);
 
+	event.preventDefault();
 	axios({
 		method: 'post',
 		data: user_data,

@@ -1,5 +1,5 @@
 import { AboutContainer } from '../styles/about';
-import aboutImage from '../img/about0.jpg';
+import aboutImage from '../assets/about0.jpg';
 import { FaSeedling } from 'react-icons/fa';
 
 const About = () => {

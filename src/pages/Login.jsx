@@ -18,20 +18,13 @@ const Login = () => {
 		}));
 	};
 
-	// sets the user data form login
-	const log = (e) => {
-		e.preventDefault();
-		authUser(formData,navigate, setErrorMessage)
-		console.log(formData);
-	};
-
 	return (
 		<LoginContainer>
 			<section className='welcome-msg'>
 				<h1>Bem-vindo(a) de volta!</h1>
 				<p>Inicie sessão para continuar.</p>
 			</section>
-			<form onSubmit={log}>
+			<form onSubmit={(e) => authUser(e, formData, navigate, setErrorMessage)}>
 				<label htmlFor='email'>
 					<BiEnvelope />
 					<span>E-mail</span>
