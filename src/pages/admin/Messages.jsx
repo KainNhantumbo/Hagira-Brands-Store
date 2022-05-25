@@ -9,21 +9,26 @@ import { FaReply } from 'react-icons/fa';
 import Button from '../../components/Button';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { server_url } from '../../services/urls';
 
 const Messages = () => {
 	const [incomeMessages, setIncomeMessages] = useState([]);
 	const [messageModal, setMessageModal] = useState(false);
-	const [email, setEmail] = useState('');
-	const [phone, setPhone] = useState('');
-	const [message, setMessage] = useState('');
-	const [subject, setSubject] = useState('');
+	const [messageObj, setMessageObj] = useState({});
 	const [id, setId] = useState('');
 
 	// loads the messages from the server
-	const server_get_url = 'http://localhost:4630/api/v1/messages';
 	const getMessagesRequest = async () => {
 		try {
-			const { data } = await axios({ method: 'get', url: server_get_url });
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
+			const server_get_url = `${server_url}/api/v1/messages`;
+			const { data } = await axios({
+				method: 'get',
+				url: server_get_url,
+				headers: {
+					authorization: `Bearer ${access_token}`,
+				},
+			});
 			setIncomeMessages(() => data.messages);
 		} catch (err) {
 			console.log(err);
@@ -46,8 +51,15 @@ const Messages = () => {
 	const deleteMessageRequest = async (e) => {
 		try {
 			const id = e.target.id;
-			const server_post_url = `http://localhost:4630/api/v1/messages/${id}`;
-			const response = await axios({ method: 'delete', url: server_post_url });
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
+			const server_post_url = `${server_url}/api/v1/messages/${id}`;
+			await axios({
+				method: 'delete',
+				url: server_post_url,
+				headers: {
+					authorization: `Bearer ${access_token}`,
+				},
+			});
 			setMessageModal((prevState) => !prevState);
 			getMessagesRequest();
 		} catch (err) {
@@ -60,12 +72,9 @@ const Messages = () => {
 		const id = e.target.id;
 		const [message] = incomeMessages.filter((element) => {
 			if (element._id === id) return element;
-			return;
+			return {};
 		});
-		setEmail(() => message.email);
-		setMessage(() => message.message);
-		setPhone(() => message.phone);
-		setSubject(() => message.subject);
+		setMessageObj(message);
 		setId(() => message._id);
 		setMessageModal(() => true);
 	};
@@ -88,7 +97,7 @@ const Messages = () => {
 				>
 					<div className='message-previewer'>
 						<a
-							href={`mailto:${email}`}
+							href={`mailto:${messageObj.email}`}
 							className='reply'
 							target={'_blank'}
 							rel='noreferrer'
@@ -101,22 +110,22 @@ const Messages = () => {
 							</h2>
 							<span>
 								<strong>E-mail: </strong>
-								{email}
+								{messageObj.email}
 							</span>
 							<span>
 								<strong>Telefone: </strong>
-								{phone ? phone : 'Não disponível'}
+								{messageObj.phone ? messageObj.phone : 'Não disponível'}
 							</span>
 							<h2>
 								<strong>Assunto</strong>
 							</h2>
-							<span>{subject}</span>
+							<span>{messageObj.subject}</span>
 						</div>
 						<section className='message'>
 							<h2>
 								<strong>Mensagem</strong>
 							</h2>
-							<div>{message}</div>
+							<div>{messageObj.message}</div>
 						</section>
 						<section className='actions'>
 							<Button

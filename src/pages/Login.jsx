@@ -1,16 +1,16 @@
 import { LoginContainer } from '../styles/login';
-import Button from '../components/Button';
 import { BiLogIn, BiEnvelope, BiLockAlt, BiChevronLeft } from 'react-icons/bi';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authUser } from '../services/auth';
+import Button from '../components/Button';
 
 const Login = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [formData, setFormData] = useState({ email: '', password: '' });
-
+	// navigatio function
 	const navigate = useNavigate();
-
+	// populates data on formData Object
 	const populateData = (e) => {
 		setFormData((prevState) => ({
 			...prevState,

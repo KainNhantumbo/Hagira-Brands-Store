@@ -73,7 +73,6 @@ const Clients = () => {
 		try {
 			const access_token = JSON.parse(localStorage.getItem('accessToken'));
 			const deletePayments_url = `${server_url}/api/v1/payments/${id}`;
-			console.log(e.target, id);
 			await axios({
 				method: 'delete',
 				url: deletePayments_url,
@@ -91,7 +90,6 @@ const Clients = () => {
 	// loads the clients object to show its details
 	const viewPaymentDetails = (e) => {
 		const id = e.target.id;
-
 		const [paymentDetails] = clients.filter((client) => {
 			if (client._id === id) return client;
 			return {};
