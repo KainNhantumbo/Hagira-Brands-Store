@@ -1,9 +1,9 @@
+import { useState, useEffect } from 'react';
 import { ComunicateContainer } from '../../styles/admin/comunicate';
-import { BiSend } from 'react-icons/bi';
-import React, { useState, useEffect } from 'react';
 import Button from '../../components/Button';
 import axios from 'axios';
-import { FaBullhorn } from 'react-icons/fa';
+import { FaBullhorn, BiSend } from 'react-icons/all';
+import { server_url } from '../../services/urls';
 
 const Comunicate = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -63,22 +63,24 @@ const Comunicate = () => {
 	};
 
 	// sends a post request to server
-	const server_url = 'http://localhost:4630/api/v1/emails';
 	const sendMessageRequest = async (e) => {
 		try {
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
+			const post_url = `${server_url}/api/v1/emails`;
 			const message = formDataHandler(e);
 			if (sendMethod === 'email') {
 				const response = await axios({
 					method: 'post',
 					data: message,
-					url: server_url,
+					url: post_url,
+					headers: {
+						authorization: `Bearer ${access_token}`,
+					},
 				});
 
 				// if sucess, navigates to sucessfully subscribed page
-				if (response.status === 201) {
-					e.target.reset();
-					return window.location.assign('/data-sent');
-				}
+				e.target.reset();
+				return window.location.assign('/data-sent');
 			} else {
 				return;
 			}
@@ -108,12 +110,14 @@ const Comunicate = () => {
 					<input
 						type='text'
 						id='assunto'
+						required
 						placeholder='Digite o assunto aqui...'
 						onChange={(e) => setMessageSubject(e.target.value)}
 					/>
 					<label htmlFor='message'>Mensagem</label>
 					<textarea
 						id='message'
+						required
 						cols='30'
 						rows='10'
 						placeholder='Escreva a sua mensagem aqui...'

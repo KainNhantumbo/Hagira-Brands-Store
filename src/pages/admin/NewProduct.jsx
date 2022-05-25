@@ -135,11 +135,15 @@ const NewProduct = () => {
 				}, 3000);
 				return;
 			}
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
 			const url = `${server_url}/api/v1/products`;
 			const response = await axios({
 				method: 'post',
 				url: url,
 				data: product,
+				headers: {
+					authorization: `Bearer ${access_token}`,
+				},
 			});
 
 			// if sucess, navigates to sucessfully subscribed page
