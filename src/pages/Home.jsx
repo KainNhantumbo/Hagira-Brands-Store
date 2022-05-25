@@ -1,7 +1,12 @@
 import Aside from '../components/Aside';
 import { HomeContainer } from '../styles/home';
-import { BiBookmarks, BiBulb, BiPurchaseTag } from 'react-icons/bi';
-import { FaCartArrowDown, FaArrowCircleDown } from 'react-icons/fa';
+import {
+	BiBookmarks,
+	BiBulb,
+	BiErrorCircle,
+	BiPurchaseTag,
+} from 'react-icons/all';
+import { FaCartArrowDown, FaArrowCircleDown, FaXbox } from 'react-icons/fa';
 import React, { useState, useEffect, createContext } from 'react';
 import { server_url } from '../services/urls';
 import axios from 'axios';
@@ -22,6 +27,10 @@ const Home = () => {
 	// fetch products data from server
 	const getProductsRequest = async () => {
 		try {
+			setLoadState(() => ({
+				icon: <FaCartArrowDown />,
+				info: 'Carregando a lista de produtos...',
+			}));
 			const server_getAllProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=10&product_skip=0`;
 			const { data } = await axios({
 				method: 'get',
@@ -30,7 +39,13 @@ const Home = () => {
 			setProducts(() => data.products);
 			setSkipLength(() => data.products.length);
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
+			if (err.code === 'ERR_NETWORK') {
+				setLoadState(() => ({
+					icon: <BiErrorCircle />,
+					info: 'Erro de conexão. Veja as suas configurações de internet.',
+				}));
+			}
 		}
 	};
 
@@ -38,6 +53,7 @@ const Home = () => {
 	const loadMoreProducts = async () => {
 		const server_loadProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=5&product_skip=${skipLength}`;
 		try {
+			setLoadButtonText('Carregando...')
 			const { data } = await axios({
 				method: 'get',
 				url: server_loadProductsUrl,
@@ -57,6 +73,9 @@ const Home = () => {
 			}
 		} catch (err) {
 			console.log(err);
+			if (err.code === 'ERR_NETWORK') {
+				setLoadButtonText('Erro de Conexão. ')
+			}
 		}
 	};
 
