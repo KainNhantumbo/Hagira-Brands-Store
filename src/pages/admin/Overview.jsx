@@ -3,6 +3,7 @@ import { BiStats, BiMessageDetail, BiStore, BiLayer } from 'react-icons/bi';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaClock } from 'react-icons/fa';
+import { server_url } from '../../services/urls';
 
 const Overview = () => {
 	const [visitors, setVisitors] = useState('...');
@@ -13,22 +14,25 @@ const Overview = () => {
 		return time;
 	});
 
-	const server_getAmountOfProducts_url =
-		'http://localhost:4630/api/v1/products?product_fields=name';
-	const server_getAmountOfVisitors_url =
-		'http://localhost:4630/api/v1/visitors';
-	const server_getAmountOfMessages_url =
-		'http://localhost:4630/api/v1/messages';
-
 	const fetchData = async () => {
+		const server_getAmountOfProducts_url = `${server_url}/api/v1/products?product_fields=name`;
+		const server_getAmountOfVisitors_url = `${server_url}/api/v1/visitors`;
+		const server_getAmountOfMessages_url = `${server_url}/api/v1/messages`;
 		try {
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
 			const { data: response_messages } = await axios({
 				method: 'get',
 				url: server_getAmountOfMessages_url,
+				headers: {
+					authorization: `Bearer ${access_token}`,
+				},
 			});
 			const { data: response_visitors } = await axios({
 				method: 'get',
 				url: server_getAmountOfVisitors_url,
+				headers: {
+					authorization: `Bearer ${access_token}`,
+				},
 			});
 			const { data: response_products } = await axios({
 				method: 'get',
@@ -36,7 +40,7 @@ const Overview = () => {
 			});
 			setMessages(() => response_messages.results);
 			setVisitors(() => response_visitors.results);
-			setProduts(() => response_products.results);	
+			setProduts(() => response_products.results);
 		} catch (err) {
 			console.log(err);
 		}
