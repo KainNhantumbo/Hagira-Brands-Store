@@ -5,13 +5,14 @@ import {
 	BiBulb,
 	BiErrorCircle,
 	BiPurchaseTag,
+	FaCartArrowDown,
+	FaArrowCircleDown,
 } from 'react-icons/all';
-import { FaCartArrowDown, FaArrowCircleDown, FaXbox } from 'react-icons/fa';
-import React, { useState, useEffect, createContext } from 'react';
-import { server_url } from '../services/urls';
 import axios from 'axios';
-import { createDate } from '../modules/module-scripts';
+import React, { useState, useEffect, createContext } from 'react';
 import Button from '../components/Button';
+import { server_url } from '../services/urls';
+import { createDate } from '../modules/module-scripts';
 
 export const searchContext = createContext();
 
@@ -51,30 +52,31 @@ const Home = () => {
 
 	// loads more page products
 	const loadMoreProducts = async () => {
-		const server_loadProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=5&product_skip=${skipLength}`;
+		const server_loadProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=10&product_skip=${skipLength}`;
 		try {
-			setLoadButtonText('Carregando...')
+			setLoadButtonText('Carregando...');
 			const { data } = await axios({
 				method: 'get',
 				url: server_loadProductsUrl,
 			});
 
-			setProducts((prev) => {
-				let date = data.products;
-				prev.forEach((item) => {
-					date.push(item);
-				});
-				return date;
-			});
-			setSkipLength(() => data.products.length);
-
 			if (data.products.length === 0) {
 				setLoadButtonText(() => 'Não há mais nada');
+				return;
 			}
+
+			setProducts((prevProducts) => {
+				let newProducts = data.products;
+				prevProducts.forEach((item) => {
+					newProducts.push(item);
+				});
+				return newProducts;
+			});
+			setSkipLength(() => data.products.length);
 		} catch (err) {
 			console.log(err);
 			if (err.code === 'ERR_NETWORK') {
-				setLoadButtonText('Erro de Conexão. ')
+				setLoadButtonText('Erro de Conexão. ');
 			}
 		}
 	};
