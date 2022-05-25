@@ -71,13 +71,20 @@ const Clients = () => {
 	// deletes a payment
 	const deletePaymentRequest = async (e) => {
 		try {
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
 			const deletePayments_url = `${server_url}/api/v1/payments/${id}`;
 			console.log(e.target, id);
-			await axios({ method: 'delete', url: deletePayments_url });
+			await axios({
+				method: 'delete',
+				url: deletePayments_url,
+				headers: {
+					authorization: `Bearer ${access_token}`,
+				},
+			});
 			setModalState((prevState) => !prevState);
 			fetchClients();
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
 		}
 	};
 

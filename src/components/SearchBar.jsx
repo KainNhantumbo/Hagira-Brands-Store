@@ -11,11 +11,16 @@ const SearchBar = ({ count, location, seter, fetcher }) => {
 	// search engine function
 	const searchTerms = async (sort = 'name') => {
 		try {
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
+
 			if (location === 'clients') {
 				let search_url = `${server_url}/api/v1/payments?search=${search}&sort=${sort}`;
 				const { data: response } = await axios({
 					method: 'get',
 					url: search_url,
+					headers: {
+						authorization: `Bearer ${access_token}`,
+					},
 				});
 				seter(() => response.payments);
 				return;
@@ -26,12 +31,15 @@ const SearchBar = ({ count, location, seter, fetcher }) => {
 				const { data: response } = await axios({
 					method: 'get',
 					url: search_url,
+					headers: {
+						authorization: `Bearer ${access_token}`,
+					},
 				});
 				seter(() => response.products);
 				return;
 			}
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
 		}
 	};
 
