@@ -78,9 +78,16 @@ const Products = () => {
 	// deletes a product
 	const deleteProduct = async (e) => {
 		try {
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
 			const id = e.target.id;
 			const url = `${server_url}/api/v1/products/${id}`;
-			await axios({ method: 'delete', url: url });
+			await axios({
+				method: 'delete',
+				url: url,
+				headers: {
+					authorization: `Bearer ${access_token}`,
+				},
+			});
 			fetchProducts();
 			setModalState((prevState) => !prevState);
 		} catch (err) {

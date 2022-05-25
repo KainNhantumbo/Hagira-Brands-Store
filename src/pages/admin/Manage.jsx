@@ -28,13 +28,18 @@ const Manage = () => {
 	const eraseData = async (e) => {
 		try {
 			const delete_url = e.target.id;
-			const response = await axios({ method: 'delete', url: delete_url });
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
+			await axios({
+				method: 'delete',
+				url: delete_url,
+				headers: {
+					authorization: `Bearer ${access_token}`,
+				},
+			});
 			setModalState((prevState) => !prevState);
-			if (response.status !== 200) {
-				alert('Houve um erro ao tentar elinar os dados. Tente novamente.');
-			}
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
+			alert(err.message)
 		}
 	};
 
