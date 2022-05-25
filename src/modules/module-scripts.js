@@ -5,6 +5,6 @@ export const createDate = () => {
 		.slice(0, 10)
 		.split('/')
 		.join('-');
-	const time = new Date().toLocaleTimeString().slice(0, 5);
+	const time = new Date().toLocaleTimeString().slice(0, 4);
 	return { date, time };
 };

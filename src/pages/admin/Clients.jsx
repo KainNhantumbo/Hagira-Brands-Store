@@ -21,40 +21,26 @@ export const clientsContext = createContext();
 
 const Clients = () => {
 	const [clients, setClients] = useState([]);
+	const [paymentViewer, setPaymentViewer] = useState({});
 	const [modalState, setModalState] = useState(false);
 	const [infoModalState, setInfoModalState] = useState(false);
 	const [id, setId] = useState('');
 
-	// detail states
-	const [email, setEmail] = useState('');
-	const [phone, setPhone] = useState('');
-	const [comment, setComment] = useState('');
-	const [date, setDate] = useState({});
-	const [name, setName] = useState('');
-	const [surname, setSurname] = useState('');
-	const [quantity, setQuantity] = useState('');
-	const [neighbourhood, setNeighbourhood] = useState('');
-	const [paymentMethod, setPaymentMethod] = useState('');
-	const [paymentValue, setPaymentValue] = useState('');
-	const [postNumber, setPostNumber] = useState('');
-	const [city, setCity] = useState('');
-	const [adress, setAdress] = useState();
-	const [paid_id, setPaid_id] = useState('');
-	const [paid_name, setPaid_name] = useState('');
-	const [paid_price, setPaid_price] = useState('');
-
 	// fetch data from server
 	const fetchClients = async () => {
 		try {
+			const access_token = JSON.parse(localStorage.getItem('accessToken'));
 			const payments_url = `${server_url}/api/v1/payments`;
 			const { data: response } = await axios({
 				method: 'get',
 				url: payments_url,
+				headers: {
+					authorization: `Bearer ${access_token}`,
+				},
 			});
-
 			setClients(() => response.payments);
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
 		}
 	};
 
@@ -101,26 +87,10 @@ const Clients = () => {
 
 		const [paymentDetails] = clients.filter((client) => {
 			if (client._id === id) return client;
-			return null;
+			return {};
 		});
-
-		setEmail(() => paymentDetails.email);
-		setPhone(() => paymentDetails.phone);
-		setAdress(() => paymentDetails.adress);
-		setCity(() => paymentDetails.city);
-		setComment(() => paymentDetails.comment);
-		setDate(() => paymentDetails.date);
-		setNeighbourhood(() => paymentDetails.neighbourhood);
-		setName(() => paymentDetails.name);
-		setSurname(() => paymentDetails.surname);
-		setPaymentMethod(() => paymentDetails.payment_method);
-		setPaymentValue(() => paymentDetails.payment_value);
-		setPostNumber(() => paymentDetails.post_number);
-		setQuantity(() => paymentDetails.quantity);
+		setPaymentViewer(paymentDetails);
 		setInfoModalState((prevState) => !prevState);
-		setPaid_id(() => paymentDetails.paid_product_id);
-		setPaid_name(() => paymentDetails.paid_product_name);
-		setPaid_price(() => paymentDetails.paid_product_price);
 	};
 
 	const ConfirmModal = () => (
@@ -163,7 +133,7 @@ const Clients = () => {
 		>
 			<div className='message-previewer'>
 				<a
-					href={`mailto:${email}`}
+					href={`mailto:${paymentViewer.email}`}
 					className='reply'
 					target={'_blank'}
 					rel='noreferrer'
@@ -176,35 +146,35 @@ const Clients = () => {
 					</h2>
 					<span>
 						<strong>Nome: </strong>
-						{`${name} ${surname}`}
+						{`${paymentViewer.name} ${paymentViewer.surname}`}
 					</span>
 					<span>
 						<strong>E-mail: </strong>
-						{email}
+						{paymentViewer.email}
 					</span>
 					<span>
 						<strong>Telefone: </strong>
-						{phone}
+						{paymentViewer.phone}
 					</span>
 					<h2>
 						<strong>Endereço de Entrega</strong>
 					</h2>
 					<span>
 						<strong>Cidade: </strong>
-						<span>{city}</span>
+						<span>{paymentViewer.city}</span>
 					</span>
 					<span>
 						<strong>Bairro: </strong>
-						{neighbourhood}
+						{paymentViewer.neighbourhood}
 					</span>
 					<span>
 						<strong>Endereço: </strong>
-						{adress}
+						{paymentViewer.adress}
 					</span>
-					{postNumber ? (
+					{paymentViewer.post_number ? (
 						<span>
 							<strong>Caixa Postal: </strong>
-							{postNumber}
+							{paymentViewer.post_number}
 						</span>
 					) : null}
 
@@ -213,15 +183,15 @@ const Clients = () => {
 					</h2>
 					<span>
 						<strong>ID do Produto: </strong>
-						{paid_id}
+						{paymentViewer.paid_product_id}
 					</span>
 					<span>
 						<strong>Nome do Produto: </strong>
-						{paid_name}
+						{paymentViewer.paid_product_name}
 					</span>
 					<span>
 						<strong>Preço do Produto: </strong>
-						{paid_price},00 MT
+						{paymentViewer.paid_product_price},00 MT
 					</span>
 
 					<h2>
@@ -229,31 +199,31 @@ const Clients = () => {
 					</h2>
 					<span>
 						<strong>Pago por: </strong>
-						{paymentMethod}
+						{paymentViewer.payment_method}
 					</span>
 					<span>
 						<strong>Valor total: </strong>
-						{paymentValue},00 MT
+						{paymentViewer.payment_value},00 MT
 					</span>
 					<span>
 						<strong>Quantidade: </strong>
-						{quantity}
+						{paymentViewer.quantity}
 					</span>
 				</div>
-				{comment ? (
+				{paymentViewer.comment ? (
 					<section className='message'>
 						<h2>
 							<strong>Comentário do Cliente</strong>
 						</h2>
-						<div>{comment}</div>
+						<div>{paymentViewer.comment}</div>
 					</section>
 				) : null}
 				<section className='details-footer'>
 					<span>
-						<strong>Data:</strong> {date?.date}
+						<strong>Data:</strong> {paymentViewer.date?.date}
 					</span>
 					<span>
-						<strong>Hora:</strong> {date?.time}
+						<strong>Hora:</strong> {paymentViewer.date?.time}
 					</span>
 				</section>
 				<section className='actions'>

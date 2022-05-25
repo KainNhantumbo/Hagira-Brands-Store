@@ -17,7 +17,7 @@ export const authUser = (event, user_data, navigate, setData) => {
 		url: `${server_url}/api/v1/users/login`,
 	})
 		.then((response) => {
-			localStorage.setItem('accessToken', JSON.stringify(response.token));
+			localStorage.setItem('accessToken', JSON.stringify(response.data.token));
 			navigate('/admin');
 		})
 		.catch((error) => {
