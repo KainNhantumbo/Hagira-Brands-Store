@@ -39,7 +39,9 @@ export const HireContainer = styled.main`
 	h3 {
 		position: relative;
 		padding-left: 20px;
-
+		span{
+			padding-left: 5px;
+		}
 		svg {
 			color: rgb(${({ theme }) => theme.primary});
 			position: absolute;

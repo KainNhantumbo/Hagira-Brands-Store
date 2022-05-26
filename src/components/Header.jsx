@@ -1,7 +1,7 @@
 import { Container } from '../styles/components/header';
 import Button from './Button';
 import { BiCartAlt, BiPlanet } from 'react-icons/bi';
-
+import { Link } from 'react-router-dom';
 const Header = () => {
 	// scrolls the page to the footer
 	const explore = () => {
@@ -15,10 +15,10 @@ const Header = () => {
 	return (
 		<Container>
 			<section>
-				<a href='/'>
+				<Link to='/'>
 					<BiCartAlt />
 					<span>Hagira Brands</span>
-				</a>
+				</Link>
 			</section>
 			<nav className='navbar'>
 				<div className='actions'>

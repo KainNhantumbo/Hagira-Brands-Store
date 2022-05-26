@@ -6,6 +6,7 @@ import { primary, dark } from './styles/themes';
 import { GlobalStyles } from './styles/Globalstyles';
 import { useState, useEffect } from 'react';
 import { BiArrowToTop, BiCheckCircle, BiMoon } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 import { AppContainer } from './styles/app';
 import AppRoutes from './routes/Routes';
 
@@ -79,9 +80,9 @@ const App = () => {
 							<span>
 								Ao usar a <strong>Hagira Brands</strong>, você concorda com os a
 								nossa{' '}
-								<a href='/privacy-policy'>
+								<Link to='/privacy-policy'>
 									<strong>política de privacidade</strong>
-								</a>
+								</Link>
 								.
 							</span>
 							<Button

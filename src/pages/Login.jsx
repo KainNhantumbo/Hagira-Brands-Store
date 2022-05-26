@@ -1,6 +1,6 @@
 import { LoginContainer } from '../styles/login';
 import { BiLogIn, BiEnvelope, BiLockAlt, BiChevronLeft } from 'react-icons/bi';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authUser } from '../services/auth';
 import Button from '../components/Button';
@@ -8,7 +8,6 @@ import Button from '../components/Button';
 const Login = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [formData, setFormData] = useState({ email: '', password: '' });
-	// navigatio function
 	const navigate = useNavigate();
 	// populates data on formData Object
 	const populateData = (e) => {
@@ -18,6 +17,14 @@ const Login = () => {
 		}));
 	};
 
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 	return (
 		<LoginContainer>
 			<section className='welcome-msg'>
@@ -52,10 +59,7 @@ const Login = () => {
 				<section className='buttons'>
 					<Button text={'Entrar'} icon={<BiLogIn />} type={'submit'} />
 					<Button
-						event={(e) => {
-							e.preventDefault();
-							// navigate('/');
-						}}
+						event={e=> navigate('/')}
 						text={'Voltar'}
 						icon={<BiChevronLeft />}
 					/>

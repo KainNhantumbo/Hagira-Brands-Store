@@ -13,6 +13,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import Button from '../components/Button';
 import { server_url } from '../services/urls';
 import { createDate } from '../modules/module-scripts';
+import { Link } from 'react-router-dom';
 
 export const searchContext = createContext();
 
@@ -130,7 +131,7 @@ const Home = () => {
 					{products.map((items, index) => {
 						return (
 							<div className='product' key={index}>
-								<a href={`/product/${items._id}`}>
+								<Link to={`/product/${items._id}`}>
 									<img src={items.image} alt={items.name} />
 									<div className='details-product'>
 										<h3>{items.name}</h3>
@@ -146,7 +147,7 @@ const Home = () => {
 											</span>
 										</div>
 									</div>
-								</a>
+								</Link>
 							</div>
 						);
 					})}

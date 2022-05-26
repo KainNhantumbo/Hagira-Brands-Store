@@ -1,8 +1,16 @@
 import { AboutContainer } from '../styles/about';
 import aboutImage from '../assets/about0.jpg';
 import { FaSeedling } from 'react-icons/fa';
-
+import { useEffect } from 'react';
 const About = () => {
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 	return (
 		<AboutContainer>
 			<h1>

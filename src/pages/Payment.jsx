@@ -12,8 +12,10 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { server_url } from '../services/urls';
 import { createDate } from '../modules/module-scripts';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Payment = () => {
+	const navigate = useNavigate();
 	const [phone, setPhone] = useState('');
 	const [comment, setComment] = useState('');
 	const [email, setEmail] = useState('');
@@ -52,16 +54,14 @@ const Payment = () => {
 				paid_product_price: product_data.product.price,
 			};
 			const server_payment_url = `${server_url}/api/v1/payments`;
-
 			await axios({
 				method: 'post',
 				url: server_payment_url,
 				data: paymentData,
 			});
-
-			window.location.assign('/data-sent');
+			navigate('/data-sent');
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
 		}
 	};
 
@@ -76,7 +76,7 @@ const Payment = () => {
 			setProduct_data(() => response);
 			setPayment_value(() => Number(response.product.price));
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
 		}
 	};
 
@@ -102,8 +102,8 @@ const Payment = () => {
 				<p>
 					Por favor, tenha em mente que a inserção de valores inválidos,
 					incorrectos ou que ferem os nossos{' '}
-					<a href='/terms-and-conditions'>termos e condições</a> nesta página,
-					resultará na invalidação da sua encomenda.
+					<Link to='/terms-and-conditions'>termos e condições</Link> nesta
+					página, resultará na invalidação da sua encomenda.
 				</p>
 			</section>
 			<article className='messageForm'>
@@ -280,8 +280,8 @@ const Payment = () => {
 
 					<span>
 						Ao clicar em <em>Encomendar</em>, você concorda com os nossos{' '}
-						<a href='/terms-and-conditions'>termos de uso</a> e{' '}
-						<a href='/privacy-policy'>política de privacidade</a> da nossa
+						<Link to='/terms-and-conditions'>termos de uso</Link> e{' '}
+						<Link to='/privacy-policy'>política de privacidade</Link> da nossa
 						plataforma.
 					</span>
 					<div className='actions'>
@@ -306,7 +306,7 @@ const Payment = () => {
 					<BiHelpCircle />
 					<h3>Tem alguma questão?</h3>
 					<p>
-						Veja a nossa <a href='/support'>seção de suporte</a>, onde você
+						Veja a nossa <Link to='/support'>seção de suporte</Link>, onde você
 						poderá encontrar respostas de perguntas comuns sobre como usar a
 						nossa plataforma.
 					</p>

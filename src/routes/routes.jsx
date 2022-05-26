@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import RestritectedRoute from '../components/RestrictedRoute';
 import Login from '../pages/Login';
 import Home from '../pages/Home';
@@ -17,31 +17,29 @@ import Payment from '../pages/Payment';
 
 const AppRoutes = () => {
 	return (
-		<Router>
-			<Routes>
-				<Route path='/' element={<Home />} />
-				<Route path='/subscribed-sucessfully' element={<Subscribe />} />
-				<Route path='/privacy-policy' element={<PrivacyPolicy />} />
-				<Route path='/terms-and-conditions' element={<TermsAndConditions />} />
-				<Route path='/contact' element={<Contact />} />
-				<Route path='/data-sent' element={<DataSentSucess />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='/about' element={<About />} />
-				<Route path='/support' element={<Support />} />
-				<Route path='/product/:id/payment/:id' element={<Payment />} />
-				<Route path='/request-service' element={<HireService />} />
-				<Route path='/product/:id' element={<Product />} />
-				<Route
-					path='/admin'
-					element={
-						<RestritectedRoute>
-							<Admin />
-						</RestritectedRoute>
-					}
-				></Route>
-				<Route path='*' element={<ErrorPage />} />
-			</Routes>
-		</Router>
+		<Routes>
+			<Route path='/' element={<Home />} />
+			<Route path='/subscribed-sucessfully' element={<Subscribe />} />
+			<Route path='/privacy-policy' element={<PrivacyPolicy />} />
+			<Route path='/terms-and-conditions' element={<TermsAndConditions />} />
+			<Route path='/contact' element={<Contact />} />
+			<Route path='/data-sent' element={<DataSentSucess />} />
+			<Route path='/login' element={<Login />} />
+			<Route path='/about' element={<About />} />
+			<Route path='/support' element={<Support />} />
+			<Route path='/product/:id/payment/:id' element={<Payment />} />
+			<Route path='/request-service' element={<HireService />} />
+			<Route path='/product/:id' element={<Product />} />
+			<Route
+				path='/admin'
+				element={
+					<RestritectedRoute>
+						<Admin />
+					</RestritectedRoute>
+				}
+			></Route>
+			<Route path='*' element={<ErrorPage />} />
+		</Routes>
 	);
 };
 

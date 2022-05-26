@@ -1,6 +1,16 @@
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { LegalContainer } from '../styles/legal';
 
 const PrivacyPolicy = () => {
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 	return (
 		<LegalContainer>
 			<section>
@@ -11,7 +21,7 @@ const PrivacyPolicy = () => {
 					A sua privacidade é importante para nós. É política do Hagira Brands
 					respeitar a sua privacidade em relação a qualquer informação sua que
 					possamos coletar no site{' '}
-					<a href='hagira-brands.netlify.app'>Hagira Brands</a>, e outros sites
+					<Link to='hagira-brands.netlify.app'>Hagira Brands</Link>, e outros sites
 					que possuímos e operamos.
 				</p>
 				<p>
@@ -36,10 +46,10 @@ const PrivacyPolicy = () => {
 					por nós. Esteja ciente de que não temos controle sobre o conteúdo e
 					práticas desses sites e não podemos aceitar responsabilidade por suas
 					respectivas{' '}
-					<a href='https://politicaprivacidade.com' target='_BLANK' rel='noreferrer'>
+					<Link to='https://politicaprivacidade.com' target='_BLANK' rel='noreferrer'>
 						políticas de privacidade
-					</a>
-					.{' '}
+					</Link>
+					.
 				</p>
 				<p>
 					Você é livre para recusar a nossa solicitação de informações pessoais,
@@ -212,7 +222,7 @@ const PrivacyPolicy = () => {
 					<li>
 						B) Não difundir propaganda ou conteúdo de natureza racista,
 						xenofóbica,{' '}
-						<a href='https://ondeapostar.pt/onde-da-a-bola/'>Onde dá a Bola</a>{' '}
+						<Link to='https://ondeapostar.pt/onde-da-a-bola/'>Onde dá a Bola</Link>{' '}
 						ou azar, qualquer tipo de pornografia ilegal, de apologia ao
 						terrorismo ou contra os direitos humanos;
 					</li>

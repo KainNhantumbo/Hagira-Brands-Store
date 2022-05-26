@@ -16,8 +16,6 @@ const Comunicate = () => {
 	const formDataHandler = (e) => {
 		e.preventDefault();
 		const message = {};
-
-		// checks the message subject, if not present, advices the user about it
 		if (!messageSubject) {
 			setErrorMessage(() => 'Por favor, escreva o assunto da sua mensagem.');
 			setErrorStyles(() => ({ color: 'red' }));
@@ -27,8 +25,6 @@ const Comunicate = () => {
 			setErrorMessage(() => '');
 			setErrorStyles(() => ({}));
 		}
-
-		// checks the message user email, if not present, advices the user about it
 		if (!messageContent) {
 			setErrorMessage(
 				() => 'Por favor, escreva uma mensagem antes de enviar o formulário.'
@@ -40,8 +36,6 @@ const Comunicate = () => {
 			setErrorMessage(() => '');
 			setErrorStyles(() => ({}));
 		}
-
-		// checks the message subject, if not preset, advices the user about it
 		if (!messageDestination) {
 			setErrorStyles(() => ({ color: 'red' }));
 			if (sendMethod === 'email') {
@@ -69,7 +63,7 @@ const Comunicate = () => {
 			const post_url = `${server_url}/api/v1/emails`;
 			const message = formDataHandler(e);
 			if (sendMethod === 'email') {
-				const response = await axios({
+				await axios({
 					method: 'post',
 					data: message,
 					url: post_url,
@@ -77,8 +71,6 @@ const Comunicate = () => {
 						authorization: `Bearer ${access_token}`,
 					},
 				});
-
-				// if sucess, navigates to sucessfully subscribed page
 				e.target.reset();
 				return window.location.assign('/data-sent');
 			} else {
@@ -89,7 +81,7 @@ const Comunicate = () => {
 		}
 	};
 
-	// runs on every render
+
 	useEffect(() => {
 		// corrects the window position
 		window.scroll({

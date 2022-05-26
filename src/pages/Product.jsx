@@ -24,6 +24,7 @@ import {
 	FaTruckLoading,
 } from 'react-icons/fa';
 import { server_url } from '../services/urls';
+import { Link } from 'react-router-dom';
 
 const Product = () => {
 	const [product, setProduct] = useState([]);
@@ -40,13 +41,19 @@ const Product = () => {
 			const { product: product_data } = product;
 			setProduct(() => product_data);
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
 		}
 	};
 
 	// runs on every render
 	useEffect(() => {
 		productRequest();
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
 	}, []);
 
 	//  extensive components
@@ -221,9 +228,9 @@ const Product = () => {
 						</section>
 					</section>
 					<section className='product-actions'>
-						<a href={`${product_id}/payment/${product_id}`}>
+						<Link to={`payment/${product_id}`}>
 							<Button text={'Encomendar produto'} icon={<FaShoppingBag />} />
-						</a>
+						</Link>
 					</section>
 				</section>
 			</article>

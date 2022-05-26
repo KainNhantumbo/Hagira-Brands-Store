@@ -1,4 +1,9 @@
-import { BiCodeAlt, BiEnvelope } from 'react-icons/bi';
+import {
+	BiCodeAlt,
+	BiConversation,
+	BiEnvelope,
+	BiPlanet,
+} from 'react-icons/bi';
 import { HireContainer } from '../styles/hire-service';
 import {
 	DiGithubBadge,
@@ -6,10 +11,21 @@ import {
 	DiNodejsSmall,
 	DiReact,
 	DiSass,
-} from 'react-icons/di';
-import { FaJsSquare } from 'react-icons/fa';
+	FaJsSquare,
+} from 'react-icons/all';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const HireService = () => {
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
+
 	return (
 		<HireContainer>
 			<section className='intro'>
@@ -30,36 +46,51 @@ const HireService = () => {
 				<p>
 					Se gostou e pretente contratar-me para um serviço, por favor entre em
 					contacto através do e-mail abaixo ou use o{' '}
-					<a href='/contact'>
+					<Link to='/contact'>
 						<strong>formulário</strong>
-					</a>{' '}
+					</Link>{' '}
 					da página de contacto.
 				</p>
 			</section>
 
 			<section className='contacts'>
-				<h3>Contacto</h3>
+				<h3>
+					<BiConversation /> <span>Contacto</span>
+				</h3>
 				<h3>
 					<BiEnvelope />
 					<span>E-mail</span>
 				</h3>
 				<span>
-					<a target='_blank' rel='noreferrer' href='mailto:nhantumbok.com'>
+					<Link target='_blank' rel='noreferrer' to='mailto:nhantumbok.com'>
 						nhantumbok@gmail.com
-					</a>
+					</Link>
 				</span>
 				<h3>
 					<DiGithubBadge />
 					<span>Repositórios do Github</span>
 				</h3>
 				<span>
-					<a
+					<Link
 						target='_blank'
 						rel='noreferrer'
-						href='https://www.github.com/KainNhantumbo'
+						to='https://www.github.com/KainNhantumbo'
 					>
 						github.com/KainNhantumbo
-					</a>
+					</Link>
+				</span>
+				<h3>
+					<BiPlanet />
+					<span>Portifólio</span>
+				</h3>
+				<span>
+					<Link
+						target='_blank'
+						rel='noreferrer'
+						to='https://portifolio-dev-kainnhantumbo.vercel.app'
+					>
+						potifolio-dev-kainnhantumbo.vercel.app
+					</Link>
 				</span>
 			</section>
 			<section>

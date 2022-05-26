@@ -1,8 +1,17 @@
 import { SupportContainer } from '../styles/support';
 import { BiAlarm, BiBulb, BiMessageSquareCheck } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Support = () => {
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 	return (
 		<SupportContainer>
 			<section className='intro'>
@@ -18,9 +27,9 @@ const Support = () => {
 				<p>
 					Lembre-se que se a resposta para a questão não estiver listada nesta
 					página, você poderá sempre entrar em{' '}
-					<a rel='noreferrer' href='mailto: hagira-brands@gmail.com' target={'_blank'}>
+					<Link rel='noreferrer' to='mailto: hagira-brands@gmail.com' target={'_blank'}>
 						<strong>contacto por e-mail</strong>
-					</a>{' '}
+					</Link>{' '}
 					connosco através da{' '}
 					<Link to='/contact'>
 						<strong>página de contacto</strong>
@@ -49,9 +58,9 @@ const Support = () => {
 					assim como a exposição de produtos de terceiros nesta loja desde que
 					sejam do mesmo nicho de empreendimento. Para saber mais sobre como
 					adquirir tal licença, entre em{' '}
-					<a rel='noreferrer' href='mailto: hagira-brands@gmail.com' target={'_blank'}>
+					<Link rel='noreferrer' to='mailto: hagira-brands@gmail.com' target={'_blank'}>
 						<strong>contacto por e-mail</strong>
-					</a>{' '}
+					</Link>{' '}
 					ou use o formulário na{' '}
 					<Link to='/contact'>
 						<strong>página de contacto</strong>

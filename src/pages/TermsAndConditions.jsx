@@ -1,6 +1,16 @@
 import { LegalContainer } from '../styles/legal';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const TermsAndConditions = () => {
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 	return (
 		<LegalContainer>
 			<section>
@@ -9,9 +19,9 @@ const TermsAndConditions = () => {
 			<article>
 				<p>
 					Ao acessar ao site{' '}
-					<a href='/'>
+					<Link to='/'>
 						<strong>Hagira Brands</strong>
-					</a>
+					</Link>
 					, concorda em cumprir estes termos de serviço, todas as leis e
 					regulamentos aplicáveis e concorda que é responsável pelo cumprimento
 					de todas as leis locais aplicáveis. Se você não concordar com algum

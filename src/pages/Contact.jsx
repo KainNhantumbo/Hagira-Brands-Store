@@ -6,14 +6,17 @@ import {
 	BiAlarm,
 	BiEnvelope,
 	BiMap,
-} from 'react-icons/bi';
-import { MdMessage } from 'react-icons/md';
+	MdMessage,
+} from 'react-icons/all';
 import Button from '../components/Button';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createDate } from '../modules/module-scripts';
 import axios from 'axios';
+import { server_url } from '../services/urls';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Contact = () => {
+	const navigate = useNavigate();
 	const [messageStatus, setMessageStatus] = useState(
 		'Receberá a sua resposta em seu email assim que possível.'
 	);
@@ -26,8 +29,6 @@ const Contact = () => {
 	const formDataHandler = (e) => {
 		e.preventDefault();
 		const formData = {};
-
-		// checks the message subject, if not present, advices the user about it
 		if (!messageSubject) {
 			setMessageStatus(() => 'Por favor, descreva o assunto da sua mensagem.');
 			setErrorStyles(() => ({ color: 'red' }));
@@ -40,7 +41,6 @@ const Contact = () => {
 			setErrorStyles(() => ({}));
 		}
 
-		// checks the message user email, if not present, advices the user about it
 		if (!messageContent) {
 			setMessageStatus(
 				() => 'Por favor, escreva uma mensagem antes de enviar o formulário.'
@@ -54,8 +54,6 @@ const Contact = () => {
 			);
 			setErrorStyles(() => ({}));
 		}
-
-		// checks the message subject, if not preset, advices the user about it
 		if (!messageEmail) {
 			setMessageStatus(
 				() => 'Por favor, digite o seu e-mail antes de enviar o formulário.'
@@ -86,28 +84,31 @@ const Contact = () => {
 	};
 
 	// makes a post request to the server
-	const server_post_url = `http://localhost:4630/api/v1/messages`;
 	const sendMessageRequest = async (e) => {
+		const server_post_url = `${server_url}/api/v1/messages`;
 		try {
 			e.preventDefault();
 			const message = formDataHandler(e);
-
 			if (!message) return;
-
-			const response = await axios({
+			await axios({
 				method: 'post',
 				url: server_post_url,
 				data: message,
 			});
-
-			// resets the form and goes to /data-sent page
-			if (response.status === 201) e.target.reset();
-			return window.location.assign('/data-sent');
+			e.target.reset();
+			navigate('/data-sent');
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
 		}
 	};
-
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 	return (
 		<ContactContainer>
 			<section className='intro'>
@@ -127,13 +128,13 @@ const Contact = () => {
 					<span>E-mail</span>
 				</h3>
 				<span>
-					<a
+					<Link
 						target='_blank'
 						rel='noreferrer'
-						href='mailto:hagira-brands@gmail.com'
+						to='mailto:hagira-brands@gmail.com'
 					>
 						hagira-brands@gmail.com
-					</a>
+					</Link>
 				</span>
 				<h3>
 					<BiMap />
@@ -188,7 +189,7 @@ const Contact = () => {
 					<BiHelpCircle />
 					<h3>Tem alguma questão?</h3>
 					<p>
-						Veja a nossa <a href='/support'>seção de suporte</a>, onde você
+						Veja a nossa <Link to='/support'>seção de suporte</Link>, onde você
 						poderá encontrar respostas de perguntas comuns sobre como usar a
 						nossa plataforma.
 					</p>

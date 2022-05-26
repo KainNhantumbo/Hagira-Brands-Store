@@ -4,10 +4,13 @@ import Button from './Button';
 import React, { useState } from 'react';
 import { createDate } from '../modules/module-scripts';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { server_url } from '../services/urls';
 
 const Footer = () => {
+	const navigate = useNavigate();
 	const [newsletterSubscriptor, setNewsletterSubscriptor] = useState('');
-	// makes email validation then sends it to the server
+
 	const process_subscription = () => {
 		if (!newsletterSubscriptor) return;
 		if (
@@ -21,26 +24,22 @@ const Footer = () => {
 			email: newsletterSubscriptor,
 		};
 		return newsletter_subscriptor;
-		// navigates to a sucess feedback page
 	};
 
 	// sends subscription data to server
-	const server_url = 'http://localhost:4630/api/v1/newsletter';
 	const sendData = async () => {
 		try {
+			const server_link = `${server_url}/api/v1/newsletter`;
 			const subscriptor = process_subscription();
 			if (!subscriptor) return;
-			const response = await axios({
+			await axios({
 				method: 'post',
 				data: subscriptor,
-				url: server_url,
+				url: server_link,
 			});
-			
-			// if sucess, navigates to sucessfully subscribed page
-			if (response.status === 201)
-				return window.location.assign('/subscribed-sucessfully');
+			navigate('/subscribed-sucessfully');
 		} catch (error) {
-			console.log(error);
+			console.log(error.message);
 		}
 	};
 
@@ -50,19 +49,19 @@ const Footer = () => {
 				<h2>Loja</h2>
 				<ul>
 					<li>
-						<a href='/'>Início</a>
+						<Link to='/'>Início</Link>
 					</li>
 					<li>
-						<a href='/about'>Sobre nós</a>
+						<Link to='/about'>Sobre nós</Link>
 					</li>
 					<li>
-						<a href='/contact'>Contacto</a>
+						<Link to='/contact'>Contacto</Link>
 					</li>
 					<li>
-						<a href='/privacy-policy'>Política de Privacidade</a>
+						<Link to='/privacy-policy'>Política de Privacidade</Link>
 					</li>
 					<li>
-						<a href='/terms-and-conditions'>Termos e Condições</a>
+						<Link to='/terms-and-conditions'>Termos e Condições</Link>
 					</li>
 				</ul>
 			</section>
@@ -70,13 +69,13 @@ const Footer = () => {
 				<h2>Desenvolvedor</h2>
 				<ul>
 					<li>
-						<a href='/login'>Entrar</a>
+						<Link to='/login'>Entrar</Link>
 					</li>
 					<li>
-						<a href='/support'>Suporte</a>
+						<Link to='/support'>Suporte</Link>
 					</li>
 					<li>
-						<a href='/request-service'>Contratar serviços</a>
+						<Link to='/request-service'>Contratar serviços</Link>
 					</li>
 				</ul>
 			</section>
