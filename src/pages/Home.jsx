@@ -7,6 +7,8 @@ import {
 	BiPurchaseTag,
 	FaCartArrowDown,
 	FaArrowCircleDown,
+	VscError,
+	VscLoading,
 } from 'react-icons/all';
 import axios from 'axios';
 import React, { useState, useEffect, createContext } from 'react';
@@ -22,6 +24,8 @@ const Home = () => {
 		icon: <FaCartArrowDown />,
 		info: 'Carregando informações...',
 	});
+	const [isLoading, setIsLoading] = useState(false);
+	const [isMessage, setIsMessage] = useState(false);
 	const [products, setProducts] = useState([]);
 	const [skipLength, setSkipLength] = useState(0);
 	const [loadButtonText, setLoadButtonText] = useState('Ver mais produtos');
@@ -29,10 +33,7 @@ const Home = () => {
 	// fetch products data from server
 	const getProductsRequest = async () => {
 		try {
-			setLoadState(() => ({
-				icon: <FaCartArrowDown />,
-				info: 'Carregando a lista de produtos...',
-			}));
+			setIsLoading(true);
 			const server_getAllProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_limit=10&product_skip=0`;
 			const { data } = await axios({
 				method: 'get',
@@ -40,12 +41,20 @@ const Home = () => {
 			});
 			setProducts(() => data.products);
 			setSkipLength(() => data.products.length);
+			setIsLoading(false);
 		} catch (err) {
 			console.log(err.message);
+			setIsLoading(false);
+			setIsMessage(true);
 			if (err.code === 'ERR_NETWORK') {
 				setLoadState(() => ({
 					icon: <BiErrorCircle />,
 					info: 'Erro de conexão. Veja as suas configurações de internet.',
+				}));
+			} else {
+				setLoadState(() => ({
+					icon: <VscError />,
+					info: 'Parece que algo está errado. Tente recarregar a página.',
 				}));
 			}
 		}
@@ -112,14 +121,22 @@ const Home = () => {
 	return (
 		<HomeContainer>
 			<searchContext.Provider
-				value={{ setProducts, setLoadState, getProductsRequest }}
+				value={{ setProducts, setLoadState, getProductsRequest, setIsLoading, setIsMessage }}
 			>
 				<Aside />
 			</searchContext.Provider>
 
 			<article>
 				<h2>Produtos</h2>
-				{products.length < 1 ? (
+				{isLoading ? (
+					<section className='loading'>
+						<VscLoading/>
+						<section>
+							<h2>Carregando os dados...</h2>
+						</section>
+					</section>
+				) : null}
+				{isMessage ? (
 					<article className='empty-message'>
 						{loadState.icon}
 						<section>

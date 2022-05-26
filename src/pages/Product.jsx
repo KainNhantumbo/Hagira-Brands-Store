@@ -33,10 +33,12 @@ import { server_url } from '../services/urls';
 import { Link } from 'react-router-dom';
 
 const Product = () => {
-	const [loadState, setLoadState] = useState({
+	const [stateMessage, setStateMessage] = useState({
 		icon: <VscLoading />,
 		info: 'Carregando os detalhes...',
 	});
+	const [isLoading, setIsLoading] = useState(false);
+	const [isError, setIsError] = useState(false);
 	const [product, setProduct] = useState([]);
 	const { id: product_id } = useParams();
 
@@ -44,21 +46,25 @@ const Product = () => {
 	const productRequest = async () => {
 		const server_productRequest_url = `${server_url}/api/v1/products/${product_id}`;
 		try {
+			setIsLoading(true)
 			const { data: product } = await axios({
 				method: 'get',
 				url: server_productRequest_url,
 			});
 			const { product: product_data } = product;
 			setProduct(() => product_data);
+			setIsLoading(false)
 		} catch (err) {
 			console.log(err.message);
+			setIsLoading(false)
+			setIsError(true)
 			if (err.code === 'ERR_NETWORK') {
-				setLoadState(() => ({
+				setStateMessage(() => ({
 					icon: <BiErrorCircle />,
 					info: 'Erro de conexão. Veja as suas configurações de internet.',
 				}));
 			} else {
-				setLoadState(() => ({
+				setStateMessage(() => ({
 					icon: <VscError />,
 					info: 'Parece que algo está errado. Tente recarregar a página.',
 				}));
@@ -134,11 +140,19 @@ const Product = () => {
 
 	return (
 		<ProductContainer>
-			{product.length < 1 ? (
-				<section className='empty-message'>
-					{loadState.icon}
+			{isLoading ? (
+				<section className='loading'>
+					{stateMessage.icon}
 					<section>
-						<h2>{loadState.info}</h2>
+						<h2>{stateMessage.info}</h2>
+					</section>
+				</section>
+			) : null}
+			{isError ? (
+				<section className='empty-message'>
+					{stateMessage.icon}
+					<section>
+						<h2>{stateMessage.info}</h2>
 					</section>
 				</section>
 			) : null}

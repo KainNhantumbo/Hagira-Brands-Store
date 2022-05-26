@@ -9,32 +9,32 @@ import { server_url } from '../services/urls';
 
 const Aside = () => {
 	const [searchQuery, setSearchQuery] = useState('');
-	const { setProducts, setLoadState, getProductsRequest } =
-		useContext(searchContext);
+	const {
+		setIsLoading,
+		setIsMessage,
+		setProducts,
+		setLoadState,
+		getProductsRequest,
+	} = useContext(searchContext);
 
 	// makes a search request to the server
 	const search = async () => {
 		try {
-			const server_searchProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_name=${searchQuery}`;
 			// if the search input is empty, cancels the request
 			if (searchQuery.length < 1) return;
-			// sets loading information
-			setLoadState(() => ({
-				icon: <FaSyncAlt />,
-				info: 'Procurando...',
-			}));
-			// request
+			setProducts([]);
+			setIsLoading(true);
+			const server_searchProductsUrl = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_name=${searchQuery}`;
 			const { data: response } = await axios({
 				method: 'get',
 				url: server_searchProductsUrl,
 			});
 			setProducts(() => response.products);
-
-			// if there are no results, triggers this condition
+			setIsLoading(false);
 			if (response.products.length < 1) {
+				setIsMessage(true);
 				setLoadState(() => ({ icon: <FaWind />, info: 'Sem resultados.' }));
 			}
-			console.log(response);
 		} catch (err) {
 			console.log(err);
 		}
@@ -43,26 +43,22 @@ const Aside = () => {
 	// searches products by classes
 	const searchClasses = async (e) => {
 		try {
+			setIsMessage(false);
+			setIsLoading(true);
+			setProducts([]);
 			const productClass = e.target.value;
-			// sets loading information
-			setLoadState(() => ({
-				icon: <FaSyncAlt />,
-				info: 'Buscando informações...',
-			}));
-
 			// if is not any class type, cancels the request
 			if (!productClass) return getProductsRequest();
 
 			const url = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_class=${productClass}`;
-			// response data
 			const { data: response } = await axios({
 				method: 'get',
 				url: url,
 			});
 			setProducts(() => response.products);
-
-			// if there are no results, triggers this condition
+			setIsLoading(false);
 			if (response.products.length < 1) {
+				setIsMessage(true);
 				setLoadState(() => ({
 					icon: <FaWind />,
 					info: 'Sem resultados para a classe selecionada.',
@@ -76,27 +72,23 @@ const Aside = () => {
 	// searches products by category
 	const searchCategories = async (e) => {
 		try {
+			setIsMessage(false);
+			setIsLoading(true);
+			setProducts([]);
 			const product_category = e.target.value;
-			// sets loading information
-			setLoadState(() => ({
-				icon: <FaSyncAlt />,
-				info: 'Buscando informações...',
-			}));
 
 			// if is not any class type, cancels the request
 			if (!product_category) return getProductsRequest();
 
 			const url = `${server_url}/api/v1/products?product_fields=price,image,name,request_type,date&product_category=${product_category}`;
-
-			// response data
 			const { data: response } = await axios({
 				method: 'get',
 				url: url,
 			});
 			setProducts(() => response.products);
-
-			// if there are no results, triggers this condition
+			setIsLoading(false);
 			if (response.products.length < 1) {
+				setIsMessage(true);
 				setLoadState(() => ({
 					icon: <FaWind />,
 					info: 'Sem resultados para a categoria selecionada.',
@@ -116,8 +108,13 @@ const Aside = () => {
 						type='search'
 						placeholder='Digite algo aqui...'
 						onChange={(e) => {
-							setSearchQuery(() => e.target.value);
-							getProductsRequest();
+							const value = e.target.value;
+							setSearchQuery(() => value);
+							if (value.length < 1) {
+								setIsMessage(false);
+								getProductsRequest();
+								return;
+							}
 						}}
 					/>
 					<Button text={'Buscar'} icon={<BiSearch />} event={search} />

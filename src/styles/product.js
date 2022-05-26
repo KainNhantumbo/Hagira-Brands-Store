@@ -72,6 +72,12 @@ export const ProductContainer = styled.main`
 
 	.empty-message {
 		${() => empty_message_styles}
+		h2 {
+			color: rgb(${({ theme }) => theme.font});
+		}
+	}
+	.loading {
+		${() => empty_message_styles}
 		@keyframes loadingSVG {
 			0% {
 				transform: rotate(0deg);
@@ -114,6 +120,8 @@ export const ProductContainer = styled.main`
 			animation: loadingSVG 250ms ease-in-out forwards infinite;
 		}
 	}
+
+
 
 	.product-intro {
 		display: flex;

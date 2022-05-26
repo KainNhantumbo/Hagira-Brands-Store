@@ -29,11 +29,56 @@ export const HomeContainer = styled.main`
 			${() => empty_message_styles}
 		}
 
+		.loading {
+			${() => empty_message_styles}
+			@keyframes loadingSVG {
+				0% {
+					transform: rotate(0deg);
+				}
+				25% {
+					transform: rotate(90deg);
+				}
+				50% {
+					transform: rotate(180deg);
+				}
+				75% {
+					transform: rotate(270deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+			@keyframes loadingText {
+				0% {
+					opacity: 0;
+				}
+				25% {
+					opacity: 0.5;
+				}
+				50% {
+					opacity: 1;
+				}
+				75% {
+					opacity: 0.5;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			h2 {
+				color: rgb(${({ theme }) => theme.font});
+				animation: loadingText 950ms ease-in-out infinite forwards;
+			}
+			svg {
+				animation: loadingSVG 250ms ease-in-out forwards infinite;
+			}
+		}
+
 		.products {
 			display: grid;
 			grid-template-columns: repeat(5, 1fr);
 			justify-items: center;
-			
+
 			gap: 20px 12px;
 
 			@media screen and (max-width: 1180px) {
