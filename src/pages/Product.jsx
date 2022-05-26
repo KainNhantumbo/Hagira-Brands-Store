@@ -22,11 +22,21 @@ import {
 	FaTags,
 	FaTruck,
 	FaTruckLoading,
-} from 'react-icons/fa';
+	VscLoading,
+	BiErrorCircle,
+	BiError,
+	BiErrorAlt,
+	RiErrorWarningFill,
+	VscError,
+} from 'react-icons/all';
 import { server_url } from '../services/urls';
 import { Link } from 'react-router-dom';
 
 const Product = () => {
+	const [loadState, setLoadState] = useState({
+		icon: <VscLoading />,
+		info: 'Carregando os detalhes...',
+	});
 	const [product, setProduct] = useState([]);
 	const { id: product_id } = useParams();
 
@@ -42,10 +52,20 @@ const Product = () => {
 			setProduct(() => product_data);
 		} catch (err) {
 			console.log(err.message);
+			if (err.code === 'ERR_NETWORK') {
+				setLoadState(() => ({
+					icon: <BiErrorCircle />,
+					info: 'Erro de conexão. Veja as suas configurações de internet.',
+				}));
+			} else {
+				setLoadState(() => ({
+					icon: <VscError />,
+					info: 'Parece que algo está errado. Tente recarregar a página.',
+				}));
+			}
 		}
 	};
 
-	// runs on every render
 	useEffect(() => {
 		productRequest();
 		// corrects the window position
@@ -56,7 +76,7 @@ const Product = () => {
 		});
 	}, []);
 
-	//  extensive components
+	//  ===========extensive components======== //
 	const Intro = () => (
 		<section className='product-intro'>
 			<h1>{product.name}</h1>
@@ -114,126 +134,141 @@ const Product = () => {
 
 	return (
 		<ProductContainer>
-			<Intro />
-			<article className='product-container'>
-				<ProductImage />
-				<section className='product-body'>
-					<section className='product-caracteristics'>
-						<h2>
-							<FaList /> Caraterísticas do Produto
-						</h2>
-						<section>
-							<div>
-								<h5>
-									<FaAward /> Classe
-								</h5>
-								<span>{product.class}</span>
-							</div>
-							<div>
-								<h5>
-									<FaTags /> Categoria
-								</h5>
-								<span>{product.category}</span>
-							</div>
-							<div>
-								<h5>
-									<FaFillDrip /> Cor principal
-								</h5>
-								<span>{product.color}</span>
-							</div>
-							<div>
-								<h5>
-									<FaScroll /> Tipo de Tecido
-								</h5>
-								<span>{product.fabric}</span>
-							</div>
-							<VariantColors />
-							<div>
-								<h5>
-									<FaRulerCombined /> Tamanho
-								</h5>
-								<span>{product.size}</span>
-							</div>
-							{product.width ? (
-								<div>
-									<h5>
-										<FaRulerHorizontal /> Largura
-									</h5>
-									<span>{`${product.width} m`}</span>
-								</div>
-							) : null}
-							{product.height ? (
-								<div>
-									<h5>
-										<FaRulerVertical /> Comprimento
-									</h5>
-									<span>{`${product.height} m`}</span>
-								</div>
-							) : null}
-						</section>
-					</section>
-					<section className='product-description'>
-						<h2>
-							<FaLeaf /> Descrição
-						</h2>
-						<section className='description'>{product.description}</section>
-					</section>
-					<section className='product-details'>
-						<h2>
-							<FaPaperPlane /> Detalhes de Aquisição
-						</h2>
-						<section>
-							<div>
-								<h5>
-									<FaDollarSign /> Preço
-								</h5>
-								<span>{`${product.price},00 MZN`}</span>
-							</div>
-							<div>
-								<h5>
-									<FaTruckLoading />
-									Tipo de aquisição
-								</h5>
-								<span>
-									{product.request_type === 'Estoque'
-										? `Em estoque`
-										: `Por encomenda`}
-								</span>
-							</div>
-							<div>
-								<h5>
-									<FaTruck />
-									Data estimada de entrega*
-								</h5>
-								{!Number(product.estimated_delivery_day) ? (
-									<span>Não especificado</span>
-								) : null}
-								{Number(product.estimated_delivery_day) === 1 ? (
-									<span>{product.estimated_delivery_day} dia</span>
-								) : null}
-								{Number(product.estimated_delivery_day) > 1 ? (
-									<span>{product.estimated_delivery_day} dias</span>
-								) : null}
-							</div>
-							<div>
-								<h5>
-									<FaMapMarkerAlt /> Localização
-								</h5>
-								<span>Maputo - Matola</span>
-							</div>
-							<span className='advice'>
-								* a data estimada de entrega pode variar de acordo com a
-								quantidade de produtos que for encomendar.
-							</span>
-						</section>
-					</section>
-					<section className='product-actions'>
-						<Link to={`payment/${product_id}`}>
-							<Button text={'Encomendar produto'} icon={<FaShoppingBag />} />
-						</Link>
+			{product.length < 1 ? (
+				<section className='empty-message'>
+					{loadState.icon}
+					<section>
+						<h2>{loadState.info}</h2>
 					</section>
 				</section>
-			</article>
+			) : null}
+			{product._id ? (
+				<>
+					<Intro />
+					<article className='product-container'>
+						<ProductImage />
+						<section className='product-body'>
+							<section className='product-caracteristics'>
+								<h2>
+									<FaList /> Caraterísticas do Produto
+								</h2>
+								<section>
+									<div>
+										<h5>
+											<FaAward /> Classe
+										</h5>
+										<span>{product.class}</span>
+									</div>
+									<div>
+										<h5>
+											<FaTags /> Categoria
+										</h5>
+										<span>{product.category}</span>
+									</div>
+									<div>
+										<h5>
+											<FaFillDrip /> Cor principal
+										</h5>
+										<span>{product.color}</span>
+									</div>
+									<div>
+										<h5>
+											<FaScroll /> Tipo de Tecido
+										</h5>
+										<span>{product.fabric}</span>
+									</div>
+									<VariantColors />
+									<div>
+										<h5>
+											<FaRulerCombined /> Tamanho
+										</h5>
+										<span>{product.size}</span>
+									</div>
+									{product.width ? (
+										<div>
+											<h5>
+												<FaRulerHorizontal /> Largura
+											</h5>
+											<span>{`${product.width} m`}</span>
+										</div>
+									) : null}
+									{product.height ? (
+										<div>
+											<h5>
+												<FaRulerVertical /> Comprimento
+											</h5>
+											<span>{`${product.height} m`}</span>
+										</div>
+									) : null}
+								</section>
+							</section>
+							<section className='product-description'>
+								<h2>
+									<FaLeaf /> Descrição
+								</h2>
+								<section className='description'>{product.description}</section>
+							</section>
+							<section className='product-details'>
+								<h2>
+									<FaPaperPlane /> Detalhes de Aquisição
+								</h2>
+								<section>
+									<div>
+										<h5>
+											<FaDollarSign /> Preço
+										</h5>
+										<span>{`${product.price},00 MZN`}</span>
+									</div>
+									<div>
+										<h5>
+											<FaTruckLoading />
+											Tipo de aquisição
+										</h5>
+										<span>
+											{product.request_type === 'Estoque'
+												? `Em estoque`
+												: `Por encomenda`}
+										</span>
+									</div>
+									<div>
+										<h5>
+											<FaTruck />
+											Data estimada de entrega*
+										</h5>
+										{!Number(product.estimated_delivery_day) ? (
+											<span>Não especificado</span>
+										) : null}
+										{Number(product.estimated_delivery_day) === 1 ? (
+											<span>{product.estimated_delivery_day} dia</span>
+										) : null}
+										{Number(product.estimated_delivery_day) > 1 ? (
+											<span>{product.estimated_delivery_day} dias</span>
+										) : null}
+									</div>
+									<div>
+										<h5>
+											<FaMapMarkerAlt /> Localização
+										</h5>
+										<span>Maputo - Matola</span>
+									</div>
+									<span className='advice'>
+										* a data estimada de entrega pode variar de acordo com a
+										quantidade de produtos que for encomendar.
+									</span>
+								</section>
+							</section>
+							<section className='product-actions'>
+								<Link to={`payment/${product_id}`}>
+									<Button
+										text={'Encomendar produto'}
+										icon={<FaShoppingBag />}
+									/>
+								</Link>
+							</section>
+						</section>
+					</article>
+				</>
+			) : null}
 		</ProductContainer>
 	);
 };

@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { infograph } from './contact';
+import { empty_message_styles } from './admin/messages';
 
 export const ProductContainer = styled.main`
 	width: 100%;
 	max-width: 1250px;
+	min-height: 80vh;
 	margin: 0 auto;
 	padding: 80px 10px;
 	display: flex;
@@ -68,6 +70,51 @@ export const ProductContainer = styled.main`
 		}
 	}
 
+	.empty-message {
+		${() => empty_message_styles}
+		@keyframes loadingSVG {
+			0% {
+				transform: rotate(0deg);
+			}
+			25% {
+				transform: rotate(90deg);
+			}
+			50% {
+				transform: rotate(180deg);
+			}
+			75% {
+				transform: rotate(270deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+		@keyframes loadingText {
+			0% {
+				opacity: 0;
+			}
+			25% {
+				opacity: 0.5;
+			}
+			50% {
+				opacity: 1;
+			}
+			75% {
+				opacity: 0.5;
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+		h2 {
+			color: rgb(${({ theme }) => theme.font});
+			animation: loadingText 950ms ease-in-out infinite forwards;
+		}
+		svg {
+			animation: loadingSVG 250ms ease-in-out forwards infinite;
+		}
+	}
+
 	.product-intro {
 		display: flex;
 		justify-content: center;
@@ -113,7 +160,6 @@ export const ProductContainer = styled.main`
 				display: none;
 			}
 		}
-		
 
 		figcaption {
 			@media screen and (max-width: 350px) {
@@ -209,7 +255,7 @@ export const ProductContainer = styled.main`
 		}
 
 		.advice {
-			font-size: .9rem;
+			font-size: 0.9rem;
 			font-weight: 500;
 		}
 	}
