@@ -18,6 +18,7 @@ import Comunicate from './Comunicate';
 import NewProduct from './NewProduct';
 import Clients from './Clients';
 import { FaUserFriends } from 'react-icons/fa';
+import { logoutUser } from '../../services/auth';
 
 const Admin = () => {
 	const [panel, setPanel] = useState(<Overview />);
@@ -54,8 +55,8 @@ const Admin = () => {
 					<BiCog />
 					<span>Gerenciar</span>
 				</div>
-				
-				<div onClick={() => navigate('/')}>
+
+				<div onClick={(e) => logoutUser(navigate)}>
 					<BiLogOut />
 					<span>Sair</span>
 				</div>

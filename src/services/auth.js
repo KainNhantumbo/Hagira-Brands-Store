@@ -29,3 +29,11 @@ export const authUser = (event, user_data, navigate, setData) => {
 			}, 3000);
 		});
 };
+
+// deletes user session
+export const logoutUser = (navigate) => {
+	if (navigate instanceof Function === false)
+		throw new Error('Argument must be a navigation function.');
+	localStorage.removeItem('accessToken');
+	navigate('/login');
+};
