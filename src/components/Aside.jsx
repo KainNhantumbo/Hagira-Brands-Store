@@ -120,30 +120,32 @@ const Aside = () => {
 					<Button text={'Buscar'} icon={<BiSearch />} event={search} />
 				</div>
 			</section>
-			<section>
-				<div className='title'>Categorias e Tags</div>
-				<select className='options' onChange={(e) => searchCategories(e)}>
-					<option value=''>Todas categorias</option>
-					<option value='Capulanas'>Capulanas</option>
-					<option value='Batas'>Batas</option>
-					<option value='Uniformes'>Uniformes</option>
-					<option value='Panos'>Panos</option>
-					<option value='Vestuário'>Vestuário</option>
-					<option value='Cortinas'>Cortinas</option>
-					<option value='Tapetes'>Tapetes</option>
-					<option value='Outros'>Outros</option>
-				</select>
-			</section>
-			<section>
-				<div className='title'>Classes</div>
-				<select className='options' onChange={(e) => searchClasses(e)}>
-					<option value=''>Todas as classes</option>
-					<option value='Baixa'>Baixa</option>
-					<option value='Média'>Média</option>
-					<option value='Alta'>Alta</option>
-					<option value='Premium'>Premium</option>
-				</select>
-			</section>
+			<div className='tags'>
+				<section>
+					<div className='title'>Categorias e Tags</div>
+					<select className='options' onChange={(e) => searchCategories(e)}>
+						<option value=''>Todas categorias</option>
+						<option value='Capulanas'>Capulanas</option>
+						<option value='Batas'>Batas</option>
+						<option value='Uniformes'>Uniformes</option>
+						<option value='Panos'>Panos</option>
+						<option value='Vestuário'>Vestuário</option>
+						<option value='Cortinas'>Cortinas</option>
+						<option value='Tapetes'>Tapetes</option>
+						<option value='Outros'>Outros</option>
+					</select>
+				</section>
+				<section>
+					<div className='title'>Classes</div>
+					<select className='options' onChange={(e) => searchClasses(e)}>
+						<option value=''>Todas as classes</option>
+						<option value='Baixa'>Baixa</option>
+						<option value='Média'>Média</option>
+						<option value='Alta'>Alta</option>
+						<option value='Premium'>Premium</option>
+					</select>
+				</section>
+			</div>
 		</ToolboxContainer>
 	);
 };
