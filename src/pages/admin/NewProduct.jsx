@@ -78,7 +78,6 @@ const NewProduct = () => {
 						setErrorMessage('Loading, please wait...');
 					};
 					reader.onloadend = function () {
-						console.log(reader.result);
 						if (reader.result.length > 800000)
 							return displayError('Imagem muito grande');
 						setCompressed(reader.result);

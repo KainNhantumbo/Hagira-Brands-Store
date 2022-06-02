@@ -16,50 +16,48 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Payment = () => {
 	const navigate = useNavigate();
-	const [phone, setPhone] = useState('');
-	const [comment, setComment] = useState('');
-	const [email, setEmail] = useState('');
-	const [name, setName] = useState('');
-	const [surname, setSurname] = useState('');
+	const [formData, setFormData] = useState({
+		name: '',
+		surname: '',
+		phone: '',
+		email: '',
+		neighbourhood: '',
+		city: '',
+		adress: '',
+		post_number: '',
+		payment_method: 'M-PESA',
+		comment: '',
+	});
 	const [payment_value, setPayment_value] = useState('');
-	const [quantity, setQuantity] = useState(1);
-	const [city, setCity] = useState('');
-	const [neighbourhood, setNeighbourhood] = useState();
-	const [postNumber, setPostNumber] = useState('');
-	const [adress, setAdress] = useState('');
-	const [paymentMethod, setPaymentMethod] = useState('M-PESA');
-	const { id: product_id } = useParams();
 	const [product_data, setProduct_data] = useState([]);
+	const { id: product_id } = useParams();
+
+	const populateFormData = (e) => {
+		setFormData((prevData) => ({
+			...prevData,
+			[e.target.name]: e.target.value,
+		}));
+	};
 
 	// sends a post request to server
 	const requestPaidProduct = async (e) => {
 		try {
 			e.preventDefault();
-			const paymentData = {
-				name,
-				surname,
-				phone: phone.slice(0, 19),
-				email,
-				quantity,
-				city,
-				neighbourhood,
-				post_number: postNumber,
-				adress,
-				payment_method: paymentMethod,
-				comment,
-				payment_value,
-				date: createDate(),
-				paid_product_id: product_data.product._id,
-				paid_product_name: product_data.product.name,
-				paid_product_price: product_data.product.price,
-			};
+			const { product: paidProduct } = product_data;
+			formData.date = createDate();
+			formData.payment_value = payment_value;
+			formData.paid_product_id = paidProduct._id;
+			formData.paid_product_name = paidProduct.name;
+			formData.paid_product_price = paidProduct.price;
+
 			const server_payment_url = `${server_url}/api/v1/payments`;
 			await axios({
 				method: 'post',
 				url: server_payment_url,
-				data: paymentData,
+				data: formData,
 			});
-			navigate('/data-sent');
+			console.log(formData);
+			// navigate('/data-sent');
 		} catch (err) {
 			console.log(err.message);
 		}
@@ -116,20 +114,22 @@ const Payment = () => {
 							<label>Nome</label>
 							<input
 								type='text'
+								name='name'
 								placeholder='Escreva o seu nome'
 								maxLength={'30'}
 								required
-								onChange={(e) => setName(() => e.target.value)}
+								onChange={(e) => populateFormData(e)}
 							/>
 						</div>
 						<div>
 							<label>Apelido</label>
 							<input
 								type='text'
+								name='surname'
 								placeholder='Escreva o seu apelido'
 								maxLength={'30'}
 								required
-								onChange={(e) => setSurname(() => e.target.value)}
+								onChange={(e) =>populateFormData(e)}
 							/>
 						</div>
 					</section>
@@ -138,20 +138,22 @@ const Payment = () => {
 							<label>E-mail</label>
 							<input
 								type={'email'}
+								name='email'
 								placeholder='E-mail'
 								maxLength={'30'}
 								required
-								onChange={(e) => setEmail(() => e.target.value)}
+								onChange={(e) => populateFormData(e)}
 							/>
 						</div>
 						<div>
 							<label>Telefone</label>
 							<input
 								type='number'
+								name='phone'
 								maxLength='20'
 								placeholder='Número de telefone'
 								required
-								onChange={(e) => setPhone(() => e.target.value)}
+								onChange={(e) => populateFormData(e)}
 							/>
 						</div>
 					</section>
@@ -163,18 +165,20 @@ const Payment = () => {
 							<label>Cidade</label>
 							<input
 								type='text'
+								name='city'
 								placeholder='Cidade ou localicade'
 								required
-								onChange={(e) => setCity(() => e.target.value)}
+								onChange={(e) => populateFormData(e)}
 							/>
 						</div>
 						<div>
 							<label>Bairro</label>
 							<input
 								type='text'
+								name='neighbourhood'
 								placeholder='Bairro'
 								required
-								onChange={(e) => setNeighbourhood(() => e.target.value)}
+								onChange={(e) => populateFormData(e)}
 							/>
 						</div>
 					</section>
@@ -183,18 +187,20 @@ const Payment = () => {
 							<label>Avenida e Número da Casa</label>
 							<input
 								type='text'
+								name='adress'
 								placeholder='Nome e número'
 								required
-								onChange={(e) => setAdress(() => e.target.value)}
+								onChange={(e) => populateFormData(e)}
 							/>
 						</div>
 						<div>
 							<label>Código Postal</label>
 							<input
 								type='text'
+								name='post_number'
 								placeholder='Número do código'
 								maxLength={'10'}
-								onChange={(e) => setPostNumber(() => e.target.value)}
+								onChange={(e) => populateFormData(e)}
 							/>
 						</div>
 					</section>
@@ -209,8 +215,9 @@ const Payment = () => {
 								defaultValue={'1'}
 								min={'1'}
 								max={'10'}
+								name='quantity'
 								onChange={(e) => {
-									setQuantity(() => e.target.value);
+									populateFormData(e)
 									setPayment_value(() => {
 										const value = Number(e.target.value);
 										const price = Number(product_data.product.price);
@@ -234,11 +241,11 @@ const Payment = () => {
 								M-Pesa
 								<input
 									type='radio'
-									name='payment-method'
+									name='payment_method'
 									id='mpesa-method'
 									value='M-PESA'
 									defaultChecked
-									onChange={(e) => setPaymentMethod(() => e.target.value)}
+									onChange={(e) => populateFormData(e)}
 								/>
 							</label>
 						</span>
@@ -247,10 +254,10 @@ const Payment = () => {
 								E-Mola
 								<input
 									type='radio'
-									name='payment-method'
+									name='payment_method'
 									id='emola-method'
 									value='E-MOLA'
-									onChange={(e) => setPaymentMethod(() => e.target.value)}
+									onChange={(e) => populateFormData(e)}
 								/>
 							</label>
 						</span>
@@ -259,11 +266,11 @@ const Payment = () => {
 								Conta Móvel
 								<input
 									type='radio'
-									name='payment-method'
+									name='payment_method'
 									id='conta_movel-method'
 									placeholder='Conta-Móvel'
 									value={'CONTA-MÓVEL'}
-									onChange={(e) => setPaymentMethod(() => e.target.value)}
+									onChange={(e) => populateFormData(e)}
 								/>
 							</label>
 						</span>
@@ -271,12 +278,13 @@ const Payment = () => {
 					<label htmlFor='comment'>Informações adicionais</label>
 					<textarea
 						id='comment'
+						name='comment'
 						cols='30'
 						rows='5'
 						maxLength={'2500'}
 						placeholder='Escreva quaisquer outras informações que precisar aqui...'
-						onChange={(e) => setComment(e.target.value)}
-					></textarea>
+						onChange={(e) => populateFormData(e)}
+					/>
 
 					<span>
 						Ao clicar em <em>Encomendar</em>, você concorda com os nossos{' '}

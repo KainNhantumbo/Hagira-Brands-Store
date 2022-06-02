@@ -14,7 +14,6 @@ const Manage = () => {
 	const [modalState, setModalState] = useState(false);
 	const [url, setUrl] = useState('');
 
-	// runs on every render
 	useEffect(() => {
 		// corrects the window position
 		window.scroll({
@@ -24,7 +23,6 @@ const Manage = () => {
 		});
 	}, []);
 
-	// deletes all messages
 	const eraseData = async (e) => {
 		try {
 			const delete_url = e.target.id;

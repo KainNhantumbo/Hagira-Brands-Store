@@ -39,22 +39,21 @@ const Product = () => {
 	const [product, setProduct] = useState([]);
 	const { id: product_id } = useParams();
 
-	// server request to get product by its id
 	const productRequest = async () => {
 		const server_productRequest_url = `${server_url}/api/v1/products/${product_id}`;
 		try {
-			setIsLoading(true)
+			setIsLoading(true);
 			const { data: product } = await axios({
 				method: 'get',
 				url: server_productRequest_url,
 			});
 			const { product: product_data } = product;
 			setProduct(() => product_data);
-			setIsLoading(false)
+			setIsLoading(false);
 		} catch (err) {
 			console.log(err.message);
-			setIsLoading(false)
-			setIsError(true)
+			setIsLoading(false);
+			setIsError(true);
 			if (err.code === 'ERR_NETWORK') {
 				setStateMessage(() => ({
 					icon: <BiErrorCircle />,
@@ -102,37 +101,39 @@ const Product = () => {
 			</figure>
 		</section>
 	);
-console.log(product?.variant_colors);
+
 	const VariantColors = () => (
-		<div className='colors'>
-			<h5>
-				<FaBrush /> Cores disponíveis
-			</h5>
-			{product.variant_colors[0] !== '' ? (
-				<i>
-					{product.variant_colors[0] ? (
-						<span style={{ background: `${product.variant_colors[0]}` }}>
-							<FaCircleNotch />
-						</span>
-					) : null}
-					{product.variant_colors[1] ? (
-						<span style={{ background: `${product.variant_colors[1]}` }}>
-							<FaCircleNotch />
-						</span>
-					) : null}
-					{product.variant_colors[2] ? (
-						<span style={{ background: `${product.variant_colors[2]}` }}>
-							<FaCircleNotch />
-						</span>
-					) : null}
-					{product.variant_colors[3] ? (
-						<span style={{ background: `${product.variant_colors[3]}` }}>
-							<FaCircleNotch />
-						</span>
-					) : null}
-				</i>
+		<>
+			{product.variant_colors[0] ? (
+				<div className='colors'>
+					<h5>
+						<FaBrush /> Cores disponíveis
+					</h5>
+					<div>
+						{product.variant_colors[0] ? (
+							<span style={{ background: `${product.variant_colors[0]}` }}>
+								<FaCircleNotch />
+							</span>
+						) : null}
+						{product.variant_colors[1] ? (
+							<span style={{ background: `${product.variant_colors[1]}` }}>
+								<FaCircleNotch />
+							</span>
+						) : null}
+						{product.variant_colors[2] ? (
+							<span style={{ background: `${product.variant_colors[2]}` }}>
+								<FaCircleNotch />
+							</span>
+						) : null}
+						{product.variant_colors[3] ? (
+							<span style={{ background: `${product.variant_colors[3]}` }}>
+								<FaCircleNotch />
+							</span>
+						) : null}
+					</div>
+				</div>
 			) : null}
-		</div>
+		</>
 	);
 
 	return (

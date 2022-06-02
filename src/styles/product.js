@@ -186,7 +186,7 @@ export const ProductContainer = styled.main`
 		gap: 20px;
 
 		.colors {
-			i {
+			div {
 				display: flex;
 				justify-content: flex-end;
 				flex-flow: row nowrap;
