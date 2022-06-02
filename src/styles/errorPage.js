@@ -17,6 +17,10 @@ export const ErrorPageContainer = styled.main`
     height: 50px;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   div {
     h1 {
       font-size: 1.8rem;

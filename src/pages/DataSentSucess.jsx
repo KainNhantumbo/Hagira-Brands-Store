@@ -1,8 +1,17 @@
 import { ErrorPageContainer } from '../styles/errorPage';
 import { BiCheckCircle, BiChevronLeft } from 'react-icons/bi';
 import Button from '../components/Button';
+import { useEffect } from 'react';
 
 const DataSentSucess = () => {
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 	return (
 		<ErrorPageContainer>
 			<BiCheckCircle id='bugSVG' />

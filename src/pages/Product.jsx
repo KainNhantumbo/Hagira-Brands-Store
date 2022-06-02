@@ -24,9 +24,6 @@ import {
 	FaTruckLoading,
 	VscLoading,
 	BiErrorCircle,
-	BiError,
-	BiErrorAlt,
-	RiErrorWarningFill,
 	VscError,
 } from 'react-icons/all';
 import { server_url } from '../services/urls';
@@ -105,13 +102,13 @@ const Product = () => {
 			</figure>
 		</section>
 	);
-
+console.log(product?.variant_colors);
 	const VariantColors = () => (
 		<div className='colors'>
 			<h5>
 				<FaBrush /> Cores disponíveis
 			</h5>
-			{product.variant_colors ? (
+			{product.variant_colors[0] !== '' ? (
 				<i>
 					{product.variant_colors[0] ? (
 						<span style={{ background: `${product.variant_colors[0]}` }}>

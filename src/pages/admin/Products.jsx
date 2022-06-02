@@ -20,7 +20,6 @@ const Products = () => {
 	const [modalState, setModalState] = useState(false);
 	const [id, setId] = useState('');
 
-	// fetchs products data from the server
 	const fetchProducts = async () => {
 		try {
 			const products_url = `${server_url}/api/v1/products`;
@@ -28,17 +27,14 @@ const Products = () => {
 				method: 'get',
 				url: products_url,
 			});
-
 			setProducts(() => response.products);
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
 		}
 	};
 
-	// runs on every render
 	useEffect(() => {
 		fetchProducts();
-
 		// corrects the window position
 		window.scroll({
 			left: 0,
@@ -75,7 +71,6 @@ const Products = () => {
 		</section>
 	);
 
-	// deletes a product
 	const deleteProduct = async (e) => {
 		try {
 			const access_token = JSON.parse(localStorage.getItem('accessToken'));
@@ -91,7 +86,7 @@ const Products = () => {
 			fetchProducts();
 			setModalState((prevState) => !prevState);
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
 		}
 	};
 

@@ -6,6 +6,7 @@ import { createDate } from '../../modules/module-scripts';
 import axios from 'axios';
 import { server_url } from '../../services/urls';
 import Compressor from 'compressorjs';
+import { useNavigate } from 'react-router-dom';
 
 const NewProduct = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -28,24 +29,21 @@ const NewProduct = () => {
 		width: '',
 		estimated_delivery_day: '',
 	});
-
+	const navigate = useNavigate();
 	// variable to store compressed Blob data
-	var compressed = null;
+	var [compressed, setCompressed] = useState(null);
 
-	// runs on every render
-	useEffect(() => {
-		// corrects the window position
-		window.scroll({
-			left: 0,
-			top: 0,
-			behavior: 'auto',
-		});
-	}, []);
+	const displayError = (message) => {
+		setErrorStyles(() => ({ color: 'red' }));
+		setErrorMessage(() => message);
+		setTimeout(() => {
+			setErrorStyles(() => ({}));
+			setErrorMessage(() => '');
+		}, 3000);
+	};
 
-	// picks and reads the selected image
-	const imageHandler = async () => {
+	const imagePicker = async () => {
 		try {
-			// file options
 			const fileOptions = {
 				multiple: false,
 				types: [
@@ -65,9 +63,7 @@ const NewProduct = () => {
 				excludeAcceptAllOption: true,
 			};
 
-			// new file reader instance
 			const reader = new FileReader();
-			// shows the window to oick the file
 			const [fileHandler] = await window.showOpenFilePicker(fileOptions);
 			const file = await fileHandler.getFile();
 
@@ -77,19 +73,28 @@ const NewProduct = () => {
 				success(result) {
 					const form = new FormData();
 					form.append('file', result, result.name);
-
-					// reads the file and sets it on image state
 					reader.readAsDataURL(result);
-					reader.onloadend = () => {
-						compressed = reader.result;
+					reader.onloadstart = function () {
+						setErrorMessage('Loading, please wait...');
+					};
+					reader.onloadend = function () {
+						console.log(reader.result);
+						if (reader.result.length > 800000)
+							return displayError('Imagem muito grande');
+						setCompressed(reader.result);
+						setErrorMessage('Image Loaded.');
+						setTimeout(function () {
+							setErrorMessage('');
+						}, 3000);
 					};
 				},
 				error(err) {
 					console.log(err);
 				},
 			});
-		} catch (e) {
-			console.log(e);
+		} catch (err) {
+			console.log(err.message);
+			displayError(err.message);
 		}
 	};
 
@@ -104,40 +109,28 @@ const NewProduct = () => {
 	// wrappes all data into a object and sends it to the server
 	const formDataHandler = (e) => {
 		e.preventDefault();
-
 		if (!compressed) {
-			setErrorStyles(() => ({ color: 'red' }));
-			setErrorMessage(() => 'Selecione uma imagem do produto.');
+			displayError('Selecione uma imagem do produto.');
 			return;
-		} else {
-			setErrorMessage(() => '');
-			setErrorStyles(() => ({}));
-			formData.image = compressed;
 		}
-
+		formData.image = compressed;
 		formData.variant_colors = [colorA, colorB, colorC, colorD];
 		formData.date = createDate();
 		return formData;
 	};
 
-	// sends a post request to the server
 	const sendData = async (e) => {
 		try {
 			const product = formDataHandler(e);
 			if (!product?.image) {
 				return;
 			} else if (product.image.length > 800000) {
-				setErrorStyles(() => ({ color: 'red' }));
-				setErrorMessage(() => 'Imagem muito grande');
-				setTimeout(() => {
-					setErrorStyles(() => ({}));
-					setErrorMessage(() => '');
-				}, 3000);
+				displayError('Imagem muito grande');
 				return;
 			}
 			const access_token = JSON.parse(localStorage.getItem('accessToken'));
 			const url = `${server_url}/api/v1/products`;
-			const response = await axios({
+			await axios({
 				method: 'post',
 				url: url,
 				data: product,
@@ -145,13 +138,21 @@ const NewProduct = () => {
 					authorization: `Bearer ${access_token}`,
 				},
 			});
-
-			// if sucess, navigates to sucessfully subscribed page
-			if (response.status === 201) return window.location.assign('/data-sent');
+			navigate('/data-sent');
 		} catch (err) {
-			console.log(err);
+			console.log(err.message);
+			displayError(err.message);
 		}
 	};
+
+	useEffect(() => {
+		// corrects the window position
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: 'auto',
+		});
+	}, []);
 
 	return (
 		<NewProductContainer>
@@ -334,7 +335,7 @@ const NewProduct = () => {
 						icon={<BiUpload />}
 						event={(e) => {
 							e.preventDefault();
-							imageHandler();
+							imagePicker();
 						}}
 					/>
 					<hr />

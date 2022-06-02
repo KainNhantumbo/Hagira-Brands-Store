@@ -67,7 +67,10 @@ export const FooterContainer = styled.footer`
 			button {
 				font-size: 1rem;
 				border-radius: 5px;
-
+				cursor: pointer;
+				span, svg {
+					pointer-events: none;
+				}
 				:hover {
 					box-shadow: 0 0 5px 1px rgb(${({ theme }) => theme.shadows});
 				}

@@ -79,19 +79,10 @@ export const ProductContainer = styled.main`
 	.loading {
 		${() => empty_message_styles}
 		@keyframes loadingSVG {
-			0% {
+			from {
 				transform: rotate(0deg);
 			}
-			25% {
-				transform: rotate(90deg);
-			}
-			50% {
-				transform: rotate(180deg);
-			}
-			75% {
-				transform: rotate(270deg);
-			}
-			100% {
+			to{
 				transform: rotate(360deg);
 			}
 		}

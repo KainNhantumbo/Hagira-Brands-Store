@@ -96,7 +96,11 @@ const Footer = () => {
 							placeholder='Digite o e-mail aqui...'
 							onChange={(e) => setNewsletterSubscriptor(() => e.target.value)}
 						/>
-						<Button event={sendData} text={'Send'} icon={<BiSend />} />
+						<Button
+							event={sendData}
+							text={'Send'}
+							icon={<BiSend />}
+						/>
 					</div>
 				</section>
 			</section>
